@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{12}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -27,6 +27,12 @@ Saurav Kadavath, Tom Conerly, Amanda Askell, Tom Henighan, Dawn Drain, Ethan Per
 \newblock Language models (mostly) know what they know.
 \newblock \emph{arXiv preprint arXiv:2207.05221}, 2022.
 \newblock URL \url{https://arxiv.org/abs/2207.05221}.
+
+\bibitem[Li et~al.(2024)Li, Chen, Su, Chen, Zhang, Xing, and Zhang]{Li2024ConfidenceMR}
+Loka Li, Guan-Hong Chen, Yusheng Su, Zhenhao Chen, Yixuan Zhang, Eric~P. Xing, and Kun Zhang.
+\newblock Confidence matters: Revisiting intrinsic self-correction capabilities of large language models.
+\newblock \emph{ArXiv}, abs/2402.12563, 2024.
+\newblock URL \url{https://api.semanticscholar.org/CorpusID:268032763}.
 
 \bibitem[Rivera et~al.(2023)Rivera, Ye, Kim, and Li]{rivera2023assertive}
 Colin Rivera, Xinyi Ye, Yonsei Kim, and Wenpeng Li.
