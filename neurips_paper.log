@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  1 MAY 2025 16:06
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  3 MAY 2025 13:25
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -592,39 +592,59 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 28
  (/usr/local/texlive/2023/texmf-dist/tex/latex/psnfss/ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [5]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[6] [7]
-Overfull \hbox (81.38095pt too wide) in paragraph at lines 405--423
- [][] 
- []
-
-
-Overfull \hbox (140.59068pt too wide) in paragraph at lines 444--460
- [][] 
- []
+<figures/model_avg_opening_confidence_bar_chart.pdf, id=257, 867.24pt x 505.89pt>
+File: figures/model_avg_opening_confidence_bar_chart.pdf Graphic file (type pdf)
+<use figures/model_avg_opening_confidence_bar_chart.pdf>
+Package pdftex.def Info: figures/model_avg_opening_confidence_bar_chart.pdf  used on input line 361.
+(pdftex.def)             Requested size: 317.9892pt x 185.49356pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8] (./neurips_paper.bbl [9]) [10] [11] [12] [13] (./neurips_paper.aux)
+[6]
+<figures/side_winrate_confidence_comparison.pdf, id=301, 578.16pt x 433.62pt>
+File: figures/side_winrate_confidence_comparison.pdf Graphic file (type pdf)
+<use figures/side_winrate_confidence_comparison.pdf>
+Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used on input line 375.
+(pdftex.def)             Requested size: 317.9892pt x 238.49173pt.
+ [7 <./figures/model_avg_opening_confidence_bar_chart.pdf> <./figures/side_winrate_confidence_comparison.pdf>]
+Overfull \hbox (81.38095pt too wide) in paragraph at lines 395--413
+ [][] 
+ []
+
+<figures/model_win_loss_escalation_dumbell.pdf, id=410, 867.24pt x 578.16pt>
+File: figures/model_win_loss_escalation_dumbell.pdf Graphic file (type pdf)
+<use figures/model_win_loss_escalation_dumbell.pdf>
+Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on input line 419.
+(pdftex.def)             Requested size: 357.73405pt x 238.49394pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+Overfull \hbox (140.59068pt too wide) in paragraph at lines 432--448
+ [][] 
+ []
+
+[8] (./neurips_paper.bbl
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [9 <./figures/model_win_loss_escalation_dumbell.pdf>]) [10] [11] [12] [13] (./neurips_paper.aux)
 Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 056B363E6892D213F49CA551AEE09710;4401.
  ) 
 Here is how much of TeX's memory you used:
- 17104 strings out of 476025
- 266493 string characters out of 5790018
+ 17124 strings out of 476025
+ 267595 string characters out of 5790018
  2497388 words of memory out of 5000000
- 36856 multiletter control sequences out of 15000+600000
+ 36873 multiletter control sequences out of 15000+600000
  551265 words of font info for 222 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,76p,1793b,1465s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (13 pages, 218182 bytes).
+Output written on neurips_paper.pdf (13 pages, 270608 bytes).
 PDF statistics:
- 466 PDF objects out of 1000 (max. 8388607)
- 426 compressed objects within 5 object streams
- 186 named destinations out of 1000 (max. 500000)
- 39609 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 623 PDF objects out of 1000 (max. 8388607)
+ 440 compressed objects within 5 object streams
+ 185 named destinations out of 1000 (max. 500000)
+ 39624 words of extra memory for PDF output out of 42996 (max. 10000000)
 

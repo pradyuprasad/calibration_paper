@@ -358,9 +358,8 @@ This widespread overestimation suggests a fundamental disconnect between the mod
 \begin{figure}[h]
   \centering
   % TODO: Replace with figure showing average confidence vs. expected win rate (50%)
-  % \includegraphics[width=0.8\linewidth]{figures/avg_confidence_vs_expected.pdf}
-  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{5cm}{0cm}} % Placeholder box
-  \caption{Average stated confidence across all LLMs and rounds compared to the expected 50\% win rate.}
+  \includegraphics[width=0.8\linewidth]{figures/model_avg_opening_confidence_bar_chart.pdf}
+  \caption{Average stated confidence in the first round across all LLMs and rounds compared to the expected 50\% win rate.}
   \label{fig:avg_confidence}
 \end{figure}
 
@@ -373,8 +372,7 @@ Despite this clear disparity in success rates, Proposition models reported \text
 \begin{figure}[h]
   \centering
   % TODO: Replace with figure comparing Win Rate vs. Average Confidence for Proposition and Opposition sides
-  % \includegraphics[width=0.8\linewidth]{figures/position_bias_confidence_winrate.pdf}
-  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{6cm}{0cm}} % Placeholder box
+  \includegraphics[width=0.8\linewidth]{figures/side_winrate_confidence_comparison.pdf}
   \caption{Comparison of Win Rate and Average Confidence for Proposition and Opposition sides.}
   \label{fig:position_bias}
 \end{figure}
@@ -383,14 +381,6 @@ Despite this clear disparity in success rates, Proposition models reported \text
 
 A stark illustration of LLM metacognitive failure is the frequency with which both debaters expressed high confidence simultaneously. In 71.2\% of the 59 debates, both the Proposition and Opposition models rated their chance of winning at $\ge$ 75\% in at least one round. Given that only one side can win, this scenario is logically impossible under mutual exclusivity. This widespread occurrence highlights a profound inability for models to ground their confidence in the objective constraints of the task.
 
-\begin{figure}[h]
-  \centering
-  % TODO: Replace with figure showing the percentage of debates where both models had high confidence (e.g., >75%)
-  % \includegraphics[width=0.6\linewidth]{figures/both_high_confidence_percentage.pdf}
-  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{4cm}{0cm}} % Placeholder box
-  \caption{Percentage of debates where both models expressed a confidence of 75\% or higher in at least one round.}
-  \label{fig:both_high_confidence}
-\end{figure}
 
 \subsection{Dynamic Confidence Revision and Escalation}
 
@@ -426,10 +416,8 @@ Only one model (google/gemini-2.0-flash-001) showed a slight decrease in confide
 
 \begin{figure}[h]
   \centering
-  % TODO: Replace with a line chart showing average confidence across rounds for winning vs. losing models. This is key to showing escalation despite losing.
-  % \includegraphics[width=0.9\linewidth]{figures/confidence_trend_winner_loser.pdf}
-  \fbox{\rule[-.5cm]{0cm}{4cm} \rule[-.5cm]{6cm}{0cm}} % Placeholder box
-  \caption{Average confidence across debate rounds for models that ultimately won versus models that ultimately lost.}
+  \includegraphics[width=0.9\linewidth]{figures/model_win_loss_escalation_dumbell.pdf}
+  \caption{Confidence escalation across debate rounds for models that ultimately won versus models that ultimately lost.}
   \label{fig:confidence_trend_winner_loser}
 \end{figure}
 

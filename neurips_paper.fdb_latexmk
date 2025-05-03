@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex neurips_paper"] 1746086801 "neurips_paper.aux" "neurips_paper.bbl" "neurips_paper" 1746086804 0
+["bibtex neurips_paper"] 1746249945 "neurips_paper.aux" "neurips_paper.bbl" "neurips_paper" 1746249948 0
   "./references.bib" 1746072830 4720 c811f096f473070a23e94bb6f18dcf3b ""
   "/usr/local/texlive/2023/texmf-dist/bibtex/bst/natbib/plainnat.bst" 1233624470 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "neurips_paper.aux" 1746086804 9834 9e3c63afd59bcfff3a157a5a401d4bee "pdflatex"
+  "neurips_paper.aux" 1746249947 9504 5bf32d864ce80d5c7e8a8acb60ada18a "pdflatex"
   (generated)
   "neurips_paper.bbl"
   "neurips_paper.blg"
   (rewritten before read)
-["pdflatex"] 1746086802 "/Users/pradyu/Projects/calibration_paper/neurips_paper.tex" "neurips_paper.pdf" "neurips_paper" 1746086804 0
-  "/Users/pradyu/Projects/calibration_paper/neurips_paper.tex" 1746086799 46085 acdf48794d3204d96470d0c3e60436a2 ""
+["pdflatex"] 1746249945 "/Users/pradyu/Projects/calibration_paper/neurips_paper.tex" "neurips_paper.pdf" "neurips_paper" 1746249948 0
+  "/Users/pradyu/Projects/calibration_paper/neurips_paper.tex" 1746249940 45272 7fa405b84cf4a932536edab1776c0d68 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1136849721 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
@@ -138,11 +138,14 @@
   "/usr/local/texlive/2023/texmf-var/fonts/map/pdftex/updmap/pdftex.map" 1680798001 4623355 b8cad38412faebe1ce5b780a45db67bd ""
   "/usr/local/texlive/2023/texmf-var/web2c/pdftex/pdflatex.fmt" 1680797965 7883462 fb41f5c0d2396586747e8d15940d5f94 ""
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
+  "figures/model_avg_opening_confidence_bar_chart.pdf" 1746248110 17989 9f3afab70bd6426c12876c050cc33ea5 ""
+  "figures/model_win_loss_escalation_dumbell.pdf" 1746249634 27748 021bbf3cb86e282aa1b4d31c74c06d12 ""
+  "figures/side_winrate_confidence_comparison.pdf" 1746248350 17247 921d02cb7a376ecac01a41b8bc0a2908 ""
   "neurips_2025.sty" 1743587668 11625 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
-  "neurips_paper.aux" 1746086804 9834 9e3c63afd59bcfff3a157a5a401d4bee "pdflatex"
-  "neurips_paper.bbl" 1746086802 5103 0f2c389cb6cfed3cf485e010aec6cf6a "bibtex neurips_paper"
-  "neurips_paper.out" 1746086804 4401 056b363e6892d213f49ca551aee09710 "pdflatex"
-  "neurips_paper.tex" 1746086799 46085 acdf48794d3204d96470d0c3e60436a2 ""
+  "neurips_paper.aux" 1746249947 9504 5bf32d864ce80d5c7e8a8acb60ada18a "pdflatex"
+  "neurips_paper.bbl" 1746249945 5103 0f2c389cb6cfed3cf485e010aec6cf6a "bibtex neurips_paper"
+  "neurips_paper.out" 1746249947 4401 056b363e6892d213f49ca551aee09710 "pdflatex"
+  "neurips_paper.tex" 1746249940 45272 7fa405b84cf4a932536edab1776c0d68 ""
   (generated)
   "neurips_paper.aux"
   "neurips_paper.log"
