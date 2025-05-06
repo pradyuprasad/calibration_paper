@@ -63,7 +63,7 @@
 
 % --- Title ---
 % Replace with your paper title
-\title{They’re Both Sure They’re Winning: How LLMs Fail to Revise Confidence in the Face of Opposition}
+\title{They're Both Sure They're Winning: How LLMs Fail to Revise Confidence in the Face of Opposition}
 
 % --- Author ---
 % Replace with your author information.
@@ -130,6 +130,9 @@ Debate has been proposed as a mechanism for AI alignment, where two agents argue
 \paragraph{Persuasion, Belief Drift, and Argumentation.}
 Other studies examine how LLMs respond to external persuasion. \citet{xu2023earthflat} show that models can abandon correct beliefs when exposed to carefully crafted persuasive dialogue. \citet{zhou2023epistemic} and \citet{rivera2023assertive} find that language assertiveness influences perceived certainty and factual accuracy. While these works focus on belief change due to stylistic pressure, we examine whether models \textit{recognize when their own position is deteriorating}, and how that impacts their confidence. We find that models often fail to revise their beliefs, even when presented with strong, explicit opposition.
 
+\paragraph{Human Overconfidence Baselines.}
+This section will present literature on human overconfidence in reasoning tasks and debates. We will discuss established findings on how humans often exhibit similar overconfidence patterns and relate this to our LLM findings. Key references for human calibration baselines will be introduced.
+
 \paragraph{Summary.}
 Our work sits at the intersection of calibration, metacognition, adversarial reasoning, and debate-based evaluation. We introduce a new diagnostic setting—structured multi-turn debate with private, incentivized confidence betting—and show that LLMs frequently overestimate their standing, fail to adjust, and exhibit ``confidence escalation'' despite losing. These findings surface a deeper metacognitive failure that challenges assumptions about LLM trustworthiness in high-stakes, multi-agent contexts.
 
@@ -176,7 +179,7 @@ Highly structured prompts were used for \textit{each} speech type to ensure cons
   \centering
   \lstset{style=promptstyle}
 
-  % scale so it can’t overflow a page
+  % scale so it can't overflow a page
   \begin{adjustbox}{max height=0.88\textheight}
   \begin{lstlisting}[language={}]
 ====================== OPENING SPEECH PROMPT ======================
@@ -267,10 +270,10 @@ Full verbatim prompt text for debaters is provided in Appendix~\ref{appendix:deb
 \subsection{Dynamic Confidence Elicitation}
 \label{subsec:confidence_elicitation}
 
-After generating the content for \textit{each} of their three speeches (including the concurrent opening), models were required to provide a private "confidence bet".
+After generating the content for \textit{each} of their three speeches (including the concurrent opening), models were required to provide a private ``confidence bet''.
 
-\textbf{Mechanism:} This involved outputting a numerical value from 0 to 100, representing their perceived probability of winning the debate, using a specific XML tag (\texttt{<bet\_amount>}).
-Models were also prompted to provide private textual justification for their bet amount within separate XML tags (\texttt{<bet\_logic\_private>}), allowing for qualitative insight into their reasoning, although this paper focuses on the quantitative analysis of the bet amounts.
+\textbf{Mechanism:} This involved outputting a numerical value from 0 to 100, representing their perceived probability of winning the debate, using a specific XML tag (\texttt{\textless bet\_amount\textgreater}).
+Models were also prompted to provide private textual justification for their bet amount within separate XML tags (\texttt{\textless bet\_logic\_private\textgreater}), allowing for qualitative insight into their reasoning, although this paper focuses on the quantitative analysis of the bet amounts.
 
 \textbf{Purpose:} This round-by-round elicitation allowed us to quantitatively track self-assessed performance dynamically throughout the debate, enabling analysis of confidence levels, calibration, and revision (or lack thereof) in response to the evolving argumentative context.
 
@@ -347,8 +350,8 @@ Evaluating 59 debates rigorously required a scalable and consistent approach. We
 \label{subsec:data_collection}
 The final dataset comprises the full transcripts of 59 debates, the round-by-round confidence bets (amount and private thoughts) from both debaters in each debate, and the detailed structured verdicts (winner, confidence, reasoning) from each of the six AI judges for every debate. This data enables the quantitative analysis of LLM overconfidence, calibration, and confidence revision presented in our findings.
 
+[TODO - FLESH OUT STATS TESTS] We conducted statistical hypothesis tests for each key finding, including t-tests for overconfidence claims, chi-square tests for position asymmetry, and regression analysis for confidence escalation patterns. Additionally, we evaluated which LLMs made the most accurate predictions of debate outcomes.
 
-% --- Results Section ---
 \section{Results}
 \label{sec:results}
 
@@ -356,7 +359,7 @@ The final dataset comprises the full transcripts of 59 debates, the round-by-rou
 
 Our experimental setup, involving 59 simulated policy debates between ten state-of-the-art LLMs, with round-by-round confidence elicitation and AI jury evaluation, yielded several key findings regarding LLM metacognition in adversarial settings.
 
-\subsection{Pervasive Overconfidence}
+\subsection{Pervasive Overconfidence and Logical Impossibility}
 
 Across all 59 debates and all three rounds (Opening, Rebuttal, Final), LLMs exhibited significant overconfidence in their likelihood of winning. The overall average confidence bet made by models was $\mu = 72.92$ \%. Given that each debate has exactly one winner and one loser, the expected average win probability for any participant is 50\%. A one-sample t-test comparing the average confidence (72.92\%) to the expected 50\% revealed this overconfidence to be highly statistically significant ($t(176) = 23.92, p < 0.0001$). Similarly, a Wilcoxon signed-rank test confirmed this finding ($Z= -10.84, p < 0.0001$).
 
@@ -428,7 +431,17 @@ Only one model (google/gemini-2.0-flash-001) showed a slight decrease in confide
   \label{fig:confidence_trend_winner_loser}
 \end{figure}
 
-\subsection{Model-Specific Performance and Calibration}
+We will expand this section with statistical verification of the confidence escalation pattern, including analysis of confidence trends for winning versus losing models. The data will demonstrate how this pattern contradicts rational Bayesian updating.
+
+\subsection{Persistence Against Identical Models}
+
+This subsection will present results from our ablation study on identical model debates. Despite debating against the exact same model architecture, LLMs maintain significant overconfidence levels. Table [X] shows confidence levels for each model when debating against itself. Average confidence across rounds remains well above the theoretically expected 50\%, with most models increasing their confidence from opening to closing rounds. This demonstrates that overconfidence persists even when models should recognize that their opponent has identical capabilities with no inherent advantage.
+
+\subsection{Strategic Confidence in Public Settings}
+
+When models knew their confidence assessments would be visible to opponents, we observed different patterns compared to private betting scenarios. This section will analyze how models adapt their stated confidence when it may strategically influence opponents. Table [Y] presents comparative confidence levels between public and private conditions. The results have implications for chain-of-thought faithfulness and reveal potential strategic bluffing behavior that differs from genuine metacognitive assessment.
+
+\subsection{Model Performance, Calibration, and Evaluation Reliability}
 
 Individual models varied in their overall performance (win rate) and calibration quality. We measured calibration using the Mean Squared Error (MSE) between the stated confidence (as a probability) and the binary outcome (win=1, loss=0), where lower MSE indicates better calibration. Calibration scores ranged from 0.1362 (qwen/qwen-max) to 0.5355 (deepseek/deepseek-r1-distill-qwen-14b:free), indicating substantial differences in the models' ability to align confidence with outcome.
 
@@ -438,27 +451,47 @@ Individual models varied in their overall performance (win rate) and calibration
   \centering
   \begin{tabular}{lcccc}
     \toprule
-    Model                                   & Win Rate (\%) & Avg. Confidence (\%) & Overconfidence (\%) & Calibration Score (MSE) \\
+    Model                                   & Win Rate (\%) & Avg. Confidence (\%) & Overconfidence (\%) & 
+    Calibration Score (MSE) \\
     \midrule
-    anthropic/claude-3.5-haiku              & 33.3          & 71.7                 & +38.4               & 0.2314 \\
-    anthropic/claude-3.7-sonnet             & 75.0          & 67.5                 & -7.5                & 0.2217 \\
-    deepseek/deepseek-chat                  & 33.3          & 74.6                 & +41.3               & 0.2370 \\
-    deepseek/deepseek-r1-distill-qwen-14b   & 18.2          & 79.1                 & +60.9               & 0.5355 \\
-    google/gemini-2.0-flash-001             & 50.0          & 65.4                 & +15.4               & 0.2223 \\
-    google/gemma-3-27b-it                   & 58.3          & 67.5                 & +9.2                & 0.2280 \\
-    openai/gpt-4o-mini                      & 27.3          & 74.5                 & +47.2               & 0.3755 \\
+    anthropic/claude-3.5-haiku              & 33.3          & 71.7                 & +38.4               & 0.
+    2314 \\
+    anthropic/claude-3.7-sonnet             & 75.0          & 67.5                 & -7.5                & 0.
+    2217 \\
+    deepseek/deepseek-chat                  & 33.3          & 74.6                 & +41.3               & 0.
+    2370 \\
+    deepseek/deepseek-r1-distill-qwen-14b   & 18.2          & 79.1                 & +60.9               & 0.
+    5355 \\
+    google/gemini-2.0-flash-001             & 50.0          & 65.4                 & +15.4               & 0.
+    2223 \\
+    google/gemma-3-27b-it                   & 58.3          & 67.5                 & +9.2                & 0.
+    2280 \\
+    openai/gpt-4o-mini                      & 27.3          & 74.5                 & +47.2               & 0.
+    3755 \\
     openai/o3-mini                     & 33.3          & 77.5                 & +44.2               & 0.3826 \\
-    qwen/qwen-max                           & 83.3          & 73.3                 & -10.0               & 0.1362 \\
-    qwen/qwq-32b:free                       & 83.3          & 78.8                 & -4.5                & 0.1552 \\
+    qwen/qwen-max                           & 83.3          & 73.3                 & -10.0               & 0.
+    1362 \\
+    qwen/qwq-32b:free                       & 83.3          & 78.8                 & -4.5                & 0.
+    1552 \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-As shown in Table \ref{tab:model_calibration}, models varied widely in their overconfidence (Avg. Confidence - Win Rate). Some models like \texttt{qwen/qwen-max} and \texttt{qwen/qwq-32b:free} were slightly underconfident on average, achieving high win rates with relatively modest average confidence bets. Conversely, models like \texttt{deepseek/deepseek-r1-distill-qwen-14b:free}, \texttt{openai/gpt-4o-mini}, and \texttt{openai/o3-mini} exhibited substantial overconfidence.
+As shown in Table \ref{tab:model_calibration}, models varied widely in their overconfidence (Avg. Confidence - 
+Win Rate). Some models like \texttt{qwen/qwen-max} and \texttt{qwen/qwq-32b:free} were slightly underconfident 
+on average, achieving high win rates with relatively modest average confidence bets. Conversely, models like 
+\texttt{deepseek/deepseek-r1-distill-qwen-14b:free}, \texttt{openai/gpt-4o-mini}, and \texttt{openai/o3-mini} 
+exhibited substantial overconfidence.
 
-Analyzing confidence tiers, models betting 76-100\% confidence won only 45.2\% of the time, slightly worse than those betting 51-75\% (51.2\% win rate). While there were limited data points for lower confidence tiers (only 1 instance in 26-50\% and 0 in 0-25\%), these findings suggest that high confidence in LLMs in this setting is not a reliable indicator of actual success.
+Analyzing confidence tiers, models betting 76-100\% confidence won only 45.2\% of the time, slightly worse 
+than those betting 51-75\% (51.2\% win rate). While there were limited data points for lower confidence tiers 
+(only 1 instance in 26-50\% and 0 in 0-25\%), these findings suggest that high confidence in LLMs in this 
+setting is not a reliable indicator of actual success.
 
-Furthermore, a regression analysis using debate side (Proposition/Opposition) and average confidence as predictors of winning confirmed that while debate side was a highly significant predictor ($p < 0.0001$), average confidence was not ($p = 0.1435$). This reinforces that confidence in this multi-turn, adversarial setting was decoupled from factors driving actual debate success.
+Furthermore, a regression analysis using debate side (Proposition/Opposition) and average confidence as 
+predictors of winning confirmed that while debate side was a highly significant predictor ($p < 0.0001$), 
+average confidence was not ($p = 0.1435$). This reinforces that confidence in this multi-turn, adversarial 
+setting was decoupled from factors driving actual debate success.
 
 \subsection{Jury Agreement and Topic Characteristics}
 
@@ -466,7 +499,45 @@ The AI jury demonstrated moderate inter-rater reliability. 37.3\% of debate outc
 
 Topic difficulty, as measured by the AI jury's difficulty index, varied across the six motions, ranging from the least difficult (media coverage requirements, 50.50) to the most difficult (social media shareholding, 88.44). This variation ensured that models debated across a range of complexity, although the core findings on overconfidence and calibration deficits were consistent across topics.
 
+This section will include an analysis of LLM prediction accuracy, examining which models were most effective at estimating their true likelihood of success, and whether any models showed superior metacognitive capabilities.
 
+\section{Discussion}
+
+\subsection{Metacognitive Limitations and Possible Explanations}
+
+Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. Several explanations may account for these observed patterns:
+
+First, post-training for human preferences may inadvertently reinforce overconfidence. Models trained via RLHF are often rewarded for confident, assertive responses that match human preferences, potentially at the expense of epistemic calibration.
+
+Second, training datasets predominantly feature successful task completion rather than explicit failures or uncertainty. This bias may limit models' ability to recognize and represent losing positions accurately.
+
+Third, the observed confidence patterns may reflect more general human biases toward expressing confidence around 70\%, with 7/10 serving as a common attractor state in human confidence judgments. LLMs may be mimicking this human tendency rather than performing proper Bayesian updating.
+
+\subsection{Implications for AI Safety and Deployment}
+The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong or when additional evidence should cause belief revision.
+
+The persistence of overconfidence even in controlled experimental conditions suggests this is a fundamental limitation rather than a context-specific artifact. This has particular relevance for multi-agent systems, where models must negotiate, debate, and potentially admit error to achieve optimal outcomes. If models maintain high confidence despite opposition, they may persist in flawed reasoning paths or fail to incorporate crucial counterevidence.
+
+\subsection{Potential Mitigations and Guardrails}
+Our ablation study testing explicit 50\% win probability instructions shows [placeholder for results]. This suggests that direct prompting approaches may help mitigate but not eliminate confidence biases.
+
+Other potential mitigation strategies include:
+\begin{itemize}
+    \item Developing dedicated calibration training objectives
+    \item Implementing confidence verification systems through external validation
+    \item Creating debate frameworks that explicitly penalize overconfidence or reward accurate calibration
+    \item Designing multi-step reasoning processes that force models to consider opposing viewpoints before finalizing confidence assessments
+\end{itemize}
+
+\subsection{Future Research Directions}
+Future work should explore several promising directions:
+\begin{itemize}
+    \item Investigating whether human-LLM hybrid teams exhibit better calibration than either humans or LLMs alone
+    \item Developing specialized training approaches specifically targeting confidence calibration in adversarial contexts
+    \item Exploring the relationship between model scale, training methods, and confidence calibration
+    \item Testing whether emergent abilities in frontier models include improved metacognitive assessments
+    \item Designing debates where confidence is directly connected to resource allocation or other consequential decisions
+\end{itemize}
 
 \section{Conclusion}
 % Summarize your work and suggest future research directions.
