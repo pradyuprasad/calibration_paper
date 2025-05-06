@@ -395,7 +395,7 @@ Furthermore, an analysis will be presented on which LLMs made the most accurate 
 
 Our experimental setup, involving 59 simulated policy debates between ten state-of-the-art LLMs, with round-by-round confidence elicitation and AI jury evaluation, yielded several key findings regarding LLM metacognition in adversarial settings.
 
-\subsection{Pervasive Overconfidence and Logical Impossibility}
+\subsection{Pervasive Overconfidence and Logical Impossibility (Finding 1)}
 
 Across all 59 debates and all three rounds (Opening, Rebuttal, Final), LLMs exhibited significant overconfidence in their likelihood of winning. The overall average confidence bet made by models was $\mu = 72.92$ \%. Given that each debate has exactly one winner and one loser, the expected average win probability for any participant is 50\%. A one-sample t-test comparing the average confidence (72.92\%) to the expected 50\% revealed this overconfidence to be highly statistically significant ($t(176) = 23.92, p < 0.0001$). Similarly, a Wilcoxon signed-rank test confirmed this finding ($Z= -10.84, p < 0.0001$).
 
@@ -409,7 +409,13 @@ This widespread overestimation suggests a fundamental disconnect between the mod
   \label{fig:avg_confidence}
 \end{figure}
 
-\subsection{Position Asymmetry and Confidence Mismatch}
+A stark illustration of LLM metacognitive failure is the frequency with which both debaters expressed high confidence simultaneously. In 71.2\% of the 59 debates, both the Proposition and Opposition models rated their chance of winning at $\ge$ 75\% in at least one round. Given that only one side can win, this scenario is logically impossible under mutual exclusivity. This widespread occurrence highlights a profound inability for models to ground their confidence in the objective constraints of the task.
+
+This section will include further statistical testing of overconfidence claims. \textbf{[STATISTICAL TESTING OF OVERCONFIDENCE CLAIMS, TBA]}
+It will also provide a comparison to human baseline statistics. \textbf{[COMPARISON TO HUMAN BASELINE STATISTICS, TBA]}
+Further analysis of the 71.2\% of debates where both sides claimed high confidence will be presented. \textbf{[ANALYSIS OF LOGICALLY IMPOSSIBLE HIGH CONFIDENCE SCENARIOS, TBA]}
+
+\subsection{Position Asymmetry and Confidence Mismatch (Finding 2)}
 
 The AI jury evaluations revealed a significant advantage for the Opposition side in our debate setup. Opposition models won 71.2\% of the debates, while Proposition models won only 28.8\%. This asymmetry was highly statistically significant ($\chi^2(1, N=59) = 12.12, p < 0.0001$; Fisher's exact test $p < 0.0001$).
 
@@ -423,13 +429,11 @@ Despite this clear disparity in success rates, Proposition models reported \text
   \label{fig:position_bias}
 \end{figure}
 
-\subsection{Logically Impossible Confidence Scenarios}
+This section will include more rigorous statistical testing of the asymmetry claim. \textbf{[STATISTICAL TESTING OF ASYMMETRY CLAIM, TBA]}
 
-A stark illustration of LLM metacognitive failure is the frequency with which both debaters expressed high confidence simultaneously. In 71.2\% of the 59 debates, both the Proposition and Opposition models rated their chance of winning at $\ge$ 75\% in at least one round. Given that only one side can win, this scenario is logically impossible under mutual exclusivity. This widespread occurrence highlights a profound inability for models to ground their confidence in the objective constraints of the task.
+\subsection{Dynamic Confidence Revision and Escalation (Finding 3)}
 
-\subsection{Dynamic Confidence Revision and Escalation}
-
-Contrary to the expectation that models would adjust their confidence downwards when presented with strong counterarguments or performing poorly, average confidence levels generally \textit{increased} over the course of the debate, regardless of the eventual outcome.
+Contrary to the expectation that models would adjust their confidence downwards when presented with strong counterarguments or performing poorly, average confidence levels generally \textit{increased} over the course of the debate, regardless of the eventual outcome. This analysis will show confidence increases as the debate progresses, contrary to rational Bayesian updating.
 
 Table \ref{tab:confidence_escalation} summarizes the average confidence per round and the total change from Opening to Final round for each model.
 
@@ -466,20 +470,23 @@ Only one model (google/gemini-2.0-flash-001) showed a slight decrease in confide
   \label{fig:confidence_trend_winner_loser}
 \end{figure}
 
-\textbf{[STATISTICAL VERIFICATION, TBA]}
-We will expand this section with statistical verification of the confidence escalation pattern, including analysis of confidence trends for winning versus losing models. The data will demonstrate how this pattern contradicts rational Bayesian updating.
+Statistical verification of this escalation will be provided. \textbf{[STATISTICAL VERIFICATION, TBA]}
 
-\subsection{Persistence Against Identical Models}
+\subsection{Persistence Against Identical Models (Finding 4)}
+\textbf{[NEW SUBSECTION, NEW DATA, TBA]}
+This subsection will present results from the new ablation study on identical model debates. We will show that overconfidence persists even when models know their opponent is identical. \textbf{[RESULTS FROM IDENTICAL MODEL ABLATION STUDY, TBA]}
 
-This subsection will present results from our ablation study on identical model debates. Despite debating against the exact same model architecture, LLMs maintain significant overconfidence levels. Table [X] shows confidence levels for each model when debating against itself. Average confidence across rounds remains well above the theoretically expected 50\%, with most models increasing their confidence from opening to closing rounds. This demonstrates that overconfidence persists even when models should recognize that their opponent has identical capabilities with no inherent advantage.
+%This subsection will present results from our ablation study on identical model debates. Despite debating against the exact same model architecture, LLMs maintain significant overconfidence levels. Table [X] shows confidence levels for each model when debating against itself. Average confidence across rounds remains well above the theoretically expected 50\%, with most models increasing their confidence from opening to closing rounds. This demonstrates that overconfidence persists even when models should recognize that their opponent has identical capabilities with no inherent advantage.
 
-\subsection{Strategic Confidence in Public Settings}
+\subsection{Strategic Confidence in Public Settings (Finding 5)}
+\textbf{[NEW SUBSECTION, NEW DATA, TBA]}
+This subsection will discuss the effects of public voting and discussion on confidence expression. We will present evidence of strategic bluffing through confidence manipulation and discuss implications for Chain-of-Thought faithfulness. \textbf{[RESULTS FROM PUBLIC CONFIDENCE ABLATION STUDY, TBA]}
 
-When models knew their confidence assessments would be visible to opponents, we observed different patterns compared to private betting scenarios. This section will analyze how models adapt their stated confidence when it may strategically influence opponents. Table [Y] presents comparative confidence levels between public and private conditions. The results have implications for chain-of-thought faithfulness and reveal potential strategic bluffing behavior that differs from genuine metacognitive assessment.
+%When models knew their confidence assessments would be visible to opponents, we observed different patterns compared to private betting scenarios. This section will analyze how models adapt their stated confidence when it may strategically influence opponents. Table [Y] presents comparative confidence levels between public and private conditions. The results have implications for chain-of-thought faithfulness and reveal potential strategic bluffing behavior that differs from genuine metacognitive assessment.
 
 \subsection{Model Performance, Calibration, and Evaluation Reliability}
 
-Individual models varied in their overall performance (win rate) and calibration quality. We measured calibration using the Mean Squared Error (MSE) between the stated confidence (as a probability) and the binary outcome (win=1, loss=0), where lower MSE indicates better calibration. Calibration scores ranged from 0.1362 (qwen/qwen-max) to 0.5355 (deepseek/deepseek-r1-distill-qwen-14b:free), indicating substantial differences in the models' ability to align confidence with outcome.
+Individual models varied in their overall performance (win rate) and calibration quality. We measured calibration using the Mean Squared Error (MSE) between the stated confidence (as a probability) and the binary outcome (win=1, loss=0), where lower MSE indicates better calibration. Calibration scores ranged from 0.1362 (qwen/qwen-max) to 0.5355 (deepseek/deepseek-r1-distill-qwen-14b:free), indicating substantial differences in the models\' ability to align confidence with outcome.
 
 \begin{table}[h]
   \caption{Model-Specific Debate Performance and Calibration Metrics}
@@ -534,8 +541,7 @@ The AI jury demonstrated moderate inter-rater reliability. 37.3\% of debate outc
 
 Topic difficulty, as measured by the AI jury's difficulty index, varied across the six motions, ranging from the least difficult (media coverage requirements, 50.50) to the most difficult (social media shareholding, 88.44). This variation ensured that models debated across a range of complexity, although the core findings on overconfidence and calibration deficits were consistent across topics.
 
-\textbf{[LLM PREDICTION ACCURACY ANALYSIS, TBA]}
-This section will include an analysis of LLM prediction accuracy, examining which models were most effective at estimating their true likelihood of success, and whether any models showed superior metacognitive capabilities.
+This section will include an analysis of LLM prediction accuracy. \textbf{[LLM PREDICTION ACCURACY ANALYSIS, TBA]}
 
 \section{Discussion}
 
