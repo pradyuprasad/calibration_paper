@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  6 MAY 2025 19:29
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  6 MAY 2025 19:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -592,67 +592,70 @@ Package microtype Info: Loading generic protrusion settings for font family
  [1
 
 
-{C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3]
-Underfull \vbox (badness 3219) has occurred while \output is active []
-
- [4] [5]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 293.
+{C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] [4] [5]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 312.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [6]
-<figures/model_avg_opening_confidence_bar_chart.pdf, id=321, 867.24pt x 505.89pt>
+)
+Underfull \vbox (badness 1436) has occurred while \output is active []
+
+ [6]
+<figures/model_avg_opening_confidence_bar_chart.pdf, id=337, 867.24pt x 505.89pt>
 File: figures/model_avg_opening_confidence_bar_chart.pdf Graphic file (type pdf)
 <use figures/model_avg_opening_confidence_bar_chart.pdf>
-Package pdftex.def Info: figures/model_avg_opening_confidence_bar_chart.pdf  used on input line 371.
+Package pdftex.def Info: figures/model_avg_opening_confidence_bar_chart.pdf  used on input line 407.
 (pdftex.def)             Requested size: 317.9892pt x 185.49356pt.
-<figures/side_winrate_confidence_comparison.pdf, id=322, 578.16pt x 433.62pt>
-File: figures/side_winrate_confidence_comparison.pdf Graphic file (type pdf)
-<use figures/side_winrate_confidence_comparison.pdf>
-Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used on input line 385.
-(pdftex.def)             Requested size: 317.9892pt x 238.49173pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+[7]
+<figures/side_winrate_confidence_comparison.pdf, id=345, 578.16pt x 433.62pt>
+File: figures/side_winrate_confidence_comparison.pdf Graphic file (type pdf)
+<use figures/side_winrate_confidence_comparison.pdf>
+Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used on input line 421.
+(pdftex.def)             Requested size: 317.9892pt x 238.49173pt.
 
-Underfull \vbox (badness 1521) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7 <./figures/model_avg_opening_confidence_bar_chart.pdf>]
-Overfull \hbox (81.38095pt too wide) in paragraph at lines 404--422
+ [8 <./figures/model_avg_opening_confidence_bar_chart.pdf> <./figures/side_winrate_confidence_comparison.pdf>]
+Overfull \hbox (81.38095pt too wide) in paragraph at lines 440--458
  [][] 
  []
 
-[8 <./figures/side_winrate_confidence_comparison.pdf>]
-<figures/model_win_loss_escalation_dumbell.pdf, id=439, 867.24pt x 578.16pt>
+<figures/model_win_loss_escalation_dumbell.pdf, id=454, 867.24pt x 578.16pt>
 File: figures/model_win_loss_escalation_dumbell.pdf Graphic file (type pdf)
 <use figures/model_win_loss_escalation_dumbell.pdf>
-Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on input line 428.
+Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on input line 464.
 (pdftex.def)             Requested size: 357.73405pt x 238.49394pt.
- [9 <./figures/model_win_loss_escalation_dumbell.pdf>]
-Overfull \hbox (140.59068pt too wide) in paragraph at lines 452--477
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[9]
+Overfull \hbox (140.59068pt too wide) in paragraph at lines 488--513
  [][] 
  []
 
-[10] (neurips_paper.bbl [11]) [12] [13] [14] [15] (neurips_paper.aux)
+[10 <./figures/model_win_loss_escalation_dumbell.pdf>] [11] (neurips_paper.bbl [12]) [13] [14] [15] (neurips_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
-(rerunfilecheck)             Checksum: 9E4142C49E6FE3504F94E77F69E87A63;6276.
+(rerunfilecheck)             Checksum: F28C42927A2C93DCF0F914D058C2A334;7111.
  ) 
 Here is how much of TeX's memory you used:
- 17102 strings out of 474486
- 267562 string characters out of 5743755
- 2567542 words of memory out of 5000000
- 38677 multiletter control sequences out of 15000+600000
- 597558 words of font info for 234 fonts, out of 8000000 for 9000
+ 17117 strings out of 474486
+ 267794 string characters out of 5743755
+ 2568542 words of memory out of 5000000
+ 38682 multiletter control sequences out of 15000+600000
+ 597910 words of font info for 238 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,11n,79p,1809b,1466s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk> <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (15 pages, 296521 bytes).
+Output written on neurips_paper.pdf (15 pages, 301063 bytes).
 PDF statistics:
- 764 PDF objects out of 1000 (max. 8388607)
- 195 named destinations out of 1000 (max. 500000)
- 39680 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 781 PDF objects out of 1000 (max. 8388607)
+ 199 named destinations out of 1000 (max. 500000)
+ 39712 words of extra memory for PDF output out of 42996 (max. 10000000)
 
