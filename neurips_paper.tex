@@ -413,7 +413,7 @@ A stark illustration of LLM metacognitive failure is the frequency with which bo
 
 This section will include further statistical testing of overconfidence claims. \textbf{[STATISTICAL TESTING OF OVERCONFIDENCE CLAIMS, TBA]}
 It will also provide a comparison to human baseline statistics. \textbf{[COMPARISON TO HUMAN BASELINE STATISTICS, TBA]}
-Further analysis of the 71.2\% of debates where both sides claimed high confidence will be presented. \textbf{[ANALYSIS OF LOGICALLY IMPOSSIBLE HIGH CONFIDENCE SCENARIOS, TBA]}
+Further analysis of the 71.2\% of debates where both sides claimed high confidence will be presented. \textbf{[ANALYSIS OF LOGICALLY IMPOSSIBLE HIGH CONFIDENCE SCENARIOS AND CAVEAT ABOUT ACTUAL WINRATES, TBA]}
 
 \subsection{Position Asymmetry and Confidence Mismatch (Finding 2)}
 
@@ -480,7 +480,7 @@ This subsection will present results from the new ablation study on identical mo
 
 \subsection{Strategic Confidence in Public Settings (Finding 5)}
 \textbf{[NEW SUBSECTION, NEW DATA, TBA]}
-This subsection will discuss the effects of public voting and discussion on confidence expression. We will present evidence of strategic bluffing through confidence manipulation and discuss implications for Chain-of-Thought faithfulness. \textbf{[RESULTS FROM PUBLIC CONFIDENCE ABLATION STUDY, TBA]}
+This subsection will discuss the effects of public voting and discussion on confidence expression. We will present evidence of strategic bluffing through confidence manipulation and discuss implications for Chain-of-Thought faithfulness. \textbf{[RESULTS FROM PUBLIC CONFIDENCE ABLATION STUDY, TBA, EVIDENCE OF STRATEGIC BLUFFING + SHORT STATEMENT ABOUT COT FAITHFULNESS THEN LINK TO DISCUSSION SECTION]}
 
 %When models knew their confidence assessments would be visible to opponents, we observed different patterns compared to private betting scenarios. This section will analyze how models adapt their stated confidence when it may strategically influence opponents. Table [Y] presents comparative confidence levels between public and private conditions. The results have implications for chain-of-thought faithfulness and reveal potential strategic bluffing behavior that differs from genuine metacognitive assessment.
 
@@ -535,15 +535,16 @@ predictors of winning confirmed that while debate side was a highly significant 
 average confidence was not ($p = 0.1435$). This reinforces that confidence in this multi-turn, adversarial 
 setting was decoupled from factors driving actual debate success.
 
+This section will include an analysis of LLM prediction accuracy. \textbf{[LLM PREDICTION ACCURACY ANALYSIS, TBA, not sure if should move elsewhere]}
+
 \subsection{Jury Agreement and Topic Characteristics}
 
 The AI jury demonstrated moderate inter-rater reliability. 37.3\% of debate outcomes were unanimous (all 6 judges agreed), while 62.7\% involved split decisions among the judges. Dissenting opinions were distributed as follows: 1 dissenting judge (18.6\% of debates), 2 dissenting (32.2\%), and 3 dissenting (11.9\%). This level of agreement suggests the jury system provides a reliable, albeit not always perfectly consensual, ground truth for complex debate outcomes at scale.
 
 Topic difficulty, as measured by the AI jury's difficulty index, varied across the six motions, ranging from the least difficult (media coverage requirements, 50.50) to the most difficult (social media shareholding, 88.44). This variation ensured that models debated across a range of complexity, although the core findings on overconfidence and calibration deficits were consistent across topics.
 
-This section will include an analysis of LLM prediction accuracy. \textbf{[LLM PREDICTION ACCURACY ANALYSIS, TBA]}
-
 \section{Discussion}
+\textbf{[NEW CONTENT THROUGHOUT SECTION 5, TBA]}
 
 \subsection{Metacognitive Limitations and Possible Explanations}
 
@@ -556,6 +557,8 @@ Second, training datasets predominantly feature successful task completion rathe
 Third, the observed confidence patterns may reflect more general human biases toward expressing confidence around 70\%, with 7/10 serving as a common attractor state in human confidence judgments. LLMs may be mimicking this human tendency rather than performing proper Bayesian updating.
 
 \subsection{Implications for AI Safety and Deployment}
+
+\textbf{[ADD REFERENCE O 3.6, PUBLIC VS PRIVATE COT AND IMPLICATIONS ON COT FAITHFULNESS]}
 
 The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong or when additional evidence should cause belief revision.
 

@@ -1,6 +1,5 @@
 LATEST TODO (for human reference only):
-- Check 4 and 5 to confirm correct content Changes
-- reference 3.6 public private in 5.4 CoT faithfulness
+- Check 4 and 5 to confirm correct content Changes (done!)
 
 next todo:
 [as of 6th may] we wanna check the structure is correct, then we do figures + hypothesis tests in whichever order
