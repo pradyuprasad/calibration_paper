@@ -126,13 +126,13 @@ Our results reveal a fundamental metacognitive deficit. Key findings include: (1
 This paragraph will compare LLM overconfidence patterns to established human cognitive biases, such as the general tendency towards a ~70\% confidence level in many judgment tasks, often described as a "7 out of 10" attractor state. We will explore whether LLM behavior mirrors or deviates from these human baselines. \textbf{[NEW DATA, TBA]}
 
 % Para 6: Paper contributions and organization
-\textbf{[TODO REORGANISE]} These findings raise serious concerns about deploying LLMs in roles requiring accurate self-assessment or 
-real-time adaptation to new evidence and arguments. We term this anti-Bayesian drift \textbf{confidence 
-escalation}: LLMs not only overestimate their correctness; they become \emph{more} certain after reading 
-structured rebuttals that undermine their case. This effect reveals a metacognitive blind spot that threatens 
-reliability in adversarial, multi-agent, and safety-critical deployments, and it persists even when bets are 
-hidden and incentives are aligned with accurate self-assessment. Until models can reliably revise their 
-confidence in response to opposition, their epistemic judgments in adversarial contexts cannot be trusted—a 
+\textbf{[TODO REORGANISE]} These findings raise serious concerns about deploying LLMs in roles requiring accurate self-assessment or
+real-time adaptation to new evidence and arguments. We term this anti-Bayesian drift \textbf{confidence
+escalation}: LLMs not only overestimate their correctness; they become \emph{more} certain after reading
+structured rebuttals that undermine their case. This effect reveals a metacognitive blind spot that threatens
+reliability in adversarial, multi-agent, and safety-critical deployments, and it persists even when bets are
+hidden and incentives are aligned with accurate self-assessment. Until models can reliably revise their
+confidence in response to opposition, their epistemic judgments in adversarial contexts cannot be trusted—a
 critical limitation for systems meant to engage in research, analysis, or high-stakes decision making.
 
 This paper makes several contributions. We introduce a robust methodology for studying dynamic confidence calibration in LLMs using adversarial debate. We quantify significant overconfidence and confidence escalation phenomena, including novel findings on behavior in identical-model debates and public betting scenarios. These findings highlight critical metacognitive limitations with implications for AI safety and deployment.
@@ -309,6 +309,8 @@ Evaluating 59 debates rigorously required a scalable and consistent approach. We
 
 \textbf{Final Jury Composition:} The final jury consisted of six judges in total, comprising two instances each of \texttt{qwen/qwq-32b}, \texttt{google/gemini-pro-1.5}, and \texttt{deepseek/deepseek-chat}. This composition provided architectural diversity from three providers, included models demonstrating strong analytical performance and calibration during selection, and balanced quality with cost. Each debate was judged independently by all six judges.
 
+
+
 \textbf{Judging Procedure \& Prompt:} Judges evaluated the full debate transcript based solely on the argumentative substance presented, adhering to a highly detailed prompt (see Appendix~\ref{appendix:judge_prompt} for full text). Key requirements included:
 \begin{itemize}
     \item Strict focus on \textbf{Direct Clash Resolution}: Identifying, quoting, and analyzing each point of disagreement based on logic, evidence quality (using a defined hierarchy), and rebuttal effectiveness, explicitly determining a winner for each clash with justification.
@@ -369,11 +371,10 @@ Evaluating 59 debates rigorously required a scalable and consistent approach. We
 
 \subsection{Ablation Studies}
 \label{subsec:ablation_studies}
-\textbf{[NEW SUBSECTION]}
 
 \subsubsection{Identical Model Debates}
 \textbf{[NEW DATA, TBA]}
-This section will present our ablation study examining whether identical models debating against themselves exhibit the same overconfidence patterns. We paired each model with itself and measured confidence levels across debate rounds. Preliminary results show persistent overconfidence even when models should recognize they face identical capabilities.
+This section presents our ablation study examining whether identical models debating against themselves exhibit the same overconfidence patterns. We paired each model with itself, and prompted it that it is facing an opponent of the same ability and measured confidence levels across debate rounds in an identical manner as the main experiment. Results  show persistent overconfidence even when models should recognize they face identical capabilities.
 
 \begin{table}[htbp]
   \centering
@@ -422,7 +423,7 @@ This section will present our ablation study examining whether identical models 
 
 \subsubsection{Explicit 50\% Win Probability Instruction}
 \textbf{[NEW DATA, TBA]}
-This section presents results from explicitly instructing models that they face an equal opponent with a 50\% baseline probability of winning. We test whether direct prompting can mitigate overconfidence biases.
+This section presents results from explicitly instructing models that they face an equal opponent with a 50\% baseline probability of winning. We test whether direct prompting can mitigate overconfidence biases. As shown in table \ref{tab:self-debate-informed}, models do become more likely to predict their odds of success at fifty percent, and even models which had higher predictions before now predict closer to 50%.
 
 \begin{table}[htbp]
   \centering
@@ -540,7 +541,6 @@ This widespread overestimation suggests a fundamental disconnect between the mod
 
 \begin{figure}[h]
   \centering
-  % TODO: Replace with figure showing average confidence vs. expected win rate (50%)
   \includegraphics[width=0.8\linewidth]{figures/model_avg_opening_confidence_bar_chart.pdf}
   \caption{Average stated confidence in the first round across all LLMs and rounds compared to the expected 50\% win rate.}
   \label{fig:avg_confidence}
@@ -560,7 +560,6 @@ Despite this clear disparity in success rates, Proposition models reported \text
 
 \begin{figure}[h]
   \centering
-  % TODO: Replace with figure comparing Win Rate vs. Average Confidence for Proposition and Opposition sides
   \includegraphics[width=0.8\linewidth]{figures/side_winrate_confidence_comparison.pdf}
   \caption{Comparison of Win Rate and Average Confidence for Proposition and Opposition sides.}
   \label{fig:position_bias}
@@ -656,20 +655,20 @@ Individual models varied in their overall performance (win rate) and calibration
   \end{tabular}
 \end{table}
 
-As shown in Table \ref{tab:model_calibration}, models varied widely in their overconfidence (Avg. Confidence - 
-Win Rate). Some models like \texttt{qwen/qwen-max} and \texttt{qwen/qwq-32b:free} were slightly underconfident 
-on average, achieving high win rates with relatively modest average confidence bets. Conversely, models like 
-\texttt{deepseek/deepseek-r1-distill-qwen-14b:free}, \texttt{openai/gpt-4o-mini}, and \texttt{openai/o3-mini} 
+As shown in Table \ref{tab:model_calibration}, models varied widely in their overconfidence (Avg. Confidence -
+Win Rate). Some models like \texttt{qwen/qwen-max} and \texttt{qwen/qwq-32b:free} were slightly underconfident
+on average, achieving high win rates with relatively modest average confidence bets. Conversely, models like
+\texttt{deepseek/deepseek-r1-distill-qwen-14b:free}, \texttt{openai/gpt-4o-mini}, and \texttt{openai/o3-mini}
 exhibited substantial overconfidence.
 
-Analyzing confidence tiers, models betting 76-100\% confidence won only 45.2\% of the time, slightly worse 
-than those betting 51-75\% (51.2\% win rate). While there were limited data points for lower confidence tiers 
-(only 1 instance in 26-50\% and 0 in 0-25\%), these findings suggest that high confidence in LLMs in this 
+Analyzing confidence tiers, models betting 76-100\% confidence won only 45.2\% of the time, slightly worse
+than those betting 51-75\% (51.2\% win rate). While there were limited data points for lower confidence tiers
+(only 1 instance in 26-50\% and 0 in 0-25\%), these findings suggest that high confidence in LLMs in this
 setting is not a reliable indicator of actual success.
 
-Furthermore, a regression analysis using debate side (Proposition/Opposition) and average confidence as 
-predictors of winning confirmed that while debate side was a highly significant predictor ($p < 0.0001$), 
-average confidence was not ($p = 0.1435$). This reinforces that confidence in this multi-turn, adversarial 
+Furthermore, a regression analysis using debate side (Proposition/Opposition) and average confidence as
+predictors of winning confirmed that while debate side was a highly significant predictor ($p < 0.0001$),
+average confidence was not ($p = 0.1435$). This reinforces that confidence in this multi-turn, adversarial
 setting was decoupled from factors driving actual debate success.
 
 This section will include an analysis of LLM prediction accuracy. \textbf{[LLM PREDICTION ACCURACY ANALYSIS, TBA, not sure if should move elsewhere]}
