@@ -1,0 +1,181 @@
+Changes log
+Remember to update log this with comments indicating whether you're done, skipping the change or leaving TODO for later.
+
+Planned structure - from Claude:
+Here's the restructured paper outline with your additional notes incorporated:
+
+# Paper Title: "They're Both Sure They're Winning: How LLMs Fail to Revise Confidence in the Face of Opposition"
+
+## Abstract
+[Keep most of the existing abstract, but ensure it clearly highlights all 5 key points plus implications]
+
+## 1. Introduction
+- **Para 1**: Background on LLMs in high-stakes domains requiring calibration and metacognition
+- **Para 2**: Debate as uniquely testing confidence calibration and belief revision 
+- **Para 3**: Methodology overview - 59 debates, 10 LLMs, private confidence betting
+- **Para 4**: Core findings with clear statistics:
+  - Finding 1: Systematic overconfidence (average 72.92% vs expected 50%)
+  - Finding 2: Position asymmetry (Proposition has 29% win rate but higher confidence)
+  - Finding 3: Confidence escalation over debate rounds (opening 69% to closing 78%)
+  - Finding 4: Persistent overconfidence even against identical models [NEW DATA, TBA]
+  - Finding 5: Strategic confidence manipulation in public settings [NEW DATA, TBA]
+- **Para 5**: Comparison to human baseline (~70% confidence bias, 7/10 as general attractor state) [NEW DATA, TBA]
+- **Para 6**: Paper contributions and organization
+
+## 2. Related Work
+- **2.1**: Confidence Calibration in LLMs
+- **2.2**: LLM Metacognition and Self-Evaluation
+- **2.3**: Debate as Evaluation and Oversight
+- **2.4**: Persuasion, Belief Drift, and Argumentation
+- **2.5**: Human Overconfidence Baselines [NEW SUBSECTION]
+- **2.6**: Summary [RENAMED TO MATCH ORIGINAL - not introducing new method, just noting systematic LLM biases]
+
+## 3. Methodology
+- **3.1**: Debate Simulation Environment
+- **3.2**: Structured Debate Framework
+- **3.3**: Core Prompt Structures & Constraints
+- **3.4**: Dynamic Confidence Elicitation
+- **3.5**: Evaluation Methodology: The AI Jury
+- **3.6**: Ablation Studies [NEW SUBSECTION]
+  - **3.6.1**: Identical Model Debates [NEW DATA, TBA]
+  - **3.6.2**: Public vs. Private Confidence [NEW DATA, TBA]
+  - **3.6.3**: Explicit 50% Win Probability Instruction [NEW DATA, TBA]
+- **3.7**: Data Collection [RENUMBERED from 3.6]
+  - Statistical hypothesis tests for each hypothesis [NEW CONTENT]
+  - Test of which LLMs made the most accurate predictions [NEW CONTENT]
+
+## 4. Results
+- **4.1**: Pervasive Overconfidence and Logical Impossibility (Finding 1) [MERGED with original 4.6]
+  - Statistical testing of overconfidence claims [NEW DATA, TBA]
+  - Comparison to human baseline statistics [NEW DATA, TBA]
+  - Analysis of the 71.2% of debates with both sides claiming high confidence
+- **4.2**: Position Asymmetry and Confidence Mismatch (Finding 2)
+  - Statistical testing of asymmetry claim [NEW DATA, TBA]
+- **4.3**: Dynamic Confidence Revision and Escalation (Finding 3)
+  - Analysis showing confidence increases as debate progresses
+  - Contrary to rational Bayesian updating
+  - Statistical verification [NEW DATA, TBA]
+- **4.4**: Persistence Against Identical Models (Finding 4) [NEW SUBSECTION, NEW DATA, TBA]
+  - Results from the new ablation study
+  - Analysis showing overconfidence persists even when models know opponent is identical
+- **4.5**: Strategic Confidence in Public Settings (Finding 5) [NEW SUBSECTION, NEW DATA, TBA]
+  - Effects of public voting and discussion
+  - Evidence of strategic bluffing through confidence manipulation
+  - Implications for CoT faithfulness
+- **4.6**: Model Performance, Calibration, and Evaluation Reliability [MERGED 4.7 & 4.8]
+  - Model-specific performance and calibration metrics
+  - Jury agreement and topic characteristics
+  - LLM prediction accuracy analysis [NEW CONTENT]
+
+## 5. Discussion [NEW SECTION - TO BE FILLED IN]
+- **5.1**: Metacognitive Limitations and Possible Explanations [MERGED 5.1 & 5.2]
+  - Post-training for human preferences
+  - Training mostly on successful task completion
+  - General human bias toward 7/10 confidence
+- **5.2**: Implications for AI Safety and Deployment
+- **5.3**: Potential Mitigations and Guardrails
+  - Explicit 50% win probability instruction results [NEW CONTENT]
+  - Other mitigation strategies
+- **5.4**: Future Research Directions
+
+## 6. Conclusion
+[Draft summary of key findings, implications, and call to action]
+
+## Appendices
+[Note: We'll be filling out the paper with all tables, and then deciding what to put in the appendix] [NEW NOTE]
+- **A**: LLMs in the Debater Pool
+- **B**: Debate Pairings Schedule
+- **C**: Debater Prompt Structures
+- **D**: AI Jury Prompt Details
+- **E**: Topics of Debate
+- **F**: Technical Appendices and Supplementary Material
+
+This restructured outline incorporates all of your notes:
+1. Renamed 2.6 back to "Summary" to match original format
+2. Added note about appendices content decisions
+3. Merged logical impossibility discussion (4.6) into overconfidence section (4.1)
+4. Combined model-specific performance and jury agreement into a single subsection (4.6)
+5. Merged metacognitive limitations and explanations in discussion (5.1)
+6. Added explicit 50% win probability instruction to ablation studies (3.6.3) and discussion (5.3)
+7. Expanded data collection (3.7) with statistical testing and LLM prediction accuracy
+
+# Document of Changes from Original Structure to New Structure
+
+## Introduction
+
+**Changes:**
+- Added organization around 5 key findings rather than a general overview
+- Added new Finding 4 about persistent overconfidence in identical model debates [NEW DATA]
+- Added new Finding 5 about strategic confidence manipulation in public settings [NEW DATA]
+- Added paragraph on human baseline comparisons (~70% confidence bias) [NEW DATA]
+- Restructured to emphasize core contributions and findings more clearly
+
+**Rationale:** The introduction now clearly establishes the 5 key findings that form the backbone of the paper, making it easier for readers to follow the paper's narrative. The addition of human baseline comparisons provides important context for understanding LLM behavior.
+
+## Related Work
+
+**Changes:**
+- Added new subsection 2.5 "Human Overconfidence Baselines" [NEW SUBSECTION]
+- Maintained original subsection names for 2.1-2.4
+- Kept 2.6 as "Summary" rather than renaming to match original format
+
+**Rationale:** Adding the human overconfidence baseline literature provides necessary context for interpreting LLM behavior. Are LLMs exhibiting unique failures or replicating known human biases? This addition strengthens the paper by connecting to established cognitive science literature.
+
+## Methodology
+
+**Changes:**
+- Added new subsection 3.6 "Ablation Studies" [NEW SUBSECTION]
+  - 3.6.1 "Identical Model Debates" [NEW DATA]
+  - 3.6.2 "Public vs. Private Confidence" [NEW DATA]
+  - 3.6.3 "Explicit 50% Win Probability Instruction" [NEW DATA]
+- Renumbered original 3.6 "Data Collection" to 3.7
+- Added to 3.7 "Data Collection":
+  - Statistical hypothesis tests for each hypothesis [NEW CONTENT]
+  - Test of which LLMs made the most accurate predictions [NEW CONTENT]
+
+**Rationale:** The ablation studies provide crucial tests of the core findings and potential mitigations. By clearly describing these methodological variations, the paper strengthens its empirical foundation and provides clearer evidence for the causal mechanisms behind confidence escalation.
+
+## Results
+
+**Changes:**
+- Merged original 4.6 "Logically Impossible Confidence Scenarios" into 4.1, creating "Pervasive Overconfidence and Logical Impossibility" [MERGED SECTIONS]
+- Added new subsection 4.4 "Persistence Against Identical Models" [NEW SUBSECTION, NEW DATA]
+- Added new subsection 4.5 "Strategic Confidence in Public Settings" [NEW SUBSECTION, NEW DATA]
+- Merged original 4.7 "Model-Specific Performance and Calibration" and 4.8 "Jury Agreement and Topic Characteristics" into new 4.6 "Model Performance, Calibration, and Evaluation Reliability" [MERGED SECTIONS]
+- Added LLM prediction accuracy analysis to section 4.6 [NEW CONTENT]
+
+**Rationale:** The reorganization creates a clearer narrative flow around the 5 key findings. Merging related topics reduces redundancy while maintaining all the important content. The new subsections address the additional ablation studies and strengthen the paper's empirical foundation.
+
+## Discussion [NEW SECTION]
+
+**Changes:**
+- Added entirely new Discussion section [NEW SECTION]
+- Moved causal explanations from Results to Discussion section 5.1 [MOVED CONTENT]
+- Merged metacognitive limitations and possible explanations into 5.1 [MERGED TOPICS]
+- Added section 5.3 on potential mitigations, including results from explicit 50% win probability instruction [NEW CONTENT]
+
+**Rationale:** Adding a dedicated Discussion section allows for deeper exploration of the implications and potential explanations of the findings. This separation from Results creates a clearer distinction between empirical findings and their interpretation. Including mitigation strategies offers constructive directions for addressing the identified problems.
+
+## Appendices
+
+**Changes:**
+- Added note that paper will be filled out with all tables before deciding appendix content [NEW NOTE]
+- Maintained original appendix structure
+
+**Rationale:** Keeping flexibility on appendix content at this stage allows for optimal organization of supplementary material once all analyses are complete.
+
+## Overall Structural Improvements
+
+**Key Benefits:**
+1. **Clearer Narrative:** The restructured paper has a more logical flow from introduction through methodology, results, and discussion.
+
+2. **Emphasis on Key Findings:** The five core findings are consistently highlighted throughout, making it easier for readers to follow the main contributions.
+
+3. **Integration of New Data:** The ablation studies and human baselines are properly incorporated into the existing framework.
+
+4. **Better Separation of Findings and Interpretation:** Moving causal explanations to a Discussion section creates clearer distinction between results and their implications.
+
+5. **Stronger Evidence Chain:** The addition of statistical testing details and prediction accuracy analysis strengthens the empirical foundation.
+
+The restructured paper maintains all the strengths of the original while addressing potential weaknesses and incorporating new data in a cohesive manner.
+
