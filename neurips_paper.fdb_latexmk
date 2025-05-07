@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex neurips_paper"] 1746545751.795 "neurips_paper.aux" "neurips_paper.bbl" "neurips_paper" 1746545754.72898 0
+["bibtex neurips_paper"] 1746620295.7384 "neurips_paper.aux" "neurips_paper.bbl" "neurips_paper" 1746620301.69629 0
   "./references.bib" 1746339126 4820 c811f096f473070a23e94bb6f18dcf3b ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/bibtex/bst/natbib/plainnat.bst" 1284455456 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "neurips_paper.aux" 1746545753 10821 cf83dd1828a9835b43765d62471c566b "pdflatex"
+  "neurips_paper.aux" 1746620299 11727 c5ffdc15977c7c8145f0e5243ec0a680 "pdflatex"
   (generated)
   "neurips_paper.bbl"
   "neurips_paper.blg"
   (rewritten before read)
-["pdflatex"] 1746545752.27666 "c:/Users/minh1/local/calibration_paper/calibration_paper/neurips_paper.tex" "neurips_paper.pdf" "neurips_paper" 1746545754.72978 0
-  "C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1746339298 96176 40a8022d15c5925d7081b1ad66e03248 ""
+["pdflatex"] 1746620296.43116 "c:/Users/minh1/local/calibration_paper/calibration_paper/neurips_paper.tex" "neurips_paper.pdf" "neurips_paper" 1746620301.69986 0
+  "C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1746618470 96176 40a8022d15c5925d7081b1ad66e03248 ""
   "C:/Users/minh1/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi525/ectt0800.pk" 1746339301 13416 82b0231254f57a291328ff342c71cc76 ""
   "C:/Users/minh1/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1000.pk" 1746339302 20028 3a7ca0b8a97f2ddc8cad80a92ae4304c ""
   "C:/Users/minh1/AppData/Local/MiKTeX/miktex/data/le/pdftex/pdflatex.fmt" 1740508336 24225046 4d99eb3585b9b2eeafa8e912b8feeb13 ""
@@ -121,27 +121,29 @@
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-msa.cfg" 1739317595 5929 11976688d7d8ed4d0d05efd1b3d5a7e9 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-msb.cfg" 1739317595 5594 d52d5015abe666fae752ed7674c2dd73 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/microtype/mt-ptm.cfg" 1739317595 12427 78d94d2b9d095b6021a1cc87fb6d8cd7 ""
+  "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/multirow/multirow.sty" 1731767677 6696 886c9f3087d0b973ed2c19aa79cb3023 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/psnfss/t1phv.fd" 1585253778 1536 47067fbe7c3ffed1ede7aaa7b8549d7a ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/psnfss/t1ptm.fd" 1585253778 817 61d7da1e9f9e74989b196d147e623736 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/psnfss/ts1ptm.fd" 1585253778 653 96f56dc5d1ef1fe1121f1cfeec70ee0c ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/refcount/refcount.sty" 1576433952 9878 9e94e8fa600d95f9c7731bb21dfb67a4 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/rerunfilecheck/rerunfilecheck.sty" 1657800696 9714 ba3194bd52c8499b3f1e3eb91d409670 ""
+  "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/threeparttable/threeparttable.sty" 1059520917 13506 a4e71a27db1a69b6fabada5beebf0844 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/units/nicefrac.sty" 1469029150 4163 0462ee5ab265cf59dc15a41a3b883101 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/varwidth/varwidth.sty" 1238469540 10894 d359a13923460b2a73d4312d613554c8 ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/xcolor/xcolor.sty" 1700127522 55487 80a65caedd3722f4c20a14a69e785d8f ""
   "C:/Users/minh1/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
-  "c:/Users/minh1/local/calibration_paper/calibration_paper/neurips_paper.tex" 1746545747 57548 f39eb6691c7c0f97021943e6a5054006 ""
+  "c:/Users/minh1/local/calibration_paper/calibration_paper/neurips_paper.tex" 1746620289 63722 4782866fb50b1e2de83ff9264e5b43d3 ""
   "figures/model_avg_opening_confidence_bar_chart.pdf" 1746339126 17989 9f3afab70bd6426c12876c050cc33ea5 ""
   "figures/model_win_loss_escalation_dumbell.pdf" 1746339126 27748 021bbf3cb86e282aa1b4d31c74c06d12 ""
   "figures/side_winrate_confidence_comparison.pdf" 1746339126 17247 921d02cb7a376ecac01a41b8bc0a2908 ""
   "neurips_2025.sty" 1746339126 12007 aa8b84b0e1cfdd9d2dff0cc280140d5d ""
-  "neurips_paper.aux" 1746545753 10821 cf83dd1828a9835b43765d62471c566b "pdflatex"
-  "neurips_paper.bbl" 1746545752 5268 edf3fb2f607f67588b9a822b7c55bfd7 "bibtex neurips_paper"
-  "neurips_paper.out" 1746545753 7199 32e5e4332d48d61b816a6d442c547825 "pdflatex"
-  "neurips_paper.tex" 1746545747 57548 f39eb6691c7c0f97021943e6a5054006 ""
+  "neurips_paper.aux" 1746620299 11727 c5ffdc15977c7c8145f0e5243ec0a680 "pdflatex"
+  "neurips_paper.bbl" 1746620296 5268 edf3fb2f607f67588b9a822b7c55bfd7 "bibtex neurips_paper"
+  "neurips_paper.out" 1746620299 7199 16c782a951fcff0a0655457026865f27 "pdflatex"
+  "neurips_paper.tex" 1746620289 63722 4782866fb50b1e2de83ff9264e5b43d3 ""
   (generated)
   "neurips_paper.aux"
   "neurips_paper.log"

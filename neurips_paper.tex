@@ -52,6 +52,8 @@
 \usepackage{amssymb}        % additional math symbols
 \usepackage{listings}
 \usepackage{adjustbox}
+\usepackage{multirow} % Required for \\multirow
+\usepackage{threeparttable} % Required for tablenotes
 \lstset{
   basicstyle=\ttfamily\small,
   columns=fullflexible,
@@ -373,13 +375,148 @@ Evaluating 59 debates rigorously required a scalable and consistent approach. We
 \textbf{[NEW DATA, TBA]}
 This section will present our ablation study examining whether identical models debating against themselves exhibit the same overconfidence patterns. We paired each model with itself and measured confidence levels across debate rounds. Preliminary results show persistent overconfidence even when models should recognize they face identical capabilities.
 
-\subsubsection{Public vs. Private Confidence}
-\textbf{[NEW DATA, TBA]}
-We examine whether making confidence assessments public versus private affects strategic behavior. This ablation reveals how LLMs may manipulate confidence statements when they know their opponent will see them, compared to the private betting scenario in our main experiments.
+\begin{table}[htbp]
+  \centering
+  \caption{Self-Debate Confidence Scores: Models Debating Identical Counterparts}
+  \label{tab:self-debate}
+  \begin{tabular}{l|c|ccc}
+      \toprule
+      \textbf{Model} & \textbf{Side} & \textbf{Opening} & \textbf{Rebuttal} & \textbf{Closing} \\
+      \midrule
+      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 68.3 & 71.7 & 83.3 \\
+       & Opp & 71.7 & 78.3 & 83.3 \\
+      \midrule
+      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 60.0 & 65.0 & 66.7 \\
+       & Opp & 58.3 & 61.7 & 66.7 \\
+      \midrule
+      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 55.0 & 58.3 & 58.3 \\
+       & Opp & 53.3 & 60.0 & 61.7 \\
+      \midrule
+      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b} & Prop & 85.0 & 85.0 & 86.7 \\
+       & Opp & 76.7 & 68.3 & 70.0 \\
+      \midrule
+      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 70.0 & 76.7 & 83.3 \\
+       & Opp & 68.3 & 81.7 & 88.3 \\
+      \midrule
+      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 43.7 & 50.0 & 48.0 \\
+       & Opp & 31.7 & 43.3 & 60.0 \\
+      \midrule
+      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 61.7 & 73.3 & 80.0 \\
+       & Opp & 66.7 & 76.7 & 81.7 \\
+      \midrule
+      \multirow{2}{*}{openai/o3-mini} & Prop & 80.0 & 81.7 & 81.7 \\
+       & Opp & 56.7 & 63.3 & 71.7 \\
+      \midrule
+      \multirow{2}{*}{qwen/qwen-max} & Prop & 68.3 & 71.7 & 83.3 \\
+       & Opp & 70.0 & 78.3 & 81.7 \\
+      \midrule
+      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 71.7 & 75.0 & 86.3 \\
+       & Opp & 61.7 & 77.3 & 87.3 \\
+      \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \small
+    \item Note: Values represent confidence scores (0-100\%) reported by models after each debate round. Despite debating identical counterparts with no inherent advantage, models consistently showed overconfidence and increasing confidence over the course of debates.
+  \end{tablenotes}
+\end{table}
 
 \subsubsection{Explicit 50\% Win Probability Instruction}
 \textbf{[NEW DATA, TBA]}
 This section presents results from explicitly instructing models that they face an equal opponent with a 50\% baseline probability of winning. We test whether direct prompting can mitigate overconfidence biases.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Self-Debate Confidence with Explicitly Emphasised 50\% Winning Probability}
+  \label{tab:self-debate-informed}
+  \begin{tabular}{l|c|ccc}
+      \toprule
+      \textbf{Model} & \textbf{Side} & \textbf{Opening} & \textbf{Rebuttal} & \textbf{Closing} \\
+      \midrule
+      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 51.7 & 58.3 & 61.7 \\
+       & Opp & 53.3 & 65.0 & 56.7 \\
+      \midrule
+      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 50.0 & 53.3 & 55.0 \\
+       & Opp & 50.3 & 53.3 & 54.0 \\
+      \midrule
+      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 51.7 & 55.0 & 55.0 \\
+       & Opp & 43.3 & 50.0 & 55.0 \\
+      \midrule
+      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b} & Prop & 58.3 & 70.0 & 53.3 \\
+       & Opp & 56.7 & 56.7 & 65.0 \\
+      \midrule
+      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 60.0 & 56.7 & 60.0 \\
+       & Opp & 48.3 & 48.3 & 61.7 \\
+      \midrule
+      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 21.7 & 40.3 & 41.0 \\
+       & Opp & 38.3 & 51.7 & 57.0 \\
+      \midrule
+      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 58.3 & 70.0 & 73.3 \\
+       & Opp & 65.0 & 60.0 & 61.7 \\
+      \midrule
+      \multirow{2}{*}{openai/o3-mini} & Prop & 50.0 & 53.3 & 50.0 \\
+       & Opp & 50.0 & 50.0 & 50.0 \\
+      \midrule
+      \multirow{2}{*}{qwen/qwen-max} & Prop & 36.7 & 63.3 & 66.7 \\
+       & Opp & 56.7 & 50.0 & 58.3 \\
+      \midrule
+      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 51.7 & 50.0 & 51.7 \\
+       & Opp & 50.0 & 50.0 & 50.0 \\
+      \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \small
+    \item Note: Values represent confidence scores (0-100\%) after models were explicitly informed that they had a 50\% chance of winning. Despite this instruction, several models still showed confidence drift away from the 50\% baseline, particularly in later rounds.
+  \end{tablenotes}
+\end{table}
+
+\subsubsection{Public vs. Private Confidence}
+\textbf{[NEW DATA, TBA]}
+We examine whether making confidence assessments public versus private affects strategic behavior. This ablation reveals how LLMs may manipulate confidence statements when they know their opponent will see them, compared to the private betting scenario in our main experiments.
+
+\begin{table}[htbp]
+  \centering
+  \caption{Self-Debate Confidence with Public Bets and Opponent Awareness}
+  \label{tab:self-debate-public}
+  \begin{tabular}{l|c|ccc}
+      \toprule
+      \textbf{Model} & \textbf{Side} & \textbf{Opening} & \textbf{Rebuttal} & \textbf{Closing} \\
+      \midrule
+      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 71.7 & 71.7 & 80.0 \\
+       & Opp & 78.3 & 78.3 & 80.0 \\
+      \midrule
+      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 55.0 & 60.0 & 70.0 \\
+       & Opp & 58.3 & 65.0 & 68.3 \\
+      \midrule
+      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 63.3 & 66.7 & 65.0 \\
+       & Opp & 50.0 & 58.3 & 60.0 \\
+      \midrule
+      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b} & Prop & 70.0 & 76.7 & 78.3 \\
+       & Opp & 78.3 & 78.3 & 80.0 \\
+      \midrule
+      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 63.3 & 80.0 & 85.0 \\
+       & Opp & 60.0 & 75.0 & 81.7 \\
+      \midrule
+      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 30.0 & 36.7 & 53.3 \\
+       & Opp & 28.3 & 48.3 & 43.3 \\
+      \midrule
+      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 76.7 & 81.7 & 86.7 \\
+       & Opp & 70.0 & 80.7 & 81.7 \\
+      \midrule
+      \multirow{2}{*}{openai/o3-mini} & Prop & 78.3 & 83.3 & 85.0 \\
+       & Opp & 71.7 & 78.3 & 80.0 \\
+      \midrule
+      \multirow{2}{*}{qwen/qwen-max} & Prop & 61.7 & 68.3 & 68.3 \\
+       & Opp & 66.7 & 71.7 & 76.7 \\
+      \midrule
+      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 71.7 & 78.3 & 78.3 \\
+       & Opp & 81.7 & 85.0 & 87.3 \\
+      \bottomrule
+  \end{tabular}
+  \begin{tablenotes}
+    \small
+    \item Note: Values represent confidence scores (0-100\%) when models were explicitly informed they were debating identical counterparts and that their confidence bets were public to their opponent. Despite this knowledge, most models maintained high confidence levels that increased through debate rounds, with both sides often claiming >70\% likelihood of winning.
+  \end{tablenotes}
+\end{table}
 
 \subsection{Data Collection}
 \label{subsec:data_collection}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  6 MAY 2025 22:35
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  7 MAY 2025 19:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -419,31 +419,40 @@ Package: varwidth 2009/03/30 ver 0.92;  Variable-width minipages
 \sift@deathcycles=\count313
 \@vwid@loff=\dimen199
 \@vwid@roff=\dimen256
-)) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
+)) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
+Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
+\multirow@colwidth=\skip62
+\multirow@cntb=\count314
+\multirow@dima=\skip63
+\bigstrutjot=\dimen257
+) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/threeparttable\threeparttable.sty
+Package: threeparttable 2003/06/13  v 3.0
+\@tempboxb=\box59
+) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count314
-\l__pdf_internal_box=\box59
+\l__color_backend_stack_int=\count315
+\l__pdf_internal_box=\box60
 ) (neurips_paper.aux)
 \openout1 = `neurips_paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 85.
-LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 87.
+LaTeX Font Info:    ... okay on input line 87.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -511,28 +520,28 @@ LaTeX Font Info:    ... okay on input line 85.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 85.
+Package hyperref Info: Link coloring OFF on input line 87.
 (neurips_paper.out) (neurips_paper.out)
 \@outlinefile=\write3
 \openout3 = `neurips_paper.out'.
 
 Package microtype Info: Patching varwidth to enable character protrusion.
-\MT@vwid@leftmargin=\dimen257
-\MT@vwid@rightmargin=\dimen258
-LaTeX Info: Redefining \microtypecontext on input line 85.
-Package microtype Info: Applying patch `item' on input line 85.
-Package microtype Info: Applying patch `toc' on input line 85.
-Package microtype Info: Applying patch `eqnum' on input line 85.
-Package microtype Info: Applying patch `footnote' on input line 85.
-Package microtype Info: Applying patch `verbatim' on input line 85.
-LaTeX Info: Redefining \microtypesetup on input line 85.
+\MT@vwid@leftmargin=\dimen258
+\MT@vwid@rightmargin=\dimen259
+LaTeX Info: Redefining \microtypecontext on input line 87.
+Package microtype Info: Applying patch `item' on input line 87.
+Package microtype Info: Applying patch `toc' on input line 87.
+Package microtype Info: Applying patch `eqnum' on input line 87.
+Package microtype Info: Applying patch `footnote' on input line 87.
+Package microtype Info: Applying patch `verbatim' on input line 87.
+LaTeX Info: Redefining \microtypesetup on input line 87.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 85.
+LaTeX Info: Redefining \showhyphens on input line 87.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -540,16 +549,16 @@ Package microtype Info: No adjustment of character kerning.
 File: mt-ptm.cfg 2006/04/20 v1.7 microtype config. file: Times (RS)
 ) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count315
-\scratchdimen=\dimen259
-\scratchbox=\box60
-\nofMPsegments=\count316
-\nofMParguments=\count317
+\scratchcounter=\count316
+\scratchdimen=\dimen260
+\scratchbox=\box61
+\nofMPsegments=\count317
+\nofMParguments=\count318
 \everyMPshowfont=\toks34
-\MPscratchCnt=\count318
-\MPscratchDim=\dimen260
-\MPnumerator=\count319
-\makeMPintoPDFobject=\count320
+\MPscratchCnt=\count319
+\MPscratchDim=\dimen261
+\MPnumerator=\count320
+\makeMPintoPDFobject=\count321
 \everyMPtoPDFconversion=\toks35
 ) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -557,23 +566,23 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-\c@lstlisting=\count321
+\c@lstlisting=\count322
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 89.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 91.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 89.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 89.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 91.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -581,7 +590,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 96.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 98.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
@@ -593,76 +602,66 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 
 {C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] [4] [5]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 312.
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 314.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 )
 Underfull \vbox (badness 1436) has occurred while \output is active []
 
- [6]
-<figures/model_avg_opening_confidence_bar_chart.pdf, id=333, 867.24pt x 505.89pt>
+ [6] [7]
+<figures/model_avg_opening_confidence_bar_chart.pdf, id=339, 867.24pt x 505.89pt>
 File: figures/model_avg_opening_confidence_bar_chart.pdf Graphic file (type pdf)
 <use figures/model_avg_opening_confidence_bar_chart.pdf>
-Package pdftex.def Info: figures/model_avg_opening_confidence_bar_chart.pdf  used on input line 407.
+Package pdftex.def Info: figures/model_avg_opening_confidence_bar_chart.pdf  used on input line 544.
 (pdftex.def)             Requested size: 317.9892pt x 185.49356pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[7]
-<figures/side_winrate_confidence_comparison.pdf, id=341, 578.16pt x 433.62pt>
+[8]
+Underfull \vbox (badness 6125) has occurred while \output is active []
+
+ [9]
+<figures/side_winrate_confidence_comparison.pdf, id=353, 578.16pt x 433.62pt>
 File: figures/side_winrate_confidence_comparison.pdf Graphic file (type pdf)
 <use figures/side_winrate_confidence_comparison.pdf>
-Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used on input line 427.
+Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used on input line 564.
 (pdftex.def)             Requested size: 317.9892pt x 238.49173pt.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-Overfull \hbox (81.38095pt too wide) in paragraph at lines 444--462
+ [10 <./figures/model_avg_opening_confidence_bar_chart.pdf> <./figures/side_winrate_confidence_comparison.pdf>]
+Overfull \hbox (81.38095pt too wide) in paragraph at lines 581--599
  [][] 
  []
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figures/model_win_loss_escalation_dumbell.pdf, id=343, 867.24pt x 578.16pt>
+<figures/model_win_loss_escalation_dumbell.pdf, id=461, 867.24pt x 578.16pt>
 File: figures/model_win_loss_escalation_dumbell.pdf Graphic file (type pdf)
 <use figures/model_win_loss_escalation_dumbell.pdf>
-Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on input line 468.
+Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on input line 605.
 (pdftex.def)             Requested size: 357.73405pt x 238.49394pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[8 <./figures/model_avg_opening_confidence_bar_chart.pdf>] [9 <./figures/side_winrate_confidence_comparison.pdf>]
-Overfull \hbox (140.59068pt too wide) in paragraph at lines 495--520
+[11 <./figures/model_win_loss_escalation_dumbell.pdf>]
+Overfull \hbox (140.59068pt too wide) in paragraph at lines 632--657
  [][] 
  []
 
-[10 <./figures/model_win_loss_escalation_dumbell.pdf>]
-Underfull \vbox (badness 3861) has occurred while \output is active []
-
- [11] (neurips_paper.bbl [12]) [13] [14] [15] (neurips_paper.aux)
+[12] [13] (neurips_paper.bbl [14]) [15] [16] [17] (neurips_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
 Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
-(rerunfilecheck)             Checksum: 32E5E4332D48D61B816A6D442C547825;7199.
+(rerunfilecheck)             Checksum: 16C782A951FCFF0A0655457026865F27;7199.
  ) 
 Here is how much of TeX's memory you used:
- 17121 strings out of 474486
- 267815 string characters out of 5743755
+ 17278 strings out of 474486
+ 270658 string characters out of 5743755
  2568542 words of memory out of 5000000
- 38681 multiletter control sequences out of 15000+600000
- 598164 words of font info for 242 fonts, out of 8000000 for 9000
+ 38814 multiletter control sequences out of 15000+600000
+ 598686 words of font info for 250 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,11n,79p,1809b,1466s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk> <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (15 pages, 301777 bytes).
+Output written on neurips_paper.pdf (17 pages, 308184 bytes).
 PDF statistics:
- 776 PDF objects out of 1000 (max. 8388607)
- 198 named destinations out of 1000 (max. 500000)
+ 788 PDF objects out of 1000 (max. 8388607)
+ 203 named destinations out of 1000 (max. 500000)
  39704 words of extra memory for PDF output out of 42996 (max. 10000000)
 

@@ -29,7 +29,7 @@ Pradyumna Prasad, [4/5/2025 6:24 pm]
 
 Pradyumna Prasad, [4/5/2025 6:32 pm]
 
-and this for self debate when informed of 50% chanc
+and this for self debate when explicitly informed that it has a 50% chance of winning
 | Model                                   | Side        | Opening | Rebuttal | Closing |
 |----------------------------------------|-------------|---------|----------|---------|
 | anthropic/claude-3.5-haiku             | Proposition | 51.7    | 58.3     | 61.7    |
@@ -80,51 +80,3 @@ Pradyumna Prasad, [4/5/2025 10:20 pm]
 | qwen/qwen-max                          | Opposition  | 66.7    | 71.7     | 76.7    |
 | qwen/qwq-32b:free                      | Proposition | 71.7    | 78.3     | 78.3    |
 | qwen/qwq-32b:free                      | Opposition  | 81.7    | 85.0     | 87.3    |
-
-\begin{table}[h]
-  \caption{Model-Specific Debate Performance and Calibration Metrics}
-  \label{tab:model_calibration}
-  \centering
-  \begin{tabular}{lcccc}
-    \toprule
-    Model                                   & Win Rate (\%) & Avg. Confidence (\%) & Overconfidence (\%) & 
-    Calibration Score (MSE) \\
-    \midrule
-    anthropic/claude-3.5-haiku              & 33.3          & 71.7                 & +38.4               & 0.
-    2314 \\
-    anthropic/claude-3.7-sonnet             & 75.0          & 67.5                 & -7.5                & 0.
-    2217 \\
-    deepseek/deepseek-chat                  & 33.3          & 74.6                 & +41.3               & 0.
-    2370 \\
-    deepseek/deepseek-r1-distill-qwen-14b   & 18.2          & 79.1                 & +60.9               & 0.
-    5355 \\
-    google/gemini-2.0-flash-001             & 50.0          & 65.4                 & +15.4               & 0.
-    2223 \\
-    google/gemma-3-27b-it                   & 58.3          & 67.5                 & +9.2                & 0.
-    2280 \\
-    openai/gpt-4o-mini                      & 27.3          & 74.5                 & +47.2               & 0.
-    3755 \\
-    openai/o3-mini                     & 33.3          & 77.5                 & +44.2               & 0.3826 \\
-    qwen/qwen-max                           & 83.3          & 73.3                 & -10.0               & 0.
-    1362 \\
-    qwen/qwq-32b:free                       & 83.3          & 78.8                 & -4.5                & 0.
-    1552 \\
-    \bottomrule
-  \end{tabular}
-\end{table}
-
-As shown in Table \ref{tab:model_calibration}, models varied widely in their overconfidence (Avg. Confidence - 
-Win Rate). Some models like \texttt{qwen/qwen-max} and \texttt{qwen/qwq-32b:free} were slightly underconfident 
-on average, achieving high win rates with relatively modest average confidence bets. Conversely, models like 
-\texttt{deepseek/deepseek-r1-distill-qwen-14b:free}, \texttt{openai/gpt-4o-mini}, and \texttt{openai/o3-mini} 
-exhibited substantial overconfidence.
-
-Analyzing confidence tiers, models betting 76-100\% confidence won only 45.2\% of the time, slightly worse 
-than those betting 51-75\% (51.2\% win rate). While there were limited data points for lower confidence tiers 
-(only 1 instance in 26-50\% and 0 in 0-25\%), these findings suggest that high confidence in LLMs in this 
-setting is not a reliable indicator of actual success.
-
-Furthermore, a regression analysis using debate side (Proposition/Opposition) and average confidence as 
-predictors of winning confirmed that while debate side was a highly significant predictor ($p < 0.0001$), 
-average confidence was not ($p = 0.1435$). This reinforces that confidence in this multi-turn, adversarial 
-setting was decoupled from factors driving actual debate success.
