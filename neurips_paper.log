@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  8 MAY 2025 00:39
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  8 MAY 2025 21:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -711,7 +711,7 @@ LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 3
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [6]
 [7]
-<figures/model_avg_opening_confidence_bar_chart.pdf, id=405, 867.24pt x 505.89p
+<figures/model_avg_opening_confidence_bar_chart.pdf, id=401, 867.24pt x 505.89p
 t>
 File: figures/model_avg_opening_confidence_bar_chart.pdf Graphic file (type pdf
 )
@@ -719,7 +719,7 @@ File: figures/model_avg_opening_confidence_bar_chart.pdf Graphic file (type pdf
 Package pdftex.def Info: figures/model_avg_opening_confidence_bar_chart.pdf  us
 ed on input line 403.
 (pdftex.def)             Requested size: 317.9892pt x 185.49356pt.
-<figures/side_winrate_confidence_comparison.pdf, id=406, 578.16pt x 433.62pt>
+<figures/side_winrate_confidence_comparison.pdf, id=402, 578.16pt x 433.62pt>
 File: figures/side_winrate_confidence_comparison.pdf Graphic file (type pdf)
 <use figures/side_winrate_confidence_comparison.pdf>
 Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used o
@@ -737,7 +737,7 @@ Overfull \hbox (81.38095pt too wide) in paragraph at lines 439--457
  [][] 
  []
 
-<figures/model_win_loss_escalation_dumbell.pdf, id=467, 867.24pt x 578.16pt>
+<figures/model_win_loss_escalation_dumbell.pdf, id=462, 867.24pt x 578.16pt>
 File: figures/model_win_loss_escalation_dumbell.pdf Graphic file (type pdf)
 <use figures/model_win_loss_escalation_dumbell.pdf>
 Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on
@@ -869,110 +869,85 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [23]
-Underfull \hbox (badness 10000) in paragraph at lines 1264--1265
-\T1/cmtt/m/n/10 debating against yourself. The other debater is without questio
-n another
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1270--1271
-\T1/cmtt/m/n/10 debating against yourself. The other debater is without questio
-n another
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1270--1271
-\T1/cmtt/m/n/10 copy of yourself and has the same competence as you have. By de
-finition,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1270--1271
-\T1/cmtt/m/n/10 you have exactly a 50% chance of winning this debate since you 
-are debating
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1577) has occurred while \output is active []
 
  [24]
-Underfull \hbox (badness 10000) in paragraph at lines 1274--1276
+Underfull \hbox (badness 10000) in paragraph at lines 1272--1273
 \T1/cmtt/m/n/10 debating against yourself. The other debater is without questio
 n another
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1274--1276
+Underfull \hbox (badness 10000) in paragraph at lines 1278--1279
+\T1/cmtt/m/n/10 debating against yourself. The other debater is without questio
+n another
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1278--1279
 \T1/cmtt/m/n/10 copy of yourself and has the same competence as you have. By de
 finition,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1274--1276
+Underfull \hbox (badness 10000) in paragraph at lines 1278--1279
 \T1/cmtt/m/n/10 you have exactly a 50% chance of winning this debate since you 
 are debating
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1277--1278
+Underfull \hbox (badness 10000) in paragraph at lines 1282--1284
+\T1/cmtt/m/n/10 debating against yourself. The other debater is without questio
+n another
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1282--1284
+\T1/cmtt/m/n/10 copy of yourself and has the same competence as you have. By de
+finition,
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1282--1284
+\T1/cmtt/m/n/10 you have exactly a 50% chance of winning this debate since you 
+are debating
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 1285--1286
 []\T1/cmtt/m/n/10 After your speech, you must include a public confidence bet (
 0-100)
  []
 
 [25] [26] [27] (./neurips_paper.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
-
-Package rerunfilecheck Warning: File `neurips_paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `neurips_paper.out':
-(rerunfilecheck)             Before: 7E322AFFA7E51E036555F90391D8E7F3;8728
-(rerunfilecheck)             After:  6ECD5BACCBAB2DF426783732ABE1D8CB;8564.
+Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
+(rerunfilecheck)             Checksum: 6ECD5BACCBAB2DF426783732ABE1D8CB;8564.
  ) 
 Here is how much of TeX's memory you used:
- 17516 strings out of 476025
- 273673 string characters out of 5790018
+ 17510 strings out of 476025
+ 273596 string characters out of 5790018
  2768388 words of memory out of 5000000
- 37077 multiletter control sequences out of 15000+600000
+ 37075 multiletter control sequences out of 15000+600000
  556928 words of font info for 267 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  75i,11n,76p,1752b,2032s stack positions out of 10000i,1000n,20000p,200000b,200000s
-
-pdfTeX warning (dest): name{appendix.I} has been referenced but does not exist,
- replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.E.3} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.E.2} has been referenced but does not ex
-ist, replaced by a fixed one
-
-
-pdfTeX warning (dest): name{subsection.E.1} has been referenced but does not ex
-ist, replaced by a fixed one
-
-</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
-/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></u
-sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr
-/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/lo
-cal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/loc
-al/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local
-/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/t
-exlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/tex
-live/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texli
-ve/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2023
-/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dis
-t/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/ty
-pe1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (27 pages, 384555 bytes).
+</usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb
+></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb><
+/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></u
+sr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
+local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
+ocal/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/loc
+al/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local
+/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/t
+exlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/tex
+live/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/20
+23/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-d
+ist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/
+type1/urw/times/utmri8a.pfb>
+Output written on neurips_paper.pdf (27 pages, 385865 bytes).
 PDF statistics:
- 917 PDF objects out of 1000 (max. 8388607)
- 711 compressed objects within 8 object streams
- 311 named destinations out of 1000 (max. 500000)
- 41320 words of extra memory for PDF output out of 42996 (max. 10000000)
+ 910 PDF objects out of 1000 (max. 8388607)
+ 704 compressed objects within 8 object streams
+ 307 named destinations out of 1000 (max. 500000)
+ 41312 words of extra memory for PDF output out of 42996 (max. 10000000)
 
