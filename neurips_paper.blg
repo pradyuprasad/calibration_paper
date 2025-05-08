@@ -1,48 +1,46 @@
-This is BibTeX, Version 0.99d
+This is BibTeX, Version 0.99d (TeX Live 2023)
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: neurips_paper.aux
-Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainnat.bst
-Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 12 entries,
+You've used 17 entries,
             2773 wiz_defined-function locations,
-            656 strings with 8164 characters,
-and the built_in function-call counts, 7181 in all, are:
-= -- 554
-> -- 709
-< -- 0
-+ -- 237
-- -- 225
-* -- 665
-:= -- 1188
-add.period$ -- 46
-call.type$ -- 12
-change.case$ -- 109
-chr.to.int$ -- 12
-cite$ -- 24
-duplicate$ -- 248
-empty$ -- 417
-format.name$ -- 237
-if$ -- 1431
+            698 strings with 9245 characters,
+and the built_in function-call counts, 9323 in all, are:
+= -- 762
+> -- 796
+< -- 6
++ -- 267
+- -- 250
+* -- 823
+:= -- 1514
+add.period$ -- 67
+call.type$ -- 17
+change.case$ -- 132
+chr.to.int$ -- 17
+cite$ -- 34
+duplicate$ -- 352
+empty$ -- 611
+format.name$ -- 273
+if$ -- 1891
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 10
-newline$ -- 78
-num.names$ -- 48
-pop$ -- 228
+missing$ -- 14
+newline$ -- 108
+num.names$ -- 70
+pop$ -- 271
 preamble$ -- 1
-purify$ -- 97
+purify$ -- 115
 quote$ -- 0
-skip$ -- 223
+skip$ -- 300
 stack$ -- 0
-substring$ -- 24
-swap$ -- 16
-text.length$ -- 0
+substring$ -- 107
+swap$ -- 28
+text.length$ -- 1
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 132
+type$ -- 187
 warning$ -- 0
-while$ -- 36
+while$ -- 59
 width$ -- 0
-write$ -- 172
+write$ -- 248

@@ -1,4 +1,4 @@
-\begin{thebibliography}{12}
+\begin{thebibliography}{17}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -12,6 +12,13 @@ Jonah Brown-Cohen, Geoffrey Irving, and Georgios Piliouras.
 \newblock \emph{arXiv preprint arXiv:2311.14125}, 2023.
 \newblock URL \url{https://arxiv.org/abs/2311.14125}.
 
+\bibitem[Griffin and Tversky(1992)]{GriffinTversky1992}
+Dale Griffin and Amos Tversky.
+\newblock The weighing of evidence and the determinants of confidence.
+\newblock \emph{Cognitive Psychology}, 24\penalty0 (3):\penalty0 411--435,
+  1992.
+\newblock \doi{https://doi.org/10.1016/0010-0285(92)90013-R}.
+
 \bibitem[Handa et~al.(2025)Handa, Tamkin, McCain, Huang, Durmus, Heck, Mueller,
   Hong, Ritchie, Belonax, Troy, Amodei, Kaplan, Clark, and
   Ganguli]{handa2025economictasksperformedai}
@@ -21,6 +28,14 @@ Kunal Handa, Alex Tamkin, Miles McCain, Saffron Huang, Esin Durmus, Sarah Heck,
 \newblock Which economic tasks are performed with ai? evidence from millions of
   claude conversations, 2025.
 \newblock URL \url{https://arxiv.org/abs/2503.04761}.
+
+\bibitem[Hashim(2024)]{Hashim2024}
+Muhammad~J. Hashim.
+\newblock Verbal probability terms for communicating clinical risk - a
+  systematic review.
+\newblock \emph{Ulster Medical Journal}, 93\penalty0 (1):\penalty0 18--23, Jan
+  2024.
+\newblock Epub 2024 May 3.
 
 \bibitem[Irving et~al.(2018)Irving, Christiano, and Amodei]{irving2018debate}
 Geoffrey Irving, Paul Christiano, and Dario Amodei.
@@ -47,6 +62,24 @@ Loka Li, Guan-Hong Chen, Yusheng Su, Zhenhao Chen, Yixuan Zhang, Eric~P. Xing,
 \newblock \emph{ArXiv}, abs/2402.12563, 2024.
 \newblock URL \url{https://api.semanticscholar.org/CorpusID:268032763}.
 
+\bibitem[Mandel(2019)]{Mandel2019}
+David~R. Mandel.
+\newblock Systematic monitoring of forecasting skill in strategic intelligence.
+\newblock In David~R. Mandel, editor, \emph{Assessment and Communication of
+  Uncertainty in Intelligence to Support Decision Making: Final Report of
+  Research Task Group SAS-114}, page~16. NATO Science and Technology
+  Organization, Brussels, Belgium, March 2019.
+\newblock URL
+  \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3435945}.
+\newblock Posted: 15 Aug 2019, Conditionally accepted.
+
+\bibitem[Moore and Healy(2008)]{Moore2008}
+Don~A. Moore and Paul~J. Healy.
+\newblock The trouble with overconfidence.
+\newblock \emph{Psychological Review}, 115\penalty0 (2):\penalty0 502--517,
+  2008.
+\newblock \doi{https://doi.org/10.1037/0033-295X.115.2.502}.
+
 \bibitem[Rivera et~al.(2023)Rivera, Ye, Kim, and Li]{rivera2023assertive}
 Colin Rivera, Xinyi Ye, Yonsei Kim, and Wenpeng Li.
 \newblock Linguistic assertiveness affects factuality ratings and model
@@ -70,6 +103,11 @@ Katherine Tian, Eric Mitchell, Allan Zhou, Archit Sharma, Rafael Rafailov,
 \newblock In \emph{Proceedings of the 2023 Conference on Empirical Methods in
   Natural Language Processing (EMNLP)}, 2023.
 \newblock URL \url{https://arxiv.org/abs/2305.14975}.
+
+\bibitem[West and Potts(2025)]{west2025basemodelsbeataligned}
+Peter West and Christopher Potts.
+\newblock Base models beat aligned models at randomness and creativity, 2025.
+\newblock URL \url{https://arxiv.org/abs/2505.00047}.
 
 \bibitem[Xiong et~al.(2024)Xiong, Hu, Lu, Li, Fu, He, and
   Hooi]{xiong2024uncertainty}
