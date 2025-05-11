@@ -475,46 +475,46 @@ This subsection will present results from the new ablation study on identical mo
 
 \begin{table}[htbp]
   \centering
-  \caption{Self-Debate Confidence Scores: Models Debating Identical Counterparts}
+  \caption{Self-Debate Confidence Bets: Models Debating Identical Counterparts}
   \label{tab:self-debate}
   \begin{tabular}{l|c|ccc}
       \toprule
       \textbf{Model} & \textbf{Side} & \textbf{Opening} & \textbf{Rebuttal} & \textbf{Closing} \\
       \midrule
-      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 68.3 & 71.7 & 83.3 \\
-       & Opp & 71.7 & 78.3 & 83.3 \\
+      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 70.8 & 76.7 & 85.8 \\
+       & Opp & 71.7 & 76.7 & 80.8 \\
       \midrule
-      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 60.0 & 65.0 & 66.7 \\
-       & Opp & 58.3 & 61.7 & 66.7 \\
+      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 55.0 & 63.3 & 69.2 \\
+       & Opp & 57.5 & 63.3 & 67.2 \\
       \midrule
-      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 55.0 & 58.3 & 58.3 \\
-       & Opp & 53.3 & 60.0 & 61.7 \\
+      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 57.5 & 61.7 & 63.3 \\
+       & Opp & 51.7 & 57.5 & 60.0 \\
       \midrule
-      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b} & Prop & 85.0 & 85.0 & 86.7 \\
-       & Opp & 76.7 & 68.3 & 70.0 \\
+      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b:free} & Prop & 76.7 & 76.7 & 79.2 \\
+       & Opp & 76.7 & 69.2 & 75.0 \\
       \midrule
-      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 70.0 & 76.7 & 83.3 \\
-       & Opp & 68.3 & 81.7 & 88.3 \\
+      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 70.0 & 76.7 & 85.0 \\
+       & Opp & 67.5 & 79.2 & 86.7 \\
       \midrule
-      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 43.7 & 50.0 & 48.0 \\
-       & Opp & 31.7 & 43.3 & 60.0 \\
+      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 34.0 & 38.7 & 39.2 \\
+       & Opp & 52.5 & 56.5 & 58.3 \\
       \midrule
-      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 61.7 & 73.3 & 80.0 \\
-       & Opp & 66.7 & 76.7 & 81.7 \\
+      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 65.8 & 62.5 & 80.0 \\
+       & Opp & 68.3 & 73.3 & 80.0 \\
       \midrule
-      \multirow{2}{*}{openai/o3-mini} & Prop & 80.0 & 81.7 & 81.7 \\
-       & Opp & 56.7 & 63.3 & 71.7 \\
+      \multirow{2}{*}{openai/o3-mini} & Prop & 75.8 & 80.0 & 81.7 \\
+       & Opp & 64.2 & 70.0 & 76.7 \\
       \midrule
-      \multirow{2}{*}{qwen/qwen-max} & Prop & 68.3 & 71.7 & 83.3 \\
-       & Opp & 70.0 & 78.3 & 81.7 \\
+      \multirow{2}{*}{qwen/qwen-max} & Prop & 60.0 & 69.2 & 79.2 \\
+       & Opp & 64.2 & 75.0 & 80.0 \\
       \midrule
-      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 71.7 & 75.0 & 86.3 \\
-       & Opp & 61.7 & 77.3 & 87.3 \\
+      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 75.0 & 75.0 & 86.5 \\
+       & Opp & 66.7 & 80.3 & 90.3 \\
       \bottomrule
   \end{tabular}
   \begin{tablenotes}
     \small
-    \item Note: Values represent confidence scores (0-100\%) reported by models after each debate round. Despite debating identical counterparts with no inherent advantage, models consistently showed overconfidence and increasing confidence over the course of debates.
+    \item Note: Values represent confidence bets (0-100\%) reported by models after each debate round, averaged across 60 total debates (6 debates per model). Despite debating identical counterparts with no inherent advantage, and being informed that they are doing so, models consistently showed overconfidence and increasing confidence over the course of debates.
   \end{tablenotes}
 \end{table}
 
@@ -524,46 +524,46 @@ This subsection will present results from the new ablation study on identical mo
 
 \begin{table}[htbp]
   \centering
-  \caption{Self-Debate Confidence with Explicitly Emphasised 50\% Winning Probability}
-  \label{tab:self-debate-informed}
+  \caption{Self-Debate Confidence Bets: Models Debating Identical Counterparts}
+  \label{tab:self-debate}
   \begin{tabular}{l|c|ccc}
       \toprule
       \textbf{Model} & \textbf{Side} & \textbf{Opening} & \textbf{Rebuttal} & \textbf{Closing} \\
       \midrule
-      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 51.7 & 58.3 & 61.7 \\
-       & Opp & 53.3 & 65.0 & 56.7 \\
+      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 70.8 & 76.7 & 85.8 \\
+       & Opp & 71.7 & 76.7 & 80.8 \\
       \midrule
-      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 50.0 & 53.3 & 55.0 \\
-       & Opp & 50.3 & 53.3 & 54.0 \\
+      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 55.0 & 63.3 & 69.2 \\
+       & Opp & 57.5 & 63.3 & 67.2 \\
       \midrule
-      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 51.7 & 55.0 & 55.0 \\
-       & Opp & 43.3 & 50.0 & 55.0 \\
+      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 57.5 & 61.7 & 63.3 \\
+       & Opp & 51.7 & 57.5 & 60.0 \\
       \midrule
-      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b} & Prop & 58.3 & 70.0 & 53.3 \\
-       & Opp & 56.7 & 56.7 & 65.0 \\
+      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b:free} & Prop & 76.7 & 76.7 & 79.2 \\
+       & Opp & 76.7 & 69.2 & 75.0 \\
       \midrule
-      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 60.0 & 56.7 & 60.0 \\
-       & Opp & 48.3 & 48.3 & 61.7 \\
+      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 70.0 & 76.7 & 85.0 \\
+       & Opp & 67.5 & 79.2 & 86.7 \\
       \midrule
-      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 21.7 & 40.3 & 41.0 \\
-       & Opp & 38.3 & 51.7 & 57.0 \\
+      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 34.0 & 38.7 & 39.2 \\
+       & Opp & 52.5 & 56.5 & 58.3 \\
       \midrule
-      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 58.3 & 70.0 & 73.3 \\
-       & Opp & 65.0 & 60.0 & 61.7 \\
+      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 65.8 & 62.5 & 80.0 \\
+       & Opp & 68.3 & 73.3 & 80.0 \\
       \midrule
-      \multirow{2}{*}{openai/o3-mini} & Prop & 50.0 & 53.3 & 50.0 \\
-       & Opp & 50.0 & 50.0 & 50.0 \\
+      \multirow{2}{*}{openai/o3-mini} & Prop & 75.8 & 80.0 & 81.7 \\
+       & Opp & 64.2 & 70.0 & 76.7 \\
       \midrule
-      \multirow{2}{*}{qwen/qwen-max} & Prop & 36.7 & 63.3 & 66.7 \\
-       & Opp & 56.7 & 50.0 & 58.3 \\
+      \multirow{2}{*}{qwen/qwen-max} & Prop & 60.0 & 69.2 & 79.2 \\
+       & Opp & 64.2 & 75.0 & 80.0 \\
       \midrule
-      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 51.7 & 50.0 & 51.7 \\
-       & Opp & 50.0 & 50.0 & 50.0 \\
+      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 75.0 & 75.0 & 86.5 \\
+       & Opp & 66.7 & 80.3 & 90.3 \\
       \bottomrule
   \end{tabular}
   \begin{tablenotes}
     \small
-    \item Note: Values represent confidence scores (0-100\%) after models were explicitly informed that they had a 50\% chance of winning. Despite this instruction, several models still showed confidence drift away from the 50\% baseline, particularly in later rounds.
+    \item Note: Values represent confidence bets (0-100\%) reported by models after each debate round, averaged across 60 total debates (6 debates per model). Despite debating identical counterparts with no inherent advantage, models consistently showed overconfidence and increasing confidence over the course of debates.
   \end{tablenotes}
 \end{table}
 
@@ -573,46 +573,46 @@ This subsection will discuss the effects of public voting and discussion on conf
 
 \begin{table}[htbp]
   \centering
-  \caption{Self-Debate Confidence with Public Bets and Opponent Awareness}
+  \caption{Self-Debate Confidence Bets with Public Bets and Opponent Awareness}
   \label{tab:self-debate-public}
   \begin{tabular}{l|c|ccc}
       \toprule
       \textbf{Model} & \textbf{Side} & \textbf{Opening} & \textbf{Rebuttal} & \textbf{Closing} \\
       \midrule
-      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 71.7 & 71.7 & 80.0 \\
-       & Opp & 78.3 & 78.3 & 80.0 \\
+      \multirow{2}{*}{anthropic/claude-3.5-haiku} & Prop & 73.3 & 76.7 & 84.2 \\
+       & Opp & 73.3 & 76.7 & 77.5 \\
       \midrule
-      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 55.0 & 60.0 & 70.0 \\
-       & Opp & 58.3 & 65.0 & 68.3 \\
+      \multirow{2}{*}{anthropic/claude-3.7-sonnet} & Prop & 57.5 & 61.7 & 69.2 \\
+       & Opp & 55.0 & 61.7 & 67.5 \\
       \midrule
-      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 63.3 & 66.7 & 65.0 \\
-       & Opp & 50.0 & 58.3 & 60.0 \\
+      \multirow{2}{*}{deepseek/deepseek-chat} & Prop & 60.0 & 63.3 & 62.5 \\
+       & Opp & 52.5 & 61.7 & 60.8 \\
       \midrule
-      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b} & Prop & 70.0 & 76.7 & 78.3 \\
-       & Opp & 78.3 & 78.3 & 80.0 \\
+      \multirow{2}{*}{deepseek/deepseek-r1-distill-qwen-14b:free} & Prop & 74.2 & 76.7 & 80.8 \\
+       & Opp & 65.0 & 67.5 & 72.5 \\
       \midrule
-      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 63.3 & 80.0 & 85.0 \\
-       & Opp & 60.0 & 75.0 & 81.7 \\
+      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 30.0 & 38.7 & 48.7 \\
+       & Opp & 39.2 & 50.0 & 47.8 \\
       \midrule
-      \multirow{2}{*}{google/gemini-2.0-flash-001} & Prop & 30.0 & 36.7 & 53.3 \\
-       & Opp & 28.3 & 48.3 & 43.3 \\
+      \multirow{2}{*}{google/gemma-3-27b-it} & Prop & 64.2 & 75.8 & 85.0 \\
+       & Opp & 63.3 & 61.7 & 83.3 \\
       \midrule
-      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 76.7 & 81.7 & 86.7 \\
-       & Opp & 70.0 & 80.7 & 81.7 \\
+      \multirow{2}{*}{openai/gpt-4o-mini} & Prop & 74.2 & 81.7 & 86.7 \\
+       & Opp & 71.7 & 80.3 & 84.2 \\
       \midrule
-      \multirow{2}{*}{openai/o3-mini} & Prop & 78.3 & 83.3 & 85.0 \\
-       & Opp & 71.7 & 78.3 & 80.0 \\
+      \multirow{2}{*}{openai/o3-mini} & Prop & 73.3 & 79.2 & 82.5 \\
+       & Opp & 70.8 & 76.7 & 79.2 \\
       \midrule
-      \multirow{2}{*}{qwen/qwen-max} & Prop & 61.7 & 68.3 & 68.3 \\
-       & Opp & 66.7 & 71.7 & 76.7 \\
+      \multirow{2}{*}{qwen/qwen-max} & Prop & 61.7 & 68.0 & 71.2 \\
+       & Opp & 67.5 & 71.7 & 75.0 \\
       \midrule
-      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 71.7 & 78.3 & 78.3 \\
-       & Opp & 81.7 & 85.0 & 87.3 \\
+      \multirow{2}{*}{qwen/qwq-32b:free} & Prop & 70.0 & 79.2 & 81.7 \\
+       & Opp & 73.3 & 80.0 & 82.8 \\
       \bottomrule
   \end{tabular}
   \begin{tablenotes}
     \small
-    \item Note: Values represent confidence scores (0-100\%) when models were explicitly informed they were debating identical counterparts and that their confidence bets were public to their opponent. Despite this knowledge, most models maintained high confidence levels that increased through debate rounds, with both sides often claiming >70\% likelihood of winning.
+    \item Note: Values represent confidence bets (0-100\%) averaged across 60 total debates (6 debates per model) when models were explicitly informed they were debating identical counterparts and that their confidence bets were public to their opponent. Despite this knowledge, most models maintained high confidence levels that increased through debate rounds, with both sides often claiming >70\% likelihood of winning.
   \end{tablenotes}
 \end{table}
 
