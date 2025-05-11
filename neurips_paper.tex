@@ -66,7 +66,7 @@
 
 % --- Title ---
 % Replace with your paper title
-\title{They're Both Sure They're Winning: How LLMs Fail to Revise Confidence in the Face of Opposition}
+\title{Two LLMs Enter a Debate, Both Leave Thinking They've Won}
 
 % --- Author ---
 % Replace with your author information.
@@ -93,12 +93,9 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 % --- Abstract ---
 % Replace with your paper abstract.
 
-    \begin{abstract}
-        \begin{abstract}
-            Large language models (LLMs) are now deployed as overseers, critics, and autonomous decision-makers, yet we do not know whether they can \emph{revise} their own confidence when confronted with direct opposition. We orchestrated 59 three-round policy debates among ten state-of-the-art LLMs. After each round—opening, rebuttal, and final—both debaters placed \textit{private} confidence wagers (0–100) on their eventual victory and justified them in natural language; the tags were removed from the transcript, so strategic bluffing was impossible. An independent six-model AI jury determined the winners. A rational Bayesian agent should \textit{converge} toward 50 \% as counter-evidence accumulates. Instead, average stated win probability climbed from 69 \% (opening) to 78 \% (closing) while the realised win rate remained 50 \%. In 71 \% of debates \emph{both} sides claimed $\ge$75 \% likelihood of success—logically impossible under mutual exclusivity. Proposition debaters were the most miscalibrated, winning only 29 \% yet expressing higher confidence than their opposition (74.6 \% vs.\ 71.3 \%). Calibration quality varied widely across models (Brier scores 0.14–0.54) but bore no relation to debate performance. We term this anti-Bayesian drift \textbf{confidence escalation}: LLMs not only overestimate their correctness; they become \emph{more} certain after reading structured rebuttals that undermine their case. The effect reveals a metacognitive blind spot that threatens reliability in adversarial, multi-agent, and safety-critical deployments, and it persists even when bets are hidden and incentives are aligned with accurate self-assessment.
-            \end{abstract}
-
-    \end{abstract}
+\begin{abstract}
+    Can LLMs accurately revise their confidence when facing opposition? To find out, we organized 59 three-round policy debates (opening, rebuttal, final) among ten state-of-the-art LLMs, where models placed private confidence wagers (0-100) on their victory after each round, evaluated by a six-model AI jury. We observed five alarming patterns: First, \textbf{systematic overconfidence} pervaded the debates (average stated confidence of 72.9\% vs.\ an expected 50\% win rate). Second, a paradoxical \textbf{confidence mismatch} emerged where Proposition debaters, despite a lower win rate (28.8\%), expressed higher average confidence than Opposition debaters (74.6\% vs.\ 71.3\%). Third, rather than converging toward rational 50\% confidence, LLMs displayed \textbf{confidence escalation}; their self-assessed win probability increased from 69\% to 78\% throughout debates, regardless of whether they were actually winning or losing. Fourth, logical inconsistency appeared in 71\% of debates, with both sides simultaneously claiming $\geq$75\% likelihood of success, a mathematically impossibility, even when models were knowingly debating identical, equally capable copies of themselves. Finally, we note concerning examples of strategic confidence manipulation when bets were public, raising concerns about the faithfulness of chain-of-thought reasoning, as models implicitly accounted for opponents' confidence without disclosing this in their reasoning. These findings reveal a fundamental metacognitive blind spot that threatens LLM reliability in adversarial, multi-agent, and safety-critical applications that require self-assessment.
+\end{abstract}
 
 % --- Main Body of the Paper ---
 % Replace the sections below with your actual paper content.
@@ -300,7 +297,7 @@ Evaluating 59 debates rigorously required a scalable and consistent approach. We
 
 \textbf{Jury Selection Process:} Potential judge models were evaluated based on criteria including: (1) Performance Reliability (agreement with consensus, confidence calibration, consistency across debates), (2) Analytical Quality (ability to identify clash, evaluate evidence, recognize fallacies), (3) Diversity (representation from different model architectures and providers), and (4) Cost-Effectiveness.
 
-\textbf{Final Jury Composition:} The final jury consisted of six judges in total, comprising two instances each of \texttt{qwen/qwq-32b}, \texttt{google/gemini-pro-1.5}, and \texttt{deepseek/deepseek-chat}. This composition provided architectural diversity from three providers, included models demonstrating strong analytical performance and calibration during selection, and balanced quality with cost. Each debate was judged independently by all six judges.
+\textbf{Final Jury Composition:} The final jury consisted of six judges in total, comprising two instances each of \texttt{qwen/qwq-32b}, \texttt{google/gemini-pro-1.5}, and \texttt{deepseek/deepseek-chat}. This combination provided architectural diversity from three providers, included models demonstrating strong analytical performance and calibration during selection, and balanced quality with cost. Each debate was judged independently by all six judges.
 
 
 
