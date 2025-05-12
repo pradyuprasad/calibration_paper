@@ -132,8 +132,7 @@ Debate has been proposed as a mechanism for AI alignment, where two agents argue
 Other studies examine how LLMs respond to external persuasion. \citet{xu2023earthflat} show that models can abandon correct beliefs when exposed to carefully crafted persuasive dialogue. \citet{zhou2023epistemic} and \citet{rivera2023assertive} find that language assertiveness influences perceived certainty and factual accuracy. While these works focus on belief change due to stylistic pressure, we examine whether models \textit{recognize when their own position is deteriorating}, and how that impacts their confidence. We find that models often fail to revise their beliefs, even when presented with strong, explicit opposition.
 
 \paragraph{Human Overconfidence Baselines}
-We compare the observed LLM overconfidence patterns to established human cognitive biases, finding notable parallels. The average LLM confidence (~73\%) recalls the human ~70\% "attractor state" often used for probability terms like "probably/likely" \cite{Hashim2024,Mandel2019}, potentially a learned artifact of alignment processes that steer LLMs towards human-like patterns \cite{west2025basemodelsbeataligned} to over predict the number 7 in such settings. More significantly, human psychology reveals systematic miscalibration patterns that parallel our findings: like humans, LLMs exhibit limited accuracy improvement over repeated trials (\cite{Moore2008}; mirroring our results). Crucially, seminal work by Griffin and Tversky \cite{GriffinTversky1992} found that humans overweight the strength of evidence favoring their beliefs while underweighting its credibility or weight, leading to overconfidence when strength is high but weight is low. This bias—where the perceived strength of one's own case appears to outweigh the "weight" of the opponent's counter-evidence—offers a compelling human analogy for the mechanism driving the confidence escalation and systematic overconfidence observed in our LLMs as they fail to adequately integrate challenging information. These human baselines underscore that confidence miscalibration and resistance to updating are phenomena well-documented in human judgment.
-
+We observe that LLM overconfidence patterns parallel established human cognitive biases. We will discuss and compare existing research on both human and LLM overconfidence in detail in the Discussion section (\S\ref{sec:discussion}).
 
 \paragraph{Summary.}
 Our work sits at the intersection of calibration, metacognition, adversarial reasoning, and debate-based evaluation. We introduce a new diagnostic setting—structured multi-turn debate with private, incentivized confidence betting—and show that LLMs frequently overestimate their standing, fail to adjust, and exhibit ``confidence escalation'' despite losing. These findings surface a deeper metacognitive failure that challenges assumptions about LLM trustworthiness in high-stakes, multi-agent contexts.
@@ -616,19 +615,39 @@ Topic difficulty, as measured by the AI jury's difficulty index, varied across t
 \section{Discussion}
 \textbf{[NEW CONTENT THROUGHOUT SECTION 5, TBA]}
 
+
 \subsection{Metacognitive Limitations and Possible Explanations}
+\label{subsec:metacognitive_limitations}
 
-Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. Several explanations may account for these observed patterns:
+Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. Several explanations may account for these observed patterns, including both human-like biases and LLM-specific factors:
 
-First, post-training for human preferences may inadvertently reinforce overconfidence. Models trained via RLHF are often rewarded for confident, assertive responses that match human preferences, potentially at the expense of epistemic calibration.
+\paragraph{Human-like biases}
+\begin{itemize}
+    \item \textbf{Baseline debate overconfidence:} Research on human debaters \citep{RePEc:sip:dpaper:06-042} found that college debate participants estimated their odds of winning at approximately 65\% on average, suggesting that high baseline confidence is prevalent for humans in debate settings similar to our experimental design with LLMs.
+    
+    \item \textbf{Persistent miscalibration:} Human psychology reveals systematic miscalibration patterns that parallel our findings. Like humans, LLMs exhibit limited accuracy improvement over repeated trials \citep{Moore2008}, mirroring our results.
+    
+    \item \textbf{Evidence weighting bias:} Crucially, seminal work by Griffin and Tversky \citep{GriffinTversky1992} found that humans overweight the strength of evidence favoring their beliefs while underweighting its credibility or weight, leading to overconfidence when strength is high but weight is low.
+    
+    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) recalls the human $\sim$70\% "attractor state" often used for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, potentially a learned artifact of alignment processes that steer LLMs towards human-like patterns \citep{west2025basemodelsbeataligned}.
+\end{itemize}
 
-Second, training datasets predominantly feature successful task completion rather than explicit failures or uncertainty. This bias may limit models' ability to recognize and represent losing positions accurately.
+\paragraph{LLM-specific factors}
+\begin{itemize}
+    \item \textbf{General overconfidence across models:} Research has shown that LLMs demonstrate systematic overconfidence across various tasks \citep{chhikara2025mindconfidencegapoverconfidence,xiong2024uncertainty}, with larger LLMs exhibiting greater overconfidence on difficult tasks while smaller LLMs show more consistent overconfidence across task types \citep{wen2024from}.
+    
+    \item \textbf{RLHF amplification effects:} Post-training for human preferences appears to significantly exacerbate overconfidence. Models trained via RLHF are more likely to indicate high certainty even when incorrect \citep{leng2025tamingoverconfidencellmsreward} and disproportionately output 7/10 for ratings \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport}, suggesting alignment processes inadvertently reinforce confidence biases.
+    
+    \item \textbf{Failure to appropriately integrate new evidence:} \citet{wilie2024beliefrevisionadaptabilitylarge} introduced the Belief-R benchmark and showed that most models fail to appropriately revise their initial conclusions after receiving additional, contradicting information. Rather than reducing confidence when they should, models tend to stick to their initial stance. \citet{agarwal2025persuasionoverridestruthmultiagent} found that LLMs can be swayed to believe falsehoods with persuasive, verbose reasoning. Even smaller models can craft arguments that override truthful answers with high confidence, suggesting that LLMs may be susceptible to confident but flawed counterarguments.
+    
+    \item \textbf{Training data imbalance:} Training datasets predominantly feature successful task completion rather than explicit failures or uncertainty. This imbalance may limit models' ability to recognize and represent losing positions accurately \citep{zhou2023navigatinggreyareaexpressions}.
+\end{itemize}
 
-Third, the observed confidence patterns may reflect more general human biases toward expressing confidence around 70\%, with 7/10 serving as a common attractor state in human confidence judgments. LLMs may be mimicking this human tendency rather than performing proper Bayesian updating.
+These combined factors likely contribute to the confidence escalation phenomenon we observe, where models fail to properly update their beliefs in the face of opposing arguments.
 
 \subsection{Implications for AI Safety and Deployment}
 
-\textbf{[ADD REFERENCE O 3.6, PUBLIC VS PRIVATE COT AND IMPLICATIONS ON COT FAITHFULNESS]}
+\textbf{[ADD REFERENCE TO 3.6, PUBLIC VS PRIVATE COT AND IMPLICATIONS ON COT FAITHFULNESS]}
 
 The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong or when additional evidence should cause belief revision.
 
