@@ -304,28 +304,46 @@ Furthermore, an analysis will be presented on which LLMs made the most accurate 
 \section{Results}
 \label{sec:results}
 
-\lstset{style=promptstyle} % Re-apply the style for consistency if needed, or define a new style.
+Our experimental setup, involving 60 simulated policy debates per configuration between ten state-of-the-art LLMs, with round-by-round confidence elicitation yielded several key findings regarding LLM metacognition in adversarial settings.
 
-Our experimental setup, involving 60 simulated policy debates between ten state-of-the-art LLMs, with round-by-round confidence elicitation and AI jury evaluation, yielded several key findings regarding LLM metacognition in adversarial settings.
+\subsection{Pervasive Overconfidence Without Seeing Opponent Argument (Finding 1)}
 
-\subsection{Pervasive Overconfidence and Logical Impossibility (Finding 1)}
+A core finding across all four experimental configurations was significant LLM overconfidence, particularly evident in the initial concurrent opening round before models had seen any counterarguments. Given the inherent nature of a two-participant debate where one side wins and the other loses, a rational model should assess its baseline probability of winning at 50\% anticipating that the other debater too would make good arguments; however, observed initial confidence levels consistently and substantially exceeded this expectation.
 
-Across all 60 debates and all three rounds (Opening, Rebuttal, Final), LLMs exhibited significant overconfidence in their likelihood of winning. The overall average opening confidence bet made by models was $\mu = 72.92$ \%. Given that each debate has exactly one winner and one loser, the expected average win probability for any participant is 50\%. A one-sample t-test comparing the average confidence (72.92\%) to the expected 50\% revealed this overconfidence to be highly statistically significant ($t(176) = 23.92, p < 0.0001$). Similarly, a Wilcoxon signed-rank test confirmed this finding ($Z= -10.84, p < 0.0001$). =
 
-This widespread overestimation suggests a fundamental disconnect between the models' internal assessment of their performance and the objective outcome of the debate.
-
-\begin{figure}[h]
+\begin{table*}[htbp] % table* spans two columns
   \centering
-  \includegraphics[width=0.8\linewidth]{figures/model_avg_opening_confidence_bar_chart.pdf}
-  \caption{Average stated confidence in the first round across all LLMs and rounds compared to the expected 50\% win rate.}
-  \label{fig:avg_confidence}
-\end{figure}
+  \caption{Mean (± Standard Deviation) Initial Confidence (0-100\%) Reported by LLMs Across Experimental Configurations. Sample size (n) per model per configuration is indicated in parentheses. The 'Standard Self' condition represents private bets in self-debates without explicit probability instruction, while 'Informed Self' includes explicit instruction about the 50\% win probability.}
+  \label{tab:initial_confidence}
+  \resizebox{\textwidth}{!}{ % This will scale the table to fit within the text width
+  \begin{tabular}{lcccc}
+    \toprule
+    Model & Cross-model & Standard Self & Informed Self & Public Bets \\
+          &             &               & (50\% informed) & (Public Bets) \\
+    \midrule
+    anthropic/claude-3.5-haiku                 & 71.67 $\pm$ 4.92 (n=12) & 71.25 $\pm$ 6.44 (n=12) & 54.58 $\pm$ 9.64 (n=12) & 73.33 $\pm$ 7.18 (n=12) \\
+    anthropic/claude-3.7-sonnet                & 67.31 $\pm$ 3.88 (n=13) & 56.25 $\pm$ 8.56 (n=12) & 50.08 $\pm$ 2.15 (n=12) & 56.25 $\pm$ 6.08 (n=12) \\
+    deepseek/deepseek-chat                     & 74.58 $\pm$ 7.22 (n=12) & 54.58 $\pm$ 4.98 (n=12) & 49.17 $\pm$ 6.34 (n=12) & 56.25 $\pm$ 7.42 (n=12) \\
+    deepseek/deepseek-r1-distill-qwen-14b:free & 79.09 $\pm$ 10.44 (n=11) & 76.67 $\pm$ 13.20 (n=12) & 55.75 $\pm$ 4.71 (n=12) & 69.58 $\pm$ 16.30 (n=12) \\
+    google/gemini-2.0-flash-001                & 65.42 $\pm$ 8.38 (n=12) & 43.25 $\pm$ 27.03 (n=12) & 36.25 $\pm$ 26.04 (n=12) & 34.58 $\pm$ 25.80 (n=12) \\
+    google/gemma-3-27b-it                      & 67.50 $\pm$ 6.22 (n=12) & 68.75 $\pm$ 7.42 (n=12) & 53.33 $\pm$ 11.15 (n=12) & 63.75 $\pm$ 9.80 (n=12) \\
+    openai/gpt-4o-mini                         & 75.00 $\pm$ 3.69 (n=12) & 67.08 $\pm$ 7.22 (n=12) & 57.08 $\pm$ 12.70 (n=12) & 72.92 $\pm$ 4.98 (n=12) \\
+    openai/o3-mini                             & 77.50 $\pm$ 5.84 (n=12) & 70.00 $\pm$ 10.66 (n=12) & 50.00 $\pm$ 0.00 (n=12) & 72.08 $\pm$ 9.40 (n=12) \\
+    qwen/qwen-max                              & 73.33 $\pm$ 8.62 (n=12) & 62.08 $\pm$ 12.87 (n=12) & 43.33 $\pm$ 22.29 (n=12) & 64.58 $\pm$ 10.97 (n=12) \\
+    qwen/qwq-32b:free                          & 78.75 $\pm$ 4.33 (n=12) & 70.83 $\pm$ 10.62 (n=12) & 50.42 $\pm$ 1.44 (n=12) & 71.67 $\pm$ 8.62 (n=12) \\
+    \midrule
+    \textbf{OVERALL AVERAGE}                   & \textbf{72.92 $\pm$ 7.93 (n=120)} & \textbf{64.08 $\pm$ 15.32 (n=120)} & \textbf{50.00 $\pm$ 13.61 (n=120)} & \textbf{63.50 $\pm$ 16.38 (n=120)} \\
+    \bottomrule
+  \end{tabular}
+  }
+\end{table*}
 
-A stark illustration of LLM metacognitive failure is the frequency with which both debaters expressed high confidence simultaneously. In 71.2\% of the 60 debates, both the Proposition and Opposition models rated their chance of winning at $\ge$ 75\% in at least one round. Given that only one side can win, this scenario is logically impossible under mutual exclusivity. This widespread occurrence highlights a profound inability for models to ground their confidence in the objective constraints of the task.
+As shown in Table~\ref{tab:initial_confidence}, the overall average initial confidence reported by models in the Cross-model, Standard Self, and Public Bets configurations was consistently and significantly above the 50\% baseline. Specifically, the mean initial confidence was 72.92\% ($\pm$ 7.93 SD, n=120) for Cross-model debates, 64.08\% ($\pm$ 15.32 SD, n=120) for Standard Self debates (private bets without 50\% instruction), and 63.50\% ($\pm$ 16.38 SD, n=120) for Public Bets (public bets without 50\% instruction). One-sample t-tests confirmed that the mean initial confidence in each of these three conditions was statistically significantly greater than 50\% (Cross-model: t=31.67, p<0.001; Standard Self: t=10.07, p<0.001; Public Bets: t=9.03, p<0.001). Wilcoxon signed-rank tests yielded similar conclusions (all p<0.001), confirming the robustness of this finding to distributional assumptions. This pervasive overconfidence in the initial assessment, before any interaction with an opponent's case, suggests a fundamental miscalibration bias in LLMs' self-assessment of their standing in a competitive context.
 
-This section will include further statistical testing of overconfidence claims. \textbf{[STATISTICAL TESTING OF OVERCONFIDENCE CLAIMS, TBA]}
-It will also provide a comparison to human baseline statistics. \textbf{[COMPARISON TO HUMAN BASELINE STATISTICS, TBA]}
-Further analysis of the 71.2\% of debates where both sides claimed high confidence will be presented. \textbf{[ANALYSIS OF LOGICALLY IMPOSSIBLE HIGH CONFIDENCE SCENARIOS AND CAVEAT ABOUT ACTUAL WINRATES, TBA]}
+In stark contrast, the overall average initial confidence in the Informed Self configuration was precisely 50.00\% ($\pm$ 13.61 SD, n=120). A one-sample t-test confirmed that this mean was not statistically significantly different from 50\% (t=0.00, p=1.0). Furthermore, a paired t-test comparing the per-model means in the Standard Self and Informed Self configurations revealed a statistically significant reduction in initial confidence when models were explicitly informed of the 50\% win probability (mean difference = 14.08, t=7.07, p<0.001). This demonstrates that while the default state is overconfident, models can align their *initial* reported confidence much closer to the rational baseline when explicitly anchored with the correct probability.
+
+Analysis at the individual model level (see Appendix \ref{app:initial_tests} for full results) shows that this overconfidence was widespread, with 30 out of 40 individual model-configuration combinations showing initial confidence significantly greater than 50\% (one-sided t-tests, $\alpha=0.05$). However, we also observed considerable variability in initial confidence (large standard deviations), both across conditions and for specific models like Google Gemini 2.0 Flash ($\pm$ 27.03 SD in Standard Self). Notably, some models, such as OpenAI O3-Mini and Qwen QWQ-32b, reported perfectly calibrated initial confidence (50.00 $\pm$ 0.00 SD) in the Informed Self condition. The non-significant difference in overall mean initial confidence between Standard Self and Public Bets (mean difference = 0.58, t=0.39, p=0.708) suggests that simply making the initial bet public does not, on average, significantly alter the self-assessed confidence compared to the private default.
+
 
 \subsection{Position Asymmetry and Confidence Mismatch (Finding 2)}
 
@@ -1281,7 +1299,71 @@ After your speech, you must include a public confidence bet (0-100) indicating h
 To statistically evaluate the hypothesis that LLMs exhibit general overconfidence in their initial self-assessments, we performed a one-sample t-test. This test compares the mean of a sample to a known or hypothesized population mean. The data used for this test was the collection of all opening confidence bets submitted by both Proposition and Opposition debaters across all 60 debates (total N=120 individual opening bets). The null hypothesis ($H_0$) was that the mean of these opening confidence bets was equal to 50\% (the expected win rate in a fair, symmetric contest). The alternative hypothesis ($H_1$) was that the mean was greater than 50\%, reflecting pervasive overconfidence. The analysis yielded a mean opening confidence of 72.92\%. The results of the one-sample t-test were $t = 31.666$, with a one-tailed $p < 0.0001$. With a p-value well below the standard significance level of 0.05, we reject the null hypothesis. This provides strong statistical evidence that the average opening confidence level of LLMs in this debate setting is significantly greater than the expected 50\%, supporting the claim of pervasive initial overconfidence.
 
 
+\section{Detailed Initial Confidence Test Results}
+\label{app:initial_tests}
 
+This appendix provides the full results of the one-sample hypothesis tests conducted for the mean initial confidence of each language model within each experimental configuration. The tests assess whether the mean reported confidence is statistically significantly greater than 50\%.
+
+\begin{table}[htbp]
+  \centering
+  \caption{One-Sample Hypothesis Test Results for Mean Initial Confidence (vs. 50\%). Tests were conducted for each model in each configuration against the null hypothesis that the true mean initial confidence is $\le 50\%$. Significant results (p $\le 0.05$) indicate statistically significant overconfidence. Results from both t-tests and Wilcoxon signed-rank tests are provided.}
+  \label{tab:per_model_tests}
+  \resizebox{\textwidth}{!}{ % Scale table to fit width if needed
+  \begin{tabular}{llccccccc}
+    \toprule
+    Experiment & Model & N & Mean & \multicolumn{2}{c}{t-test vs 50\% (H1: > 50)} & \multicolumn{2}{c}{Wilcoxon vs 50\% (H1: > 50)} \\
+    \cmidrule(lr){5-6} \cmidrule(lr){7-8}
+    & & & & p-value & Significant & p-value & Significant \\
+    \midrule
+    Cross-model & qwen/qwen-max & 12 & 73.33 & $6.97 \times 10^{-7}$ & True & 0.0002 & True \\
+    Cross-model & anthropic/claude-3.5-haiku & 12 & 71.67 & $4.81 \times 10^{-9}$ & True & 0.0002 & True \\
+    Cross-model & deepseek/deepseek-r1-distill-qwen-14b:free & 11 & 79.09 & $1.64 \times 10^{-6}$ & True & 0.0005 & True \\
+    Cross-model & anthropic/claude-3.7-sonnet & 13 & 67.31 & $8.76 \times 10^{-10}$ & True & 0.0001 & True \\
+    Cross-model & google/gemini-2.0-flash-001 & 12 & 65.42 & $2.64 \times 10^{-5}$ & True & 0.0007 & True \\
+    Cross-model & qwen/qwq-32b:free & 12 & 78.75 & $5.94 \times 10^{-11}$ & True & 0.0002 & True \\
+    Cross-model & google/gemma-3-27b-it & 12 & 67.50 & $4.74 \times 10^{-7}$ & True & 0.0002 & True \\
+    Cross-model & openai/gpt-4o-mini & 12 & 75.00 & $4.81 \times 10^{-11}$ & True & 0.0002 & True \\
+    Cross-model & openai/o3-mini & 12 & 77.50 & $2.34 \times 10^{-9}$ & True & 0.0002 & True \\
+    Cross-model & deepseek/deepseek-chat & 12 & 74.58 & $6.91 \times 10^{-8}$ & True & 0.0002 & True \\
+    \midrule
+    Debate against same model & qwen/qwen-max & 12 & 62.08 & 0.0039 & True & 0.0093 & True \\
+    Debate against same model & anthropic/claude-3.5-haiku & 12 & 71.25 & $9.58 \times 10^{-8}$ & True & 0.0002 & True \\
+    Debate against same model & deepseek/deepseek-r1-distill-qwen-14b:free & 12 & 76.67 & $1.14 \times 10^{-5}$ & True & 0.0002 & True \\
+    Debate against same model & anthropic/claude-3.7-sonnet & 12 & 56.25 & 0.0140 & True & 0.0159 & True \\
+    Debate against same model & google/gemini-2.0-flash-001 & 12 & 43.25 & 0.7972 & False & 0.8174 & False \\
+    Debate against same model & qwen/qwq-32b:free & 12 & 70.83 & $1.49 \times 10^{-5}$ & True & 0.0002 & True \\
+    Debate against same model & google/gemma-3-27b-it & 12 & 68.75 & $1.38 \times 10^{-6}$ & True & 0.0002 & True \\
+    Debate against same model & openai/gpt-4o-mini & 12 & 67.08 & $2.58 \times 10^{-6}$ & True & 0.0005 & True \\
+    Debate against same model & openai/o3-mini & 12 & 70.00 & $2.22 \times 10^{-5}$ & True & 0.0005 & True \\
+    Debate against same model & deepseek/deepseek-chat & 12 & 54.58 & 0.0043 & True & 0.0156 & True \\
+    \midrule
+    Informed Self (50\% informed) & qwen/qwen-max & 12 & 43.33 & 0.8388 & False & 0.7451 & False \\
+    Informed Self (50\% informed) & anthropic/claude-3.5-haiku & 12 & 54.58 & 0.0640 & False & 0.0845 & False \\
+    Informed Self (50\% informed) & deepseek/deepseek-r1-distill-qwen-14b:free & 12 & 55.75 & 0.0007 & True & 0.0039 & True \\
+    Informed Self (50\% informed) & anthropic/claude-3.7-sonnet & 12 & 50.08 & 0.4478 & False & 0.5000 & False \\
+    Informed Self (50\% informed) & google/gemini-2.0-flash-001 & 12 & 36.25 & 0.9527 & False & 0.7976 & False \\
+    Informed Self (50\% informed) & qwen/qwq-32b:free & 12 & 50.42 & 0.1694 & False & 0.5000 & False \\
+    Informed Self (50\% informed) & google/gemma-3-27b-it & 12 & 53.33 & 0.1612 & False & 0.0820 & False \\
+    Informed Self (50\% informed) & openai/gpt-4o-mini & 12 & 57.08 & 0.0397 & True & 0.0525 & False \\
+    Informed Self (50\% informed) & openai/o3-mini & 12 & 50.00 & --\footnote{p-value indeterminate due to zero variance.} & False & --\footnote{p-value indeterminate due to zero variance.} & False \\ % Handle p=1 cases explicitly
+    Informed Self (50\% informed) & deepseek/deepseek-chat & 12 & 49.17 & 0.6712 & False & 0.6250 & False \\
+    \midrule
+    Public Bets & qwen/qwen-max & 12 & 64.58 & 0.0004 & True & 0.0012 & True \\
+    Public Bets & anthropic/claude-3.5-haiku & 12 & 73.33 & $1.11 \times 10^{-7}$ & True & 0.0002 & True \\
+    Public Bets & deepseek/deepseek-r1-distill-qwen-14b:free & 12 & 69.58 & 0.0008 & True & 0.0056 & True \\
+    Public Bets & anthropic/claude-3.7-sonnet & 12 & 56.25 & 0.0022 & True & 0.0054 & True \\
+    Public Bets & google/gemini-2.0-flash-001 & 12 & 34.58 & 0.9686 & False & 0.9705 & False \\
+    Public Bets & qwen/qwq-32b:free & 12 & 71.67 & $1.44 \times 10^{-6}$ & True & 0.0002 & True \\
+    Public Bets & google/gemma-3-27b-it & 12 & 63.75 & 0.0003 & True & 0.0017 & True \\
+    Public Bets & openai/gpt-4o-mini & 12 & 72.92 & $3.01 \times 10^{-9}$ & True & 0.0002 & True \\
+    Public Bets & openai/o3-mini & 12 & 72.08 & $2.79 \times 10^{-6}$ & True & 0.0002 & True \\
+    Public Bets & deepseek/deepseek-chat & 12 & 56.25 & 0.0070 & True & 0.0137 & True \\
+    \bottomrule
+  \end{tabular}
+  }
+\end{table}
+
+\end{document} % Add this if this is a standalone file for the appendix
 
 % Example: Detailed Proof
 % \section{Proof of Theorem 1}
