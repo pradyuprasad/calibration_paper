@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  12 MAY 2025 00:14
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023) (preloaded format=pdflatex 2023.4.7)  12 MAY 2025 10:40
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -622,7 +622,10 @@ Package pdftex.def Info: figures/side_winrate_confidence_comparison.pdf  used on
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[8 <./figures/model_avg_opening_confidence_bar_chart.pdf>]
+
+Underfull \vbox (badness 5175) has occurred while \output is active []
+
+ [8 <./figures/model_avg_opening_confidence_bar_chart.pdf>]
 Overfull \hbox (81.38095pt too wide) in paragraph at lines 437--455
  [][] 
  []
@@ -636,7 +639,7 @@ Package pdftex.def Info: figures/model_win_loss_escalation_dumbell.pdf  used on 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 2894) has occurred while \output is active []
 
  [9 <./figures/side_winrate_confidence_comparison.pdf>]
 Overfull \hbox (140.59068pt too wide) in paragraph at lines 629--654
@@ -650,9 +653,12 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [11]
-Underfull \vbox (badness 4266) has occurred while \output is active []
+Underfull \vbox (badness 1303) has occurred while \output is active []
 
- [12] [13] (./neurips_paper.bbl [14]) [15]
+ [12]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [13] (./neurips_paper.bbl [14]) [15]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -786,15 +792,15 @@ Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 3AE59D6F94F9E81ACDF2F124D1ED7571;8692.
  ) 
 Here is how much of TeX's memory you used:
- 17496 strings out of 476025
- 273593 string characters out of 5790018
+ 17499 strings out of 476025
+ 273620 string characters out of 5790018
  2768388 words of memory out of 5000000
  37076 multiletter control sequences out of 15000+600000
- 555869 words of font info for 255 fonts, out of 8000000 for 9000
+ 555996 words of font info for 257 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 75i,11n,76p,1695b,2032s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 75i,11n,76p,1997b,2032s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/public/cm-super/sftt1000.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/local/texlive/2023/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (27 pages, 387962 bytes).
+Output written on neurips_paper.pdf (27 pages, 388065 bytes).
 PDF statistics:
  921 PDF objects out of 1000 (max. 8388607)
  715 compressed objects within 8 object streams
