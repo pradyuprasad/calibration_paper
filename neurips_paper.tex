@@ -108,9 +108,9 @@ Large language models are increasingly being used in high stakes domains like le
 
 Models must respond to opposition, revise their beliefs over time, and recognize when their position is weakening. Their difficulty with introspection and confidence revision in dynamic settings fundamentally limits their usefulness in deliberative settings and poses substantial risks in domains requiring careful judgment under uncertainty. Debate provides a natural framework to stress-test these metacognitive abilities because it requires participants to respond to direct challenges, adapt to new information, and continually reassess the relative strength of competing positions—particularly when their arguments are directly contradicted or new evidence emerges. In adversarial settings, where one side must ultimately prevail, a rational agent should recognize when its position has been weakened and adjust its confidence accordingly. This is especially true when debaters have equal capabilities, as neither should maintain an unreasonable expectation of advantage.
 
-In this work, we study how well language models revise their confidence when engaged in adversarial debate—a setting that naturally stresses the metacognitive abilities crucial for high-stakes applications. We simulate 60 three-round debates between ten state-of-the-art LLMs across six global policy motions. After each round—opening, rebuttal, and final—models provide private, incentivized confidence bets (0-100) estimating their probability of winning, along with natural language explanations. The debate setup ensures both sides have equal access to information and equal opportunity to present their case.
+In this work, we study how well language models revise their confidence when engaged in adversarial debate—a setting that naturally stresses the metacognitive abilities crucial for high-stakes applications. We simulate 60 three-round debates between ten state-of-the-art LLMs across six global policy motions. After each round—opening, rebuttal, and final—models provide private, incentivized confidence bets (0-100) estimating their probability of winning, along with natural language explanations in a private scratchpad. The debate setup ensures both sides have equal access to information and equal opportunity to present their case.
 
-Our results reveal a fundamental metacognitive deficit. Key findings include: (1) systematic overconfidence (average opening stated confidence of 72.92\% vs. an expected 50\% win rate); (2) a pattern of "confidence escalation," where average confidence increased from opening (72.9\%) to closing rounds (83.3\%), contrary to Bayesian principles, even for losing models; (4) persistent overconfidence even when models debated identical counterparts even though all models know they face opponents of equal capability, with no inherent advantage. In 71.7\% of debates, both debaters report high confidence ($\ge$75\%)—a logically incoherent outcome and (5) evidence of strategic confidence manipulation when bets were public.
+Our results reveal a fundamental metacognitive deficit. Key findings include: (1) systematic overconfidence (average opening stated confidence of 72.92\% vs. an expected 50\% win rate); (2) a pattern of "confidence escalation," where average confidence increased from opening (72.9\%) to closing rounds (83.3\%), contrary to Bayesian principles, even for losing models; (4) persistent overconfidence even when models debated identical counterparts even though all models know they face opponents of equal capability, with no inherent advantage. In 71.7\% of debates, both debaters report high confidence ($\ge$75\%)—a logically incoherent outcome and (5) misalignment between models' internal assessment and expressed confidence, raising concerns about the faithfulness of chain-of-thought reasoning.
 
 
 % Para 6: Paper contributions and organization
@@ -141,7 +141,20 @@ Our work sits at the intersection of calibration, metacognition, adversarial rea
 \section{Methodology}
 \label{sec:methodology}
 
-Our study investigates the dynamic metacognitive abilities of Large Language Models (LLMs)---specifically their confidence calibration and revision---through a novel experimental paradigm based on competitive policy debate. We designed a simulation environment to rigorously assess LLM self-assessment in response to adversarial argumentation. The methodology involved structured debates between LLMs, round-by-round confidence elicitation, and evaluation by a carefully selected AI jury. We conducted 60 debates across 6 distinct policy topics using 10 diverse state-of-the-art LLMs.
+Our study investigates the dynamic metacognitive abilities of Large Language Models (LLMs)—specifically their confidence calibration and revision—through a novel experimental paradigm based on competitive policy debate. The primary data for assessing metacognition was gathered via \textbf{round-by-round private confidence elicitation}, where models provided a numerical confidence bet (0-100) on their victory and explained their reasoning in a \textbf{private scratchpad} after each speech. This allowed us to directly observe their internal self-assessments and their evolution during debate.
+
+To probe these metacognitive behaviors under various conditions, we conducted experiments in \textbf{four distinct configurations}:
+
+\begin{enumerate}
+    \item \textbf{Cross-Model Debates:} We conducted 60 debates between different pairs of ten state-of-the-art LLMs across six policy topics (details on models, topics, and pairings in Appendices~\ref{appendix:llms}, \ref{appendix:topics} \ref{appendix:pairings}). These debates provided a general competitive setting to observe how confidence behaves in heterogeneous matchups. For these debates, where the true outcome was unknown a priori, an AI jury was employed to provide an external adjudication of win/loss records, enabling analysis of external calibration (details on jury in Appendix~\ref{appendix:ai_jury}).
+
+    \item \textbf{Standard Self-Debates (Jury-Independent Test):} In this configuration, designed for jury-independent analysis, each of our ten LLMs debated an identical copy of itself across the six topics. The prompt explicitly stated they were facing an equally capable opponent (details in Appendix \ref{appendix:self_debate}). This isolated the assessment of internal confidence under known perfect symmetry and a theoretically 50\% win probability, without external judgment.
+
+    \item \textbf{Informed Self-Debates (Anchoring Test):} Building on the standard self-debate, models were additionally and explicitly informed that they had exactly a fifty percent chance of winning (details in Appendix \ref{appendix:self_debate_informed}). This experiment investigated the influence of direct probabilistic anchoring on confidence calibration in a jury-independent setting.
+
+    \item \textbf{Public Self-Debates (Strategic Signaling Test):} In this configuration, models faced an identical opponent, were told of the 50\% win probability, and crucially, their confidence bets were made \textbf{public} to their opponent (details in Appendix \ref{appendix:self_debate_public}). This explored the impact of strategic considerations on reported confidence, providing insight into the faithfulness of expressed beliefs in a public scenario, also in a jury-independent context for the internal belief vs. public report comparison.
+\end{enumerate}
+Each configuration involved debates across the six policy topics, with models rotating roles and opponents as appropriate for the design. The following sections detail the common elements of the debate setup and the specific analysis conducted for each experimental configuration.
 
 \subsection{Debate Simulation Environment}
 \label{subsec:debate_env}
@@ -157,7 +170,8 @@ To focus LLMs on substantive reasoning and minimize stylistic variance, we imple
 
 \textbf{Concurrent Opening Round:} A key feature of our design was a non-standard opening round where both Proposition and Opposition models generated their opening speeches simultaneously, based only on the motion and their assigned side, \textit{before} seeing the opponent's case. This crucial step allowed us to capture each LLM's baseline confidence assessment prior to any interaction or exposure to opposing arguments.
 
-\textbf{Subsequent Rounds:} Following the opening, speeches were exchanged, and the debate proceeded through a Rebuttal and Final round, with each model having access to all prior speeches in the debate history when generating its current speech.
+\textbf{Subsequent Rounds:} Following the opening, speeches were exchanged, and the debate proceeded through a Rebuttal and Final round. When generating its speech in these subsequent rounds, each model had access to the full debate history from all preceding rounds (e.g., for the Rebuttal, both Opening speeches were available; for the Final, both Opening and both Rebuttal speeches were available). However, to maintain the symmetrical information state established in the simultaneous opening and avoid giving either side an immediate preview advantage within a round, neither the Proposition nor the Opposition model saw the opponent's speech for that specific round (e.g., the opponent's Rebuttal) before generating their own. Both models formulated their arguments based on the cumulative case presented in the history up to the start of that round, rather than as direct, real-time responses to the opponent's points in that turn. This design allowed us to evaluate how models integrated and responded to the opponent's case as it built over time, while ensuring fairness.
+
 
 \subsection{Core Prompt Structures \& Constraints}
 \label{subsec:prompts}
@@ -265,7 +279,7 @@ JUDGING GUIDANCE (same five criteria as above)
 
 Highly structured prompts were used for \textit{each} speech type to ensure consistency and enforce specific argumentative tasks, thereby isolating reasoning and self-assessment capabilities.
 
-\textbf{Embedded Judging Guidance:} Crucially, all debater prompts included explicit \textbf{Judging Guidance} (identical to the primary criteria used by the AI Jury, see Section~\ref{subsec:ai_jury}), instructing debaters on the importance of direct clash, evidence quality hierarchy, logical validity, response obligations, and impact analysis, while explicitly stating that rhetoric and presentation style would be ignored.
+\textbf{Embedded Judging Guidance:} Crucially, all debater prompts included explicit \textbf{Judging Guidance} , instructing debaters on the importance of direct clash, evidence quality hierarchy, logical validity, response obligations, and impact analysis, while explicitly stating that rhetoric and presentation style would be ignored.
 
 Full verbatim prompt text for debaters is provided in Appendix~\ref{appendix:debater_prompts}.
 
@@ -275,101 +289,14 @@ Full verbatim prompt text for debaters is provided in Appendix~\ref{appendix:deb
 After generating the content for \textit{each} of their three speeches (including the concurrent opening), models were required to provide a private ``confidence bet''.
 
 \textbf{Mechanism:} This involved outputting a numerical value from 0 to 100, representing their perceived probability of winning the debate, using a specific XML tag (\texttt{\textless bet\_amount\textgreater}).
-Models were also prompted to provide private textual justification for their bet amount within separate XML tags (\texttt{\textless bet\_logic\_private\textgreater}), allowing for qualitative insight into their reasoning, although this paper focuses on the quantitative analysis of the bet amounts.
+Models were also prompted to provide private textual justification for their bet amount within separate XML tags (\texttt{\textless bet\_logic\_private\textgreater}), allowing for qualitative insight into their reasoning.
 
 \textbf{Purpose:} This round-by-round elicitation allowed us to quantitatively track self-assessed performance dynamically throughout the debate, enabling analysis of confidence levels, calibration, and revision (or lack thereof) in response to the evolving argumentative context.
-
-\subsection{Evaluation Methodology: The AI Jury}
-\label{subsec:ai_jury}
-
-Evaluating 60 debates rigorously required a scalable and consistent approach. We implemented an AI jury system to ensure robust assessment based on argumentative merit.
-
-\textbf{Rationale for AI Jury:} This approach was chosen over single AI judges (to mitigate potential bias and improve reliability through aggregation) and human judges (due to the scale and cost required for consistent evaluation of this many debates).
-
-\textbf{Jury Selection Process:} Potential judge models were evaluated based on criteria including: (1) Performance Reliability (agreement with consensus, confidence calibration, consistency across debates), (2) Analytical Quality (ability to identify clash, evaluate evidence, recognize fallacies), (3) Diversity (representation from different model architectures and providers), and (4) Cost-Effectiveness.
-
-\textbf{Final Jury Composition:} The final jury consisted of six judges in total, comprising two instances each of \texttt{qwen/qwq-32b}, \texttt{google/gemini-pro-1.5}, and \texttt{deepseek/deepseek-chat}. This combination provided architectural diversity from three providers, included models demonstrating strong analytical performance and calibration during selection, and balanced quality with cost. Each debate was judged independently by all six judges.
-
-
-
-\textbf{Judging Procedure \& Prompt:} Judges evaluated the full debate transcript based solely on the argumentative substance presented, adhering to a highly detailed prompt (see Appendix~\ref{appendix:judge_prompt} for full text). Key requirements included:
-\begin{itemize}
-    \item Strict focus on \textbf{Direct Clash Resolution}: Identifying, quoting, and analyzing each point of disagreement based on logic, evidence quality (using a defined hierarchy), and rebuttal effectiveness, explicitly determining a winner for each clash with justification.
-    \item Evaluation of \textbf{Argument Hierarchy \& Impact} and overall case \textbf{Consistency}.
-    \item Explicit instructions to \textbf{ignore presentation style} and avoid common judging errors (e.g., intervention, shifting burdens).
-    \item Requirement for \textbf{Structured Output}: Including Winner (Proposition/Opposition), Confidence (0-100, representing margin of victory), Key Deciding Factors, Detailed Step-by-Step Reasoning, and a \textbf{Line-by-Line Justification} section confirming review of the entire transcript.
-\end{itemize}
-
-% ---------------------------------------------------------------
-\begin{figure}[htbp]           % single-column float (≈ half page)
-    \centering
-    \lstset{style=promptstyle}
-    \begin{adjustbox}{max height=0.45\textheight}
-    \begin{lstlisting}[language={}]
-  =================== JUDGE PROMPT (CORE EXCERPT) ===================
-
-  I. CORE JUDGING PRINCIPLES
-  1. Direct Clash Resolution
-     - Quote each disagreement
-     - Analyse logic, evidence quality, rebuttal success
-     - Declare winner of the clash with rationale
-  2. Argument Hierarchy & Impact
-     - Identify each side's core arguments
-     - Trace logical links and stated impacts
-     - Rank which arguments decide the motion
-  3. Consistency & Contradictions
-     - Flag internal contradictions, dropped points
-
-  II. EVALUATION REQUIREMENTS
-  - Steelman arguments
-  - Do NOT add outside knowledge
-  - Ignore presentation style
-
-  III. COMMON JUDGING ERRORS TO AVOID
-  Intervention - Burden-shifting - Double-counting -
-  Assuming causation from correlation - Ignoring dropped arguments
-
-  IV. DECISION FORMAT
-  <winnerName> Proposition|Opposition </winnerName>
-  <confidence> 0-100 </confidence>
-  Key factors (2-3 bullet list)
-  Detailed section-by-section reasoning
-
-  V. LINE-BY-LINE JUSTIFICATION
-  Provide > 1 sentence addressing Prop 1, Opp 1, Rebuttals, Finals
-  =================================================================
-    \end{lstlisting}
-    \end{adjustbox}
-
-    \caption{Condensed version of the judge prompt given to the AI jury
-    (full text in Appendix~\ref{appendix:judge_prompt}).}
-    \label{fig:judge-prompt}
-  \end{figure}
-  % ---------------------------------------------------------------
-
-
-\textbf{Final Verdict Determination:} The final winner for each debate was determined by aggregating the outputs of the six judges. The side (Proposition or Opposition) that received the higher sum of confidence scores across all six judges was declared the winner. The normalized difference between the winner's total confidence and the loser's total confidence served as the margin of victory. Ties in total confidence were broken randomly.
-
-\subsection{Ablation Studies}
-\label{subsec:ablation_studies}
-
-We performed the following ablation studies to understand the source of model overconfidence.
-
-\begin{itemize}
-  \item We made \textbf{each model debate itself while informing it was debating an equally capable model}. Details of the prompt are in appendix \ref{appendix:self_debate}. We did this in order to isolate whether overconfidence persists even when models explicitly know they face opponents of equal capability, eliminating any rational basis for expecting an advantage
-  \item We made \textbf{each model debate itself while informing it was debating an equally capable model and explicitly stating it had a fifty percent chance of winning}. Details of the prompt are in appendix \ref{appendix:self_debate_informed}. We conducted this experiment to investigate the influence of explicit probabilistic information on confidence calibration. By providing the objectively correct win probability (50\%) in a symmetric match-up, we aimed to test if this external anchor would improve calibration and reduce overconfidence, potentially demonstrating an \textbf{anchoring effect} where the models' confidence judgments are pulled towards the provided 50\% value. This allowed us to assess if overconfidence persists even when models are directly informed of the ground truth probability.
-
-  \item We made \textbf{each model debate itself while informing it was debating an equally capable model, made the bets public and informed models that the confidences would be public}. Details of the prompt are in appendix \ref{appendix:self_debate_public}. We did this in order to isolate whether strategic considerations in a public betting scenario would affect confidence reporting, allowing us to distinguish between genuine miscalibration and deliberate confidence manipulation when models know their assessments will be visible to opponents
-\end{itemize}
-
-Each of these ablations was performed with all 10 models each debating against itself 6 times to match our original experiment.
-
-
 
 
 \subsection{Data Collection}
 \label{subsec:data_collection}
-The final dataset comprises the full transcripts of 60 debates, the round-by-round confidence bets (amount and private thoughts) from both debaters in each debate, and the detailed structured verdicts (winner, confidence, reasoning) from each of the six AI judges for every debate. This data enables the quantitative analysis of LLM overconfidence, calibration, and confidence revision presented in our findings.
+The final dataset comprises the full transcripts of 240 debates, the round-by-round confidence bets (amount and private thoughts) from both debaters in each debate, and the detailed structured verdicts (winner, confidence, reasoning) from each of the six AI judges for the cross-model debates. This data enables the quantitative analysis of LLM overconfidence, confidence revision and calibration for the cross-model debates presented in our findings.
 
 This section will detail the statistical hypothesis tests employed for each key hypothesis. \textbf{[NEW CONTENT]}
 Furthermore, an analysis will be presented on which LLMs made the most accurate predictions of debate outcomes. \textbf{[NEW CONTENT]}
@@ -761,6 +688,7 @@ This work was supported by [Funding Agency Name]. We thank [Names] for helpful d
 
 \section{LLMs in the Debater Pool}
 \label{appendix:llms}
+All experiments were performed between February and May 2025
 \begin{tabular}{|l|l|}
   \hline
   Provider & Model \\
@@ -1246,7 +1174,76 @@ The following is the verbatim prompt provided to each AI judge:
   These existing is compulsory as the parser will fail otherwise
 \end{lstlisting}
 
+\subsection{Evaluation Methodology: The AI Jury}
+\label{appendix:ai_jury}
 
+Evaluating 60 debates rigorously required a scalable and consistent approach. We implemented an AI jury system to ensure robust assessment based on argumentative merit.
+
+\textbf{Rationale for AI Jury:} This approach was chosen over single AI judges (to mitigate potential bias and improve reliability through aggregation) and human judges (due to the scale and cost required for consistent evaluation of this many debates).
+
+\textbf{Jury Selection Process:} Potential judge models were evaluated based on criteria including: (1) Performance Reliability (agreement with consensus, confidence calibration, consistency across debates), (2) Analytical Quality (ability to identify clash, evaluate evidence, recognize fallacies), (3) Diversity (representation from different model architectures and providers), and (4) Cost-Effectiveness.
+
+\textbf{Final Jury Composition:} The final jury consisted of six judges in total, comprising two instances each of \texttt{qwen/qwq-32b}, \texttt{google/gemini-pro-1.5}, and \texttt{deepseek/deepseek-chat}. This combination provided architectural diversity from three providers, included models demonstrating strong analytical performance and calibration during selection, and balanced quality with cost. Each debate was judged independently by all six judges.
+
+
+
+\textbf{Judging Procedure \& Prompt:} Judges evaluated the full debate transcript based solely on the argumentative substance presented, adhering to a highly detailed prompt (see Appendix~\ref{appendix:judge_prompt} for full text). Key requirements included:
+\begin{itemize}
+    \item Strict focus on \textbf{Direct Clash Resolution}: Identifying, quoting, and analyzing each point of disagreement based on logic, evidence quality (using a defined hierarchy), and rebuttal effectiveness, explicitly determining a winner for each clash with justification.
+    \item Evaluation of \textbf{Argument Hierarchy \& Impact} and overall case \textbf{Consistency}.
+    \item Explicit instructions to \textbf{ignore presentation style} and avoid common judging errors (e.g., intervention, shifting burdens).
+    \item Requirement for \textbf{Structured Output}: Including Winner (Proposition/Opposition), Confidence (0-100, representing margin of victory), Key Deciding Factors, Detailed Step-by-Step Reasoning, and a \textbf{Line-by-Line Justification} section confirming review of the entire transcript.
+\end{itemize}
+
+% ---------------------------------------------------------------
+\begin{figure}[htbp]           % single-column float (≈ half page)
+    \centering
+    \lstset{style=promptstyle}
+    \begin{adjustbox}{max height=0.45\textheight}
+    \begin{lstlisting}[language={}]
+  =================== JUDGE PROMPT (CORE EXCERPT) ===================
+
+  I. CORE JUDGING PRINCIPLES
+  1. Direct Clash Resolution
+     - Quote each disagreement
+     - Analyse logic, evidence quality, rebuttal success
+     - Declare winner of the clash with rationale
+  2. Argument Hierarchy & Impact
+     - Identify each side's core arguments
+     - Trace logical links and stated impacts
+     - Rank which arguments decide the motion
+  3. Consistency & Contradictions
+     - Flag internal contradictions, dropped points
+
+  II. EVALUATION REQUIREMENTS
+  - Steelman arguments
+  - Do NOT add outside knowledge
+  - Ignore presentation style
+
+  III. COMMON JUDGING ERRORS TO AVOID
+  Intervention - Burden-shifting - Double-counting -
+  Assuming causation from correlation - Ignoring dropped arguments
+
+  IV. DECISION FORMAT
+  <winnerName> Proposition|Opposition </winnerName>
+  <confidence> 0-100 </confidence>
+  Key factors (2-3 bullet list)
+  Detailed section-by-section reasoning
+
+  V. LINE-BY-LINE JUSTIFICATION
+  Provide > 1 sentence addressing Prop 1, Opp 1, Rebuttals, Finals
+  =================================================================
+    \end{lstlisting}
+    \end{adjustbox}
+
+    \caption{Condensed version of the judge prompt given to the AI jury
+    (full text in Appendix~\ref{appendix:judge_prompt}).}
+    \label{fig:judge-prompt}
+  \end{figure}
+  % ---------------------------------------------------------------
+
+
+\textbf{Final Verdict Determination:} The final winner for each debate was determined by aggregating the outputs of the six judges. The side (Proposition or Opposition) that received the higher sum of confidence scores across all six judges was declared the winner. The normalized difference between the winner's total confidence and the loser's total confidence served as the margin of victory. Ties in total confidence were broken randomly.
 
 
 \section{Topics of Debate}
