@@ -114,17 +114,9 @@ Our results reveal a fundamental metacognitive deficit. Key findings include: (1
 
 
 % Para 6: Paper contributions and organization
-\textbf{[TODO REORGANISE]} These findings raise serious concerns about deploying LLMs in roles requiring accurate self-assessment or
-real-time adaptation to new evidence and arguments. We term this anti-Bayesian drift \textbf{confidence
-escalation}: LLMs not only overestimate their correctness; they become \emph{more} certain after reading
-structured rebuttals that undermine their case. This effect reveals a metacognitive blind spot that threatens
-reliability in adversarial, multi-agent, and safety-critical deployments, and it persists even when bets are
-hidden and incentives are aligned with accurate self-assessment. Until models can reliably revise their
-confidence in response to opposition, their epistemic judgments in adversarial contexts cannot be trusted—a
-critical limitation for systems meant to engage in research, analysis, or high-stakes decision making.
+The challenge of LLM calibration becomes particularly acute in dynamic, interactive settings, raising serious concerns about deploying them in roles requiring accurate self-assessment and real-time adaptation to new evidence. We investigate a core aspect of this problem, identifying a pattern we term confidence escalation: an anti-Bayesian drift where LLMs not only systematically overestimate their correctness but often become more certain after facing counter-arguments. This metacognitive blind spot, persistent even when incentives are aligned with accurate self-assessment, threatens reliability in adversarial, multi-agent, and safety-critical applications. For instance, an overconfident LLM might provide flawed legal advice without appropriate caveats, mismanage critical infrastructure in an automated system, or escalate unproductive arguments in collaborative research settings. Until models can reliably revise their confidence in response to opposition, their epistemic judgments in adversarial contexts cannot be trusted—a critical limitation for systems meant to engage in research, analysis, or high-stakes decision making
 
-This paper makes several contributions. We introduce a robust methodology for studying dynamic confidence calibration in LLMs using adversarial debate. We quantify significant overconfidence and confidence escalation phenomena, including novel findings on behavior in identical-model debates and public betting scenarios. These findings highlight critical metacognitive limitations with implications for AI safety and deployment.
-
+To probe these critical metacognitive issues, this paper makes several contributions. First, and central to our investigation, we introduce a novel and highly accessible debate-based methodology for studying dynamic confidence calibration in LLMs. A key innovation of our framework is its \textbf{self-contained design: it evaluates the coherence and rationality of confidence revisions directly from model interactions, obviating the need for external human judges to assess argument quality or predefined 'ground truth' debate outcomes.} This streamlined approach makes the study of LLM metacognition more scalable and broadly applicable. Second, employing this methodology, we systematically quantify significant overconfidence and the aforementioned confidence escalation phenomenon across various LLMs and debate conditions. Our analysis includes novel findings on model behavior in identical-model debates and the impact of public versus private confidence reporting. Collectively, these contributions highlight fundamental limitations in current LLM self-assessment capabilities, offering crucial insights for AI safety and the responsible development of more epistemically sound AI systems
 \section{Related Work}
 
 \paragraph{Confidence Calibration in LLMs.}
