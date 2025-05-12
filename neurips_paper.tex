@@ -78,9 +78,11 @@ Pradyumna Shyama Prasad \\ % Replace with your name
   National University of Singapore \\ % Replace with your university
   % Your City, Your State/Country \\ % Optional location details
   \texttt{pradyumna.prasad@u.nus.edu} \\ % Replace with your email
-  % --- Example for footnote (e.g., funding) ---
-  % \thanks{Replace with funding or similar acknowledgment. Do NOT include in submission.}
-  % -----------------------------------------------
+  \And
+  Minh Nhat Nguyen \\
+  Apart Research \\
+  ???? \\
+  \texttt{second.author@email.com} \\
 }
 
 
@@ -94,7 +96,7 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 % Replace with your paper abstract.
 
 \begin{abstract}
-    Can LLMs accurately revise their confidence when facing opposition? To find out, we organized 59 three-round policy debates (opening, rebuttal, final) among ten state-of-the-art LLMs, where models placed private confidence wagers (0-100) on their victory after each round, evaluated by a six-model AI jury. We observed five alarming patterns: First, \textbf{systematic overconfidence} pervaded the debates (average stated confidence of 72.9\% vs.\ an expected 50\% win rate). Second, a paradoxical \textbf{confidence mismatch} emerged where Proposition debaters, despite a lower win rate (28.8\%), expressed higher average confidence than Opposition debaters (74.6\% vs.\ 71.3\%). Third, rather than converging toward rational 50\% confidence, LLMs displayed \textbf{confidence escalation}; their self-assessed win probability increased from 69\% to 78\% throughout debates, regardless of whether they were actually winning or losing. Fourth, logical inconsistency appeared in 71\% of debates, with both sides simultaneously claiming $\geq$75\% likelihood of success, a mathematically impossibility, even when models were knowingly debating identical, equally capable copies of themselves. Finally, we note concerning examples of strategic confidence manipulation when bets were public, raising concerns about the faithfulness of chain-of-thought reasoning, as models implicitly accounted for opponents' confidence without disclosing this in their reasoning. These findings reveal a fundamental metacognitive blind spot that threatens LLM reliability in adversarial, multi-agent, and safety-critical applications that require self-assessment.
+    Can LLMs accurately revise their confidence when facing opposition? To find out, we organized 60 three-round policy debates (opening, rebuttal, final) among ten state-of-the-art LLMs, where models placed private confidence wagers (0-100) on their victory after each round. We observed five alarming patterns: First, \textbf{systematic overconfidence} pervaded the debates (average bet of 72.9\% at the start of the debate before seeing any opponent arguments vs.\ an expected 50\% win rate). Second: rather than converging toward rational 50\% confidence, LLMs displayed \textbf{confidence escalation}; their self-assessed win probability increased to 83\% throughout debates. Third, logical inconsistency appeared in 71.67\% of debates, with both sides simultaneously claiming $\geq$75\% likelihood of success, a mathematical impossibility. Fourth, persistent overconfidence emerged even in controlled self-debates, where despite models knowing they faced copies of themselves which are equally capable opponents, models maintained high average confdence (64.1\% initially, rising to 75.2\% by the closing round) with many models exceeding 80\% confidence. Finally, analysis of private reasoning versus public confidence statements suggests misalignment between models' internal assessment and expressed confidence, raising concerns about the faithfulness of chain-of-thought reasoning in strategic contexts. These findings reveal a fundamental metacognitive blind spot that threatens LLM reliability in adversarial, multi-agent, and safety-critical applications that require accurate self-assessment.
 \end{abstract}
 
 % --- Main Body of the Paper ---
@@ -107,11 +109,9 @@ Large language models are increasingly being used in high stakes domains like le
 % Para 2: Debate as uniquely testing confidence calibration and belief revision
 Models must respond to opposition, revise their beliefs over time, and recognize when their position is weakening. This inability to introspect and revise confidence fundamentally limits their usefulness in deliberative settings and poses substantial risks in domains requiring careful judgment under uncertainty. Debate provides a natural framework to stress-test these metacognitive abilities because it requires participants to respond to direct challenges, adapt to new information, and continually reassess the relative strength of competing positions—particularly when their arguments are directly contradicted or new evidence emerges. In adversarial settings, where one side must ultimately prevail, a rational agent should recognize when its position has been weakened and adjust its confidence accordingly. This is especially true when debaters have equal capabilities, as neither should maintain an unreasonable expectation of advantage.
 
-% Para 3: Methodology overview - 59 debates, 10 LLMs, private confidence betting
-In this work, we study how well language models revise their confidence when engaged in adversarial debate—a setting that naturally stresses the metacognitive abilities crucial for high-stakes applications. We simulate 59 three-round debates between ten state-of-the-art LLMs across six global policy motions. After each round—opening, rebuttal, and final—models provide private, incentivized confidence bets (0-100) estimating their probability of winning, along with natural language explanations. The debate setup ensures both sides have equal access to information and equal opportunity to present their case. To ensure robust evaluation, we use a multi-model jury of diverse LLMs, selected based on calibration, consistency, and reasoning quality.
+In this work, we study how well language models revise their confidence when engaged in adversarial debate—a setting that naturally stresses the metacognitive abilities crucial for high-stakes applications. We simulate 60 three-round debates between ten state-of-the-art LLMs across six global policy motions. After each round—opening, rebuttal, and final—models provide private, incentivized confidence bets (0-100) estimating their probability of winning, along with natural language explanations. The debate setup ensures both sides have equal access to information and equal opportunity to present their case. To ensure robust evaluation, we use a multi-model jury of diverse LLMs, selected based on calibration, consistency, and reasoning quality.
 
-Our results reveal a fundamental metacognitive deficit. Key findings include: (1) systematic overconfidence (average stated confidence of 72.92\% vs. an expected 50\% win rate); (2) a paradoxical confidence mismatch where Proposition debaters, despite a lower win rate (28.8\%), expressed higher average confidence than Opposition debaters; (3) a pattern of "confidence escalation," where average confidence increased from opening (69\%) to closing rounds (78\%), contrary to Bayesian principles, even for losing models; (4) persistent overconfidence even when models debated identical counterparts even though all models know they face opponents of equal capability, with no inherent advantage. In 71.2\% of debates, both debaters report high confidence ($\ge$75\%)—a logically incoherent outcome. We compare LLM confidence patterns to human cognitive biases, finding notable parallels: the ~73\% average LLM confidence resembles the human ~70\% description for the word "probably" \cite{Hashim2024,Mandel2019} , while the observed confidence escalation mirrors Griffin and Tversky's finding that humans overweight evidence strength  \cite{GriffinTversky1992} while underweighting counter-evidence—suggesting LLMs may inherit these well-documented judgment biases through alignment. and (5) evidence of strategic confidence manipulation when bets were public \textbf{[NEW DATA, This section will present literature on human overconfidence in reasoning tasks and debates. We will discuss established findings on how humans often exhibit similar overconfidence patterns and relate this to our LLM findings. Key references for human calibration baselines will be introduced.
-]}.
+Our results reveal a fundamental metacognitive deficit. Key findings include: (1) systematic overconfidence (average opening stated confidence of 72.92\% vs. an expected 50\% win rate); (2) a paradoxical confidence mismatch where Proposition debaters, despite a lower win rate (28.8\%), expressed higher average confidence than Opposition debaters; (3) a pattern of "confidence escalation," where average confidence increased from opening (69\%) to closing rounds (78\%), contrary to Bayesian principles, even for losing models; (4) persistent overconfidence even when models debated identical counterparts even though all models know they face opponents of equal capability, with no inherent advantage. In 71.7\% of debates, both debaters report high confidence ($\ge$75\%)—a logically incoherent outcome. We compare LLM confidence patterns to human cognitive biases, finding notable parallels: the ~73\% average LLM confidence resembles the human ~70\% description for the word "probably" \cite{Hashim2024,Mandel2019} , while the observed confidence escalation mirrors Griffin and Tversky's finding that humans overweight evidence strength  \cite{GriffinTversky1992} while underweighting counter-evidence—suggesting LLMs may inherit these well-documented judgment biases through alignment. and (5) evidence of strategic confidence manipulation when bets were public.
 
 
 % Para 6: Paper contributions and organization
@@ -150,7 +150,7 @@ Our work sits at the intersection of calibration, metacognition, adversarial rea
 \section{Methodology}
 \label{sec:methodology}
 
-Our study investigates the dynamic metacognitive abilities of Large Language Models (LLMs)---specifically their confidence calibration and revision---through a novel experimental paradigm based on competitive policy debate. We designed a simulation environment to rigorously assess LLM self-assessment in response to adversarial argumentation. The methodology involved structured debates between LLMs, round-by-round confidence elicitation, and evaluation by a carefully selected AI jury. We conducted 59 debates across 6 distinct policy topics using 10 diverse state-of-the-art LLMs.
+Our study investigates the dynamic metacognitive abilities of Large Language Models (LLMs)---specifically their confidence calibration and revision---through a novel experimental paradigm based on competitive policy debate. We designed a simulation environment to rigorously assess LLM self-assessment in response to adversarial argumentation. The methodology involved structured debates between LLMs, round-by-round confidence elicitation, and evaluation by a carefully selected AI jury. We conducted 60 debates across 6 distinct policy topics using 10 diverse state-of-the-art LLMs.
 
 \subsection{Debate Simulation Environment}
 \label{subsec:debate_env}
@@ -291,7 +291,7 @@ Models were also prompted to provide private textual justification for their bet
 \subsection{Evaluation Methodology: The AI Jury}
 \label{subsec:ai_jury}
 
-Evaluating 59 debates rigorously required a scalable and consistent approach. We implemented an AI jury system to ensure robust assessment based on argumentative merit.
+Evaluating 60 debates rigorously required a scalable and consistent approach. We implemented an AI jury system to ensure robust assessment based on argumentative merit.
 
 \textbf{Rationale for AI Jury:} This approach was chosen over single AI judges (to mitigate potential bias and improve reliability through aggregation) and human judges (due to the scale and cost required for consistent evaluation of this many debates).
 
@@ -366,17 +366,19 @@ We performed the following ablation studies to understand the source of model ov
 
 \begin{itemize}
   \item We made \textbf{each model debate itself while informing it was debating an equally capable model}. Details of the prompt are in appendix \ref{appendix:self_debate}. We did this in order to isolate whether overconfidence persists even when models explicitly know they face opponents of equal capability, eliminating any rational basis for expecting an advantage
-  \item We made \textbf{each model debate itself while informing it was debating an equally capable model and informed it it had a fifty percent chance of defeating itself}. Details of the prompt are in appendix \ref{appendix:self_debate_informed}. We did this in order to isolate whether explicit probabilistic information about win chances (50\%) would improve calibration, testing if overconfidence persists even when models are directly informed of the objectively correct win probability in a symmetric match-up
+  \item We made \textbf{each model debate itself while informing it was debating an equally capable model and explicitly stating it had a fifty percent chance of winning}. Details of the prompt are in appendix \ref{appendix:self_debate_informed}. We conducted this experiment to investigate the influence of explicit probabilistic information on confidence calibration. By providing the objectively correct win probability (50\%) in a symmetric match-up, we aimed to test if this external anchor would improve calibration and reduce overconfidence, potentially demonstrating an \textbf{anchoring effect} where the models' confidence judgments are pulled towards the provided 50\% value. This allowed us to assess if overconfidence persists even when models are directly informed of the ground truth probability.
+
   \item We made \textbf{each model debate itself while informing it was debating an equally capable model, made the bets public and informed models that the confidences would be public}. Details of the prompt are in appendix \ref{appendix:self_debate_public}. We did this in order to isolate whether strategic considerations in a public betting scenario would affect confidence reporting, allowing us to distinguish between genuine miscalibration and deliberate confidence manipulation when models know their assessments will be visible to opponents
 \end{itemize}
 
+Each of these ablations was performed with all 10 models each debating against itself 6 times to match our original experiment.
 
 
 
 
 \subsection{Data Collection}
 \label{subsec:data_collection}
-The final dataset comprises the full transcripts of 59 debates, the round-by-round confidence bets (amount and private thoughts) from both debaters in each debate, and the detailed structured verdicts (winner, confidence, reasoning) from each of the six AI judges for every debate. This data enables the quantitative analysis of LLM overconfidence, calibration, and confidence revision presented in our findings.
+The final dataset comprises the full transcripts of 60 debates, the round-by-round confidence bets (amount and private thoughts) from both debaters in each debate, and the detailed structured verdicts (winner, confidence, reasoning) from each of the six AI judges for every debate. This data enables the quantitative analysis of LLM overconfidence, calibration, and confidence revision presented in our findings.
 
 This section will detail the statistical hypothesis tests employed for each key hypothesis. \textbf{[NEW CONTENT]}
 Furthermore, an analysis will be presented on which LLMs made the most accurate predictions of debate outcomes. \textbf{[NEW CONTENT]}
@@ -386,11 +388,11 @@ Furthermore, an analysis will be presented on which LLMs made the most accurate 
 
 \lstset{style=promptstyle} % Re-apply the style for consistency if needed, or define a new style.
 
-Our experimental setup, involving 59 simulated policy debates between ten state-of-the-art LLMs, with round-by-round confidence elicitation and AI jury evaluation, yielded several key findings regarding LLM metacognition in adversarial settings.
+Our experimental setup, involving 60 simulated policy debates between ten state-of-the-art LLMs, with round-by-round confidence elicitation and AI jury evaluation, yielded several key findings regarding LLM metacognition in adversarial settings.
 
 \subsection{Pervasive Overconfidence and Logical Impossibility (Finding 1)}
 
-Across all 59 debates and all three rounds (Opening, Rebuttal, Final), LLMs exhibited significant overconfidence in their likelihood of winning. The overall average confidence bet made by models was $\mu = 72.92$ \%. Given that each debate has exactly one winner and one loser, the expected average win probability for any participant is 50\%. A one-sample t-test comparing the average confidence (72.92\%) to the expected 50\% revealed this overconfidence to be highly statistically significant ($t(176) = 23.92, p < 0.0001$). Similarly, a Wilcoxon signed-rank test confirmed this finding ($Z= -10.84, p < 0.0001$).
+Across all 60 debates and all three rounds (Opening, Rebuttal, Final), LLMs exhibited significant overconfidence in their likelihood of winning. The overall average opening confidence bet made by models was $\mu = 72.92$ \%. Given that each debate has exactly one winner and one loser, the expected average win probability for any participant is 50\%. A one-sample t-test comparing the average confidence (72.92\%) to the expected 50\% revealed this overconfidence to be highly statistically significant ($t(176) = 23.92, p < 0.0001$). Similarly, a Wilcoxon signed-rank test confirmed this finding ($Z= -10.84, p < 0.0001$). =
 
 This widespread overestimation suggests a fundamental disconnect between the models' internal assessment of their performance and the objective outcome of the debate.
 
@@ -401,7 +403,7 @@ This widespread overestimation suggests a fundamental disconnect between the mod
   \label{fig:avg_confidence}
 \end{figure}
 
-A stark illustration of LLM metacognitive failure is the frequency with which both debaters expressed high confidence simultaneously. In 71.2\% of the 59 debates, both the Proposition and Opposition models rated their chance of winning at $\ge$ 75\% in at least one round. Given that only one side can win, this scenario is logically impossible under mutual exclusivity. This widespread occurrence highlights a profound inability for models to ground their confidence in the objective constraints of the task.
+A stark illustration of LLM metacognitive failure is the frequency with which both debaters expressed high confidence simultaneously. In 71.2\% of the 60 debates, both the Proposition and Opposition models rated their chance of winning at $\ge$ 75\% in at least one round. Given that only one side can win, this scenario is logically impossible under mutual exclusivity. This widespread occurrence highlights a profound inability for models to ground their confidence in the objective constraints of the task.
 
 This section will include further statistical testing of overconfidence claims. \textbf{[STATISTICAL TESTING OF OVERCONFIDENCE CLAIMS, TBA]}
 It will also provide a comparison to human baseline statistics. \textbf{[COMPARISON TO HUMAN BASELINE STATISTICS, TBA]}
@@ -409,7 +411,7 @@ Further analysis of the 71.2\% of debates where both sides claimed high confiden
 
 \subsection{Position Asymmetry and Confidence Mismatch (Finding 2)}
 
-The AI jury evaluations revealed a significant advantage for the Opposition side in our debate setup. Opposition models won 71.2\% of the debates, while Proposition models won only 28.8\%. This asymmetry was highly statistically significant ($\chi^2(1, N=59) = 12.12, p < 0.0001$; Fisher's exact test $p < 0.0001$).
+The AI jury evaluations revealed a significant advantage for the Opposition side in our debate setup. Opposition models won 71.2\% of the debates, while Proposition models won only 28.8\%. This asymmetry was highly statistically significant ($\chi^2(1, N=60) = 12.12, p < 0.0001$; Fisher's exact test $p < 0.0001$).
 
 Despite this clear disparity in success rates, Proposition models reported \textit{higher} average confidence (74.58\%) than Opposition models (71.27\%) across all rounds. While the difference in confidence itself is modest, its direction is contrary to the observed outcomes and statistically significant (Independent t-test: $t(175) = 2.54, p = 0.0115$; Mann-Whitney U test: $U=4477, p = 0.0307$). This indicates that models failed to recognize or account for the systematic disadvantage faced by the Proposition side in this environment.
 
@@ -830,14 +832,14 @@ After the dynamic rounds, we conducted a final set of rebalancing debates using 
   google/gemini-2.0-flash-001 & 6 & 6 & 12 \\
   qwen/qwen-max & 6 & 6 & 12 \\
   anthropic/claude-3.5-haiku & 6 & 6 & 12 \\
-  qwen/qwq-32b & 6 & 6 & 12 \\
-  anthropic/claude-3.7-sonnet & 6 & 6 & 12 \\
+  qwen/qwq-32b:free & 6 & 6 & 12 \\
+  anthropic/claude-3.7-sonnet & 6 & 7 & 13 \\
   deepseek/deepseek-chat & 6 & 6 & 12 \\
-  openai/gpt-4o-mini & 5 & 6 & 11 \\
+  openai/gpt-4o-mini & 6 & 6 & 12 \\
   openai/o3-mini & 6 & 6 & 12 \\
-  deepseek/deepseek-r1-distill-qwen-14b & 6 & 5 & 11 \\
+  deepseek/deepseek-r1-distill-qwen-14b:free & 6 & 5 & 11 \\
   \midrule
-  \textbf{Total debates} & 59 & 59 & 118 \\
+  \textbf{Total debates} & 60 & 60 & 120 \\
   \bottomrule
   \end{tabular}
 \end{table}
@@ -1283,6 +1285,13 @@ We appended this text to the prompt given to the LLM:{\ttfamily "NOTE: In this d
 ...
 
 After your speech, you must include a public confidence bet (0-100) indicating how likely you think you are to win this debate"}
+
+\section{Hypothesis Tests}
+\paragraph{Test for General Overconfidence in Opening Statements}
+\label{appendix:test_overconfidence_opening}
+
+To statistically evaluate the hypothesis that LLMs exhibit general overconfidence in their initial self-assessments, we performed a one-sample t-test. This test compares the mean of a sample to a known or hypothesized population mean. The data used for this test was the collection of all opening confidence bets submitted by both Proposition and Opposition debaters across all 60 debates (total N=120 individual opening bets). The null hypothesis ($H_0$) was that the mean of these opening confidence bets was equal to 50\% (the expected win rate in a fair, symmetric contest). The alternative hypothesis ($H_1$) was that the mean was greater than 50\%, reflecting pervasive overconfidence. The analysis yielded a mean opening confidence of 72.92\%. The results of the one-sample t-test were $t = 31.666$, with a one-tailed $p < 0.0001$. With a p-value well below the standard significance level of 0.05, we reject the null hypothesis. This provides strong statistical evidence that the average opening confidence level of LLMs in this debate setting is significantly greater than the expected 50\%, supporting the claim of pervasive initial overconfidence.
+
 
 
 
