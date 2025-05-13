@@ -1,4 +1,4 @@
-\begin{thebibliography}{24}
+\begin{thebibliography}{25}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -67,6 +67,12 @@ David~R. Mandel.
 \newblock In David~R. Mandel, editor, \emph{Assessment and Communication of Uncertainty in Intelligence to Support Decision Making: Final Report of Research Task Group SAS-114}, page~16. NATO Science and Technology Organization, Brussels, Belgium, March 2019.
 \newblock URL \url{https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3435945}.
 \newblock Posted: 15 Aug 2019, Conditionally accepted.
+
+\bibitem[Meer and Van~Wesep(2007)]{RePEc:sip:dpaper:06-042}
+Jonathan Meer and Edward Van~Wesep.
+\newblock A test of confidence enhanced performance: Evidence from us college debaters.
+\newblock Discussion Papers 06-042, Stanford Institute for Economic Policy Research, 2007.
+\newblock URL \url{https://EconPapers.repec.org/RePEc:sip:dpaper:06-042}.
 
 \bibitem[Moore and Healy(2008)]{Moore2008}
 Don~A. Moore and Paul~J. Healy.

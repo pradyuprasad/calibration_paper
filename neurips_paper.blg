@@ -3,46 +3,44 @@ Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: neurips_paper.aux
 The style file: plainnat.bst
 Database file #1: references.bib
-Warning--I didn't find a database entry for "RePEc:sip:dpaper:06-042"
-You've used 24 entries,
+You've used 25 entries,
             2773 wiz_defined-function locations,
-            727 strings with 15571 characters,
-and the built_in function-call counts, 26291 in all, are:
-= -- 1845
-> -- 3533
-< -- 8
-+ -- 1181
-- -- 1156
-* -- 2742
-:= -- 4491
-add.period$ -- 89
-call.type$ -- 24
-change.case$ -- 455
-chr.to.int$ -- 23
-cite$ -- 48
-duplicate$ -- 470
-empty$ -- 848
-format.name$ -- 1188
-if$ -- 5030
+            734 strings with 15809 characters,
+and the built_in function-call counts, 26652 in all, are:
+= -- 1881
+> -- 3554
+< -- 10
++ -- 1188
+- -- 1162
+* -- 2768
+:= -- 4553
+add.period$ -- 93
+call.type$ -- 25
+change.case$ -- 460
+chr.to.int$ -- 24
+cite$ -- 50
+duplicate$ -- 486
+empty$ -- 871
+format.name$ -- 1197
+if$ -- 5103
 int.to.chr$ -- 2
 int.to.str$ -- 1
 missing$ -- 15
-newline$ -- 144
-num.names$ -- 98
-pop$ -- 939
+newline$ -- 150
+num.names$ -- 102
+pop$ -- 945
 preamble$ -- 1
-purify$ -- 431
+purify$ -- 435
 quote$ -- 0
-skip$ -- 691
+skip$ -- 705
 stack$ -- 0
-substring$ -- 121
-swap$ -- 38
-text.length$ -- 1
+substring$ -- 123
+swap$ -- 39
+text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 264
+type$ -- 275
 warning$ -- 0
-while$ -- 80
+while$ -- 83
 width$ -- 0
-write$ -- 334
-(There was 1 warning)
+write$ -- 349
