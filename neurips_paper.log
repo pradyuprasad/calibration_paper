@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  13 MAY 2025 16:22
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  13 MAY 2025 18:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -435,24 +435,24 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 ) (neurips_paper.aux)
 \openout1 = `neurips_paper.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 90.
-LaTeX Font Info:    ... okay on input line 90.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 88.
+LaTeX Font Info:    ... okay on input line 88.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -520,7 +520,7 @@ LaTeX Font Info:    ... okay on input line 90.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 90.
+Package hyperref Info: Link coloring OFF on input line 88.
 (neurips_paper.out) (neurips_paper.out)
 \@outlinefile=\write3
 \openout3 = `neurips_paper.out'.
@@ -528,20 +528,20 @@ Package hyperref Info: Link coloring OFF on input line 90.
 Package microtype Info: Patching varwidth to enable character protrusion.
 \MT@vwid@leftmargin=\dimen258
 \MT@vwid@rightmargin=\dimen259
-LaTeX Info: Redefining \microtypecontext on input line 90.
-Package microtype Info: Applying patch `item' on input line 90.
-Package microtype Info: Applying patch `toc' on input line 90.
-Package microtype Info: Applying patch `eqnum' on input line 90.
-Package microtype Info: Applying patch `footnote' on input line 90.
-Package microtype Info: Applying patch `verbatim' on input line 90.
-LaTeX Info: Redefining \microtypesetup on input line 90.
+LaTeX Info: Redefining \microtypecontext on input line 88.
+Package microtype Info: Applying patch `item' on input line 88.
+Package microtype Info: Applying patch `toc' on input line 88.
+Package microtype Info: Applying patch `eqnum' on input line 88.
+Package microtype Info: Applying patch `footnote' on input line 88.
+Package microtype Info: Applying patch `verbatim' on input line 88.
+LaTeX Info: Redefining \microtypesetup on input line 88.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: Automatic font expansion enabled (level 2),
 (microtype)             stretch: 20, shrink: 20, step: 1, non-selected.
 Package microtype Info: Using default expansion set `alltext-nott'.
-LaTeX Info: Redefining \showhyphens on input line 90.
+LaTeX Info: Redefining \showhyphens on input line 88.
 Package microtype Info: No adjustment of tracking.
 Package microtype Info: No adjustment of interword spacing.
 Package microtype Info: No adjustment of character kerning.
@@ -570,19 +570,19 @@ File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 94.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 91.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 94.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 91.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 94.
+LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 91.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/base\t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
@@ -590,7 +590,7 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `cmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Trying to load font information for T1+phv on input line 100.
+LaTeX Font Info:    Trying to load font information for T1+phv on input line 97.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\t1phv.fd
 File: t1phv.fd 2020/03/25 scalable font definitions for T1/phv.
 )
@@ -601,162 +601,161 @@ Package microtype Info: Loading generic protrusion settings for font family
  [1
 
 
-{C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}]
-Underfull \vbox (badness 1215) has occurred while \output is active []
+{C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2]
 
- [2]
-
-LaTeX Warning: Reference `sec:discussion' on page 3 undefined on input line 136.
+LaTeX Warning: Reference `sec:discussion' on page 3 undefined on input line 145.
 
 
-Underfull \hbox (badness 3019) in paragraph at lines 144--145
+Underfull \hbox (badness 3019) in paragraph at lines 153--154
 \T1/ptm/m/n/10 (+20) Our study in-ves-ti-gates the dy-namic metacog-ni-tive abil-i-ties of Large Lan-guage Mod-els
  []
 
 [3]
 
-LaTeX Warning: Reference `fig:escalation_plot' on page 4 undefined on input line 162.
+LaTeX Warning: Reference `fig:escalation_plot' on page 4 undefined on input line 171.
 
-[4]
-LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 314.
+
+Underfull \vbox (badness 1067) has occurred while \output is active []
+
+ [4]
+LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 320.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
 ) [5] [6]
 
-LaTeX Warning: Reference `app:initial_tests' on page 7 undefined on input line 345.
+LaTeX Warning: Reference `app:initial_tests' on page 7 undefined on input line 351.
 
 [7] [8] [9] [10] (neurips_paper.bbl [11] [12])
-Underfull \hbox (badness 10000) in paragraph at lines 529--546
+Underfull \hbox (badness 10000) in paragraph at lines 523--540
 \T1/ptm/m/n/10 (+20) All ex-per-i-ments were per-formed be-tween Febru-ary and May 2025
  []
 
-[13]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[14]
-Overfull \hbox (59.1535pt too wide) in paragraph at lines 692--692
+[13] [14]
+Overfull \hbox (59.1535pt too wide) in paragraph at lines 686--686
 []    \T1/cmtt/m/n/10 Connection: (Explicit explanation of how this evidence/principle proves your claim)[] 
  []
 
-
-Overfull \hbox (59.1535pt too wide) in paragraph at lines 692--692
+[15]
+Overfull \hbox (59.1535pt too wide) in paragraph at lines 686--686
 []     \T1/cmtt/m/n/10 - Simply making new arguments without engaging opponents' points will be penalized[] 
  []
 
 
-Underfull \vbox (badness 3209) has occurred while \output is active []
-
- [15]
-Overfull \hbox (80.14838pt too wide) in paragraph at lines 692--692
+Overfull \hbox (80.14838pt too wide) in paragraph at lines 686--686
 []     \T1/cmtt/m/n/10 1. Strongest: Specific statistics, named examples, verifiable cases with dates/numbers[] 
  []
 
 
-Overfull \hbox (27.6612pt too wide) in paragraph at lines 692--692
+Overfull \hbox (27.6612pt too wide) in paragraph at lines 686--686
 []     \T1/cmtt/m/n/10 3. Weak: General examples, unnamed cases, theoretical claims without support[] 
  []
 
 
-Overfull \hbox (877.95355pt too wide) in paragraph at lines 692--692
+Overfull \hbox (877.95355pt too wide) in paragraph at lines 686--686
 []     \T1/cmtt/m/n/10 The judge will ignore speaking style, rhetoric, and presentation. Focus entirely on argument substance, evidence quality, and logical reasoning. Your case will be evaluated based on what you explicitly prove, not what you assume or imply.[] 
  []
 
 [16]
-Overfull \hbox (6.66632pt too wide) in paragraph at lines 803--803
+Overfull \hbox (6.66632pt too wide) in paragraph at lines 797--797
 []   \T1/cmtt/m/n/10 Impact: (Explain exactly why winning this point is crucial for the debate)[] 
- []
-
-
-Overfull \hbox (53.90479pt too wide) in paragraph at lines 803--803
-[]    \T1/cmtt/m/n/10 - Simply making new arguments without engaging opponents' points will be penalized[] 
- []
-
-
-Overfull \hbox (74.89966pt too wide) in paragraph at lines 803--803
-[]    \T1/cmtt/m/n/10 1. Strongest: Specific statistics, named examples, verifiable cases with dates/numbers[] 
- []
-
-
-Overfull \hbox (22.41248pt too wide) in paragraph at lines 803--803
-[]    \T1/cmtt/m/n/10 3. Weak: General examples, unnamed cases, theoretical claims without support[] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [17]
-Overfull \hbox (872.70483pt too wide) in paragraph at lines 803--803
-[]    \T1/cmtt/m/n/10 The judge will ignore speaking style, rhetoric, and presentation. Focus entirely on argument substance, evidence quality, and logical reasoning. Your case will be evaluated based on what you explicitly prove, not what you assume or imply.[] 
- []
-
-[18]
-Overfull \hbox (53.90479pt too wide) in paragraph at lines 894--894
+Overfull \hbox (53.90479pt too wide) in paragraph at lines 797--797
 []    \T1/cmtt/m/n/10 - Simply making new arguments without engaging opponents' points will be penalized[] 
  []
 
 
-Overfull \hbox (74.89966pt too wide) in paragraph at lines 894--894
+Overfull \hbox (74.89966pt too wide) in paragraph at lines 797--797
 []    \T1/cmtt/m/n/10 1. Strongest: Specific statistics, named examples, verifiable cases with dates/numbers[] 
  []
 
 
-Overfull \hbox (22.41248pt too wide) in paragraph at lines 894--894
+Overfull \hbox (22.41248pt too wide) in paragraph at lines 797--797
 []    \T1/cmtt/m/n/10 3. Weak: General examples, unnamed cases, theoretical claims without support[] 
  []
 
 
-Overfull \hbox (872.70483pt too wide) in paragraph at lines 894--894
+Overfull \hbox (872.70483pt too wide) in paragraph at lines 797--797
 []    \T1/cmtt/m/n/10 The judge will ignore speaking style, rhetoric, and presentation. Focus entirely on argument substance, evidence quality, and logical reasoning. Your case will be evaluated based on what you explicitly prove, not what you assume or imply.[] 
+ []
+
+[18]
+Overfull \hbox (53.90479pt too wide) in paragraph at lines 888--888
+[]    \T1/cmtt/m/n/10 - Simply making new arguments without engaging opponents' points will be penalized[] 
+ []
+
+
+Overfull \hbox (74.89966pt too wide) in paragraph at lines 888--888
+[]    \T1/cmtt/m/n/10 1. Strongest: Specific statistics, named examples, verifiable cases with dates/numbers[] 
+ []
+
+
+Overfull \hbox (22.41248pt too wide) in paragraph at lines 888--888
+[]    \T1/cmtt/m/n/10 3. Weak: General examples, unnamed cases, theoretical claims without support[] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [19] [20]
+ [19]
+Overfull \hbox (872.70483pt too wide) in paragraph at lines 888--888
+[]    \T1/cmtt/m/n/10 The judge will ignore speaking style, rhetoric, and presentation. Focus entirely on argument substance, evidence quality, and logical reasoning. Your case will be evaluated based on what you explicitly prove, not what you assume or imply.[] 
+ []
+
+[20]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21] [22] [23]
+ [21]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22] [23]
+Underfull \hbox (badness 10000) in paragraph at lines 1094--1095
+\T1/cmtt/m/n/10 debating against yourself. The other debater is without question another
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 1100--1101
 \T1/cmtt/m/n/10 debating against yourself. The other debater is without question another
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1106--1107
-\T1/cmtt/m/n/10 debating against yourself. The other debater is without question another
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 1106--1107
+Underfull \hbox (badness 10000) in paragraph at lines 1100--1101
 \T1/cmtt/m/n/10 copy of yourself and has the same competence as you have. By definition,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1106--1107
+Underfull \hbox (badness 10000) in paragraph at lines 1100--1101
 \T1/cmtt/m/n/10 you have exactly a 50% chance of winning this debate since you are debating
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1110--1112
+Underfull \hbox (badness 10000) in paragraph at lines 1104--1106
 \T1/cmtt/m/n/10 debating against yourself. The other debater is without question another
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1110--1112
+Underfull \hbox (badness 10000) in paragraph at lines 1104--1106
 \T1/cmtt/m/n/10 copy of yourself and has the same competence as you have. By definition,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1110--1112
+Underfull \hbox (badness 10000) in paragraph at lines 1104--1106
 \T1/cmtt/m/n/10 you have exactly a 50% chance of winning this debate since you are debating
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 1113--1114
+Underfull \hbox (badness 10000) in paragraph at lines 1107--1108
 []\T1/cmtt/m/n/10 After your speech, you must include a public confidence bet (0-100)
  []
 
-[24] [25] [26] [27] [28] [29] (neurips_paper.aux)
+[24]
+Underfull \vbox (badness 7631) has occurred while \output is active []
+
+ [25] [26] [27] [28] [29] (neurips_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -769,11 +768,11 @@ Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 0355C6F5A3C2B413194FFE839EEF6065;8554.
  ) 
 Here is how much of TeX's memory you used:
- 17515 strings out of 474486
- 273942 string characters out of 5743755
- 2828542 words of memory out of 5000000
- 38890 multiletter control sequences out of 15000+600000
- 607225 words of font info for 279 fonts, out of 8000000 for 9000
+ 17558 strings out of 474486
+ 275105 string characters out of 5743755
+ 2805542 words of memory out of 5000000
+ 38905 multiletter control sequences out of 15000+600000
+ 608281 words of font info for 291 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,17n,79p,2463b,2039s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -786,9 +785,9 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk> <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (29 pages, 396218 bytes).
+Output written on neurips_paper.pdf (29 pages, 403145 bytes).
 PDF statistics:
- 1048 PDF objects out of 1200 (max. 8388607)
- 332 named destinations out of 1000 (max. 500000)
+ 1078 PDF objects out of 1200 (max. 8388607)
+ 342 named destinations out of 1000 (max. 500000)
  47441 words of extra memory for PDF output out of 51595 (max. 10000000)
 
