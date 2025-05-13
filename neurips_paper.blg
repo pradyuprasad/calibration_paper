@@ -1,48 +1,48 @@
-This is BibTeX, Version 0.99d (TeX Live 2023)
+This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: neurips_paper.aux
+Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainnat.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-Warning--I didn't find a database entry for "RePEc:sip:dpaper:06-042"
-You've used 24 entries,
+You've used 30 entries,
             2773 wiz_defined-function locations,
-            727 strings with 15571 characters,
-and the built_in function-call counts, 26291 in all, are:
-= -- 1845
-> -- 3533
-< -- 8
-+ -- 1181
-- -- 1156
-* -- 2742
-:= -- 4491
-add.period$ -- 89
-call.type$ -- 24
-change.case$ -- 455
-chr.to.int$ -- 23
-cite$ -- 48
-duplicate$ -- 470
-empty$ -- 848
-format.name$ -- 1188
-if$ -- 5030
+            760 strings with 17481 characters,
+and the built_in function-call counts, 29950 in all, are:
+= -- 2140
+> -- 3886
+< -- 12
++ -- 1298
+- -- 1267
+* -- 3077
+:= -- 5082
+add.period$ -- 111
+call.type$ -- 30
+change.case$ -- 507
+chr.to.int$ -- 29
+cite$ -- 60
+duplicate$ -- 582
+empty$ -- 1055
+format.name$ -- 1309
+if$ -- 5773
 int.to.chr$ -- 2
 int.to.str$ -- 1
-missing$ -- 15
-newline$ -- 144
-num.names$ -- 98
-pop$ -- 939
+missing$ -- 16
+newline$ -- 177
+num.names$ -- 124
+pop$ -- 1051
 preamble$ -- 1
-purify$ -- 431
+purify$ -- 477
 quote$ -- 0
-skip$ -- 691
+skip$ -- 812
 stack$ -- 0
-substring$ -- 121
-swap$ -- 38
-text.length$ -- 1
+substring$ -- 165
+swap$ -- 55
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 264
+type$ -- 330
 warning$ -- 0
-while$ -- 80
+while$ -- 102
 width$ -- 0
-write$ -- 334
-(There was 1 warning)
+write$ -- 416
