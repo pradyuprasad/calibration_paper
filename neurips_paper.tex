@@ -93,7 +93,7 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 % Replace with your paper abstract.
 
 \begin{abstract}
-  Can LLMs accurately adjust their confidence when facing opposition? Building on previous studies measuring calibration on static fact-based question-answering tasks, we evaluate Large Language Models (LLMs) in a dynamic, adversarial debate setting, uniquely combining two realistic factors: (a) a \textbf{multi-turn format} requiring models to update beliefs as new information emerges, and (b) a \textbf{zero-sum structure} to control for task-related uncertainty, since mutual high-confidence claims imply systematic overconfidence. We organized 60 three-round policy debates among ten state-of-the-art LLMs, with models privately rating their confidence (0-100) in winning after each round. We observed five concerning patterns: \textit{(1)} \textbf{Systematic overconfidence}: models began debates with average initial confidence of 72.9\% vs. a rational 50\% baseline. \textit{(2) Confidence escalation}: rather than reducing confidence as debates progressed, debaters increased their win probabilities, averaging 83\% by the final round. \textit{(3) Mutual overestimation}: in 61.7\% of debates, both sides simultaneously claimed $\geq$75\% probability of victory, a logical impossibility. \textit{(4) Persistent self-debate bias}: models debating identical copies increased confidence from 64.1\% to 75.2\%; even when explicitly informed their chance of winning was exactly 50\%, confidence still rose (from 50.0\% to 57.1\%). \textit{(5) Misaligned private reasoning}: models' private scratchpad thoughts often differed from their public confidence ratings, raising concerns about the faithfulness of chain-of-thought reasoning. These results suggest LLMs possess a fundamental metacognitive limitation, especially evident in realistic multi-turn interactions involving belief updates, that could threaten reliability in high-stakes scenarios requiring accurate self-assessment.
+  Can LLMs accurately adjust their confidence when facing opposition? Building on previous studies measuring calibration on static fact-based question-answering tasks, we evaluate Large Language Models (LLMs) in a dynamic, adversarial debate setting, uniquely combining two realistic factors: (a) a \textbf{multi-turn format} requiring models to update beliefs as new information emerges, and (b) a \textbf{zero-sum structure} to control for task-related uncertainty, since mutual high-confidence claims imply systematic overconfidence. We organized 60 three-round policy debates among ten state-of-the-art LLMs, with models privately rating their confidence (0-100) in winning after each round. We observed five concerning patterns: \textit{(1)} \textbf{Systematic overconfidence}: models began debates with average initial confidence of 72.9\% vs. a rational 50\% baseline. \textit{(2) Confidence escalation}: rather than reducing confidence as debates progressed, debaters increased their win probabilities, averaging 83\% by the final round. \textit{(3) Mutual overestimation}: in 61.7\% of debates, both sides simultaneously claimed $\geq$75\% probability of victory, a logical impossibility. \textit{(4) Persistent self-debate bias}: models debating identical copies increased confidence from 64.1\% to 75.2\%; even when explicitly informed their chance of winning was exactly 50\%, confidence still rose (from 50.0\% to 57.1\%). \textit{(5) Misaligned private reasoning}: models' private scratchpad thoughts often differed from their public confidence ratings, raising concerns about the faithfulness of chain-of-thought reasoning. These results suggest LLMs lack the ability to accurately self-assess or update their beliefs in dynamic, multi-turn tasks; a major concern as LLM outputs are deployed without careful review in assistant roles or agentic settings.
   \end{abstract}
 
 % --- Main Body of the Paper ---
@@ -101,7 +101,7 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 
 \section{Introduction}
 
-Large language models (LLMs) are increasingly being used in high stakes domains like legal analysis, writing and as agents in deep research \cite{handa2025economictasksperformedai} \cite{zheng2025deepresearcherscalingdeepresearch} which require critical thinking, analysis of competing positions, and iterative reasoning under uncertainty. A foundational skill underlying all of these is calibration—the ability to align one's confidence with the correctness of one's beliefs or outputs. In these domains, poorly calibrated confidence can lead to serious errors - an overconfident legal analysis might miss crucial counterarguments, while an uncalibrated research agent might pursue dead ends without recognizing their diminishing prospects. However, language models often struggle to express their confidence in a meaningful or reliable way.
+Large language models (LLMs) are increasingly being used in high stakes domains like legal analysis, writing and as agents in deep research \cite{handa2025economictasksperformedai} \cite{zheng2025deepresearcherscalingdeepresearch} which require critical thinking, analysis of competing positions, and iterative reasoning under uncertainty. A foundational skill underlying all of these is calibration—the ability to align one's confidence with the correctness of one's beliefs or outputs. In these domains, poorly calibrated confidence can lead to serious errors. In \textbf{assistant roles}, users may accept incorrect but confidently-stated legal analysis without verification, especially in domains where they lack expertise, while in \textbf{agentic settings}, autonomous agents may persist with flawed reasoning paths with increasing confidence despite encountering contradictory evidence. However, language models often struggle to express their confidence in a meaningful or reliable way.
 
 In this work, we study how well LLMs revise their confidence when facing opposition in adversarial settings. While recent work has explored LLM calibration in static fact-based question-answering tasks \citep{tian2023justask, xiong2024uncertainty, kadavath2022know,groot-valdenegro-toro-2024-overconfidence}, we advance this line of inquiry by introducing two critical innovations: 
 (1) a \textbf{dynamic, multi-turn debate format} that requires models to update beliefs as new, potentially conflicting information emerges, and 
@@ -125,7 +125,7 @@ Our results reveal a fundamental metacognitive deficit in current LLMs, with fiv
   \item \textbf{Misaligned private reasoning:} Models' private scratchpad thoughts often differed substantially from their public confidence ratings, raising concerns about the faithfulness of chain-of-thought reasoning in strategic settings.
 \end{enumerate}
 
-These findings highlight a critical limitation in current LLM systems. The confidence escalation phenomenon represents an anti-Bayesian drift where LLMs not only systematically overestimate their correctness but often become more certain after facing counter-arguments. This metacognitive blind spot persists even when incentives align with accurate self-assessment, threatening reliability in adversarial, multi-agent, and safety-critical applications. For instance, an overconfident LLM might provide flawed legal advice without appropriate caveats, mismanage critical infrastructure, or escalate unproductive arguments in collaborative research settings. Until models can reliably revise their confidence in response to opposition, their epistemic judgments in adversarial contexts cannot be trusted—a critical limitation for systems meant to engage in research, analysis, or high-stakes decision making.
+These findings reveal a critical limitation in LLM deployment for both assistive and agentic applications. The confidence escalation phenomenon represents an anti-Bayesian drift where models become more certain after encountering counter-arguments, rather than appropriately moderating their confidence. This fundamentally undermines LLM reliability in two contexts: (1) assistant roles, where overconfident outputs may be accepted without verification by users lacking domain expertise, and (2) agentic settings, where autonomous systems require accurate self-assessment during extended multi-turn interactions. In both cases, LLMs' inability to recognize when they're wrong or appropriately integrate opposing evidence creates significant risks—from providing misleading legal advice to pursuing flawed reasoning paths in autonomous research or decision-making tasks.
 
 \section{Related Work}
 
@@ -139,10 +139,10 @@ A related line of work examines whether LLMs can reflect on and evaluate their o
 Debate has been proposed as a mechanism for AI alignment, where two agents argue and a human judge evaluates which side is more truthful or helpful \citep{irving2018debate}. More recently, \citet{browncohen2023debate} propose ``doubly-efficient debate,'' showing that honest agents can win even when outmatched in computation, if the debate structure is well-designed. While prior work focuses on using debate to elicit truthful outputs or train models, we reverse the lens: we use debate as a testbed for evaluating \textit{epistemic self-monitoring}. Our results suggest that current LLMs, even when incentivized and prompted to reflect, struggle to track whether they are being outargued.
 
 \paragraph{Persuasion, Belief Drift, and Argumentation.}
-Other studies examine how LLMs respond to external persuasion. \citet{xu2023earthflat} show that models can abandon correct beliefs when exposed to carefully crafted persuasive dialogue. \citet{zhou2023epistemic} and \citet{rivera2023assertive} find that language assertiveness influences perceived certainty and factual accuracy. While these works focus on belief change due to stylistic pressure, we examine whether models \textit{recognize when their own position is deteriorating}, and how that impacts their confidence. We find that models often fail to revise their beliefs, even when presented with strong, explicit opposition.
+Other studies examine how LLMs respond to external persuasion. \citet{xu2023earthflat} show that models can abandon correct beliefs when exposed to carefully crafted persuasive dialogue. \citet{zhou2023epistemic}, \citet{rivera2023assertive} and \citet{agarwal2025persuasionoverridestruthmultiagent} find that language assertiveness influences perceived certainty and factual accuracy. While these works focus on belief change due to stylistic pressure, we examine whether models \textit{recognize when their own position is deteriorating}, and how that impacts their confidence. We find that models often fail to revise their beliefs, even when presented with strong, explicit opposition.
 
 \paragraph{Human Overconfidence Baselines}
-We observe that LLM overconfidence patterns parallel established human cognitive biases. We will discuss and compare existing research on both human and LLM overconfidence in detail in the Discussion section (\S\ref{sec:discussion}).
+We observe that LLM overconfidence patterns resemble established human cognitive biases. We will discuss and compare existing research on both human and LLM overconfidence in detail in the Discussion section (\S\ref{sec:discussion}).
 
 \paragraph{Summary.}
 Our work sits at the intersection of calibration, metacognition, adversarial reasoning, and debate-based evaluation. We introduce a new diagnostic setting—structured multi-turn debate with private, incentivized confidence betting—and show that LLMs frequently overestimate their standing, fail to adjust, and exhibit ``confidence escalation'' despite losing. These findings surface a deeper metacognitive failure that challenges assumptions about LLM trustworthiness in high-stakes, multi-agent contexts.
@@ -168,7 +168,7 @@ Each configuration involved debates across the six policy topics, with models ro
 \subsection{Debate Simulation Environment}
 \label{subsec:debate_env}
 
-\textbf{Debater Pool:} We utilized ten LLMs, selected to represent diverse architectures and leading providers (and depicted visually in Figure \ref{fig:escalation_plot}ix~\ref{appendix:llms} for the full list). In each debate, two models were randomly assigned to the Proposition and Opposition sides according to a balanced pairing schedule designed to ensure each model debated a variety of opponents across different topics (see Appendix~\ref{appendix:pairings} for details).
+\textbf{Debater Pool:} We utilized ten LLMs, selected to represent diverse architectures and leading providers (and depicted visually in Table~\ref{tab:escalation_summary}~\ref{appendix:llms} for the full list). In each debate, two models were randomly assigned to the Proposition and Opposition sides according to a balanced pairing schedule designed to ensure each model debated a variety of opponents across different topics (see Appendix~\ref{appendix:pairings} for details).
 
 \textbf{Debate Topics:} Debates were conducted on six complex global policy motions adapted from the World Schools Debating Championships corpus. To ensure fair ground and clear win conditions, motions were modified to include explicit burdens of proof for both sides (see Appendix~\ref{appendix:topics} for the full list).
 
@@ -308,7 +308,7 @@ The final dataset comprises the full transcripts of 240 debates, the round-by-ro
 \section{Results}
 \label{sec:results}
 
-Our experimental setup, involving 60 simulated policy debates per configuration between ten state-of-the-art LLMs, with round-by-round confidence elicitation yielded several key findings regarding LLM metacognition in adversarial settings.
+Our experimental setup, involving 60 simulated policy debates per configuration between ten state-of-the-art LLMs, with round-by-round confidence elicitation yielded several key findings regarding LLM metacognition and self-assessment in dynamic, multi-turn settings.
 
 \subsection{Pervasive Overconfidence Without Seeing Opponent Argument (Finding 1)}
 \label{sec:pervasive_overconfidence}
@@ -317,7 +317,7 @@ A core finding across all four experimental configurations was significant LLM o
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
-  \caption{Mean (± Standard Deviation) Initial Confidence (0-100\%) Reported by LLMs Across Experimental Configurations. Sample size (n) per model per configuration is indicated in parentheses. The 'Standard Self' condition represents private bets in self-debates without explicit probability instruction, while 'Informed Self' includes explicit instruction about the 50\% win probability.}
+  \caption{Mean (± Standard Deviation) Initial Confidence (0-100\%) Reported by LLMs Across Experimental Configurations. All experiments used a sample size of n=12 per model per configuration unless otherwise marked with an asterisk (*). The 'Standard Self' condition represents private bets in self-debates without explicit probability instruction, while 'Informed Self' includes explicit instruction about the 50\% win probability.}
   \label{tab:initial_confidence}
   \resizebox{\textwidth}{!}{ % This will scale the table to fit within the text width
   \begin{tabular}{lcccc}
@@ -325,22 +325,27 @@ A core finding across all four experimental configurations was significant LLM o
     Model & Cross-model & Standard Self & Informed Self & Public Bets \\
           &             &               & (50\% informed) & (Public Bets) \\
     \midrule
-    anthropic/claude-3.5-haiku                 & 71.67 $\pm$ 4.92 (n=12) & 71.25 $\pm$ 6.44 (n=12) & 54.58 $\pm$ 9.64 (n=12) & 73.33 $\pm$ 7.18 (n=12) \\
-    anthropic/claude-3.7-sonnet                & 67.31 $\pm$ 3.88 (n=13) & 56.25 $\pm$ 8.56 (n=12) & 50.08 $\pm$ 2.15 (n=12) & 56.25 $\pm$ 6.08 (n=12) \\
-    deepseek/deepseek-chat                     & 74.58 $\pm$ 7.22 (n=12) & 54.58 $\pm$ 4.98 (n=12) & 49.17 $\pm$ 6.34 (n=12) & 56.25 $\pm$ 7.42 (n=12) \\
-    deepseek/deepseek-r1-distill-qwen-14b:free & 79.09 $\pm$ 10.44 (n=11) & 76.67 $\pm$ 13.20 (n=12) & 55.75 $\pm$ 4.71 (n=12) & 69.58 $\pm$ 16.30 (n=12) \\
-    google/gemini-2.0-flash-001                & 65.42 $\pm$ 8.38 (n=12) & 43.25 $\pm$ 27.03 (n=12) & 36.25 $\pm$ 26.04 (n=12) & 34.58 $\pm$ 25.80 (n=12) \\
-    google/gemma-3-27b-it                      & 67.50 $\pm$ 6.22 (n=12) & 68.75 $\pm$ 7.42 (n=12) & 53.33 $\pm$ 11.15 (n=12) & 63.75 $\pm$ 9.80 (n=12) \\
-    openai/gpt-4o-mini                         & 75.00 $\pm$ 3.69 (n=12) & 67.08 $\pm$ 7.22 (n=12) & 57.08 $\pm$ 12.70 (n=12) & 72.92 $\pm$ 4.98 (n=12) \\
-    openai/o3-mini                             & 77.50 $\pm$ 5.84 (n=12) & 70.00 $\pm$ 10.66 (n=12) & 50.00 $\pm$ 0.00 (n=12) & 72.08 $\pm$ 9.40 (n=12) \\
-    qwen/qwen-max                              & 73.33 $\pm$ 8.62 (n=12) & 62.08 $\pm$ 12.87 (n=12) & 43.33 $\pm$ 22.29 (n=12) & 64.58 $\pm$ 10.97 (n=12) \\
-    qwen/qwq-32b:free                          & 78.75 $\pm$ 4.33 (n=12) & 70.83 $\pm$ 10.62 (n=12) & 50.42 $\pm$ 1.44 (n=12) & 71.67 $\pm$ 8.62 (n=12) \\
+    anthropic/claude-3.5-haiku                 & 71.67 $\pm$ 4.92 & 71.25 $\pm$ 6.44 & 54.58 $\pm$ 9.64 & 73.33 $\pm$ 7.18 \\
+    anthropic/claude-3.7-sonnet                & 67.31 $\pm$ 3.88* & 56.25 $\pm$ 8.56 & 50.08 $\pm$ 2.15 & 56.25 $\pm$ 6.08 \\
+    deepseek/deepseek-chat                     & 74.58 $\pm$ 7.22 & 54.58 $\pm$ 4.98 & 49.17 $\pm$ 6.34 & 56.25 $\pm$ 7.42 \\
+    deepseek/deepseek-r1-distill-qwen-14b:free & 79.09 $\pm$ 10.44* & 76.67 $\pm$ 13.20 & 55.75 $\pm$ 4.71 & 69.58 $\pm$ 16.30 \\
+    google/gemini-2.0-flash-001                & 65.42 $\pm$ 8.38 & 43.25 $\pm$ 27.03 & 36.25 $\pm$ 26.04 & 34.58 $\pm$ 25.80 \\
+    google/gemma-3-27b-it                      & 67.50 $\pm$ 6.22 & 68.75 $\pm$ 7.42 & 53.33 $\pm$ 11.15 & 63.75 $\pm$ 9.80 \\
+    openai/gpt-4o-mini                         & 75.00 $\pm$ 3.69 & 67.08 $\pm$ 7.22 & 57.08 $\pm$ 12.70 & 72.92 $\pm$ 4.98 \\
+    openai/o3-mini                             & 77.50 $\pm$ 5.84 & 70.00 $\pm$ 10.66 & 50.00 $\pm$ 0.00 & 72.08 $\pm$ 9.40 \\
+    qwen/qwen-max                              & 73.33 $\pm$ 8.62 & 62.08 $\pm$ 12.87 & 43.33 $\pm$ 22.29 & 64.58 $\pm$ 10.97 \\
+    qwen/qwq-32b:free                          & 78.75 $\pm$ 4.33 & 70.83 $\pm$ 10.62 & 50.42 $\pm$ 1.44 & 71.67 $\pm$ 8.62 \\
     \midrule
-    \textbf{OVERALL AVERAGE}                   & \textbf{72.92 $\pm$ 7.93 (n=120)} & \textbf{64.08 $\pm$ 15.32 (n=120)} & \textbf{50.00 $\pm$ 13.61 (n=120)} & \textbf{63.50 $\pm$ 16.38 (n=120)} \\
+    \textbf{OVERALL AVERAGE}                   & \textbf{72.92 $\pm$ 7.93} & \textbf{64.08 $\pm$ 15.32} & \textbf{50.00 $\pm$ 13.61} & \textbf{63.50 $\pm$ 16.38} \\
     \bottomrule
   \end{tabular}
   }
+  \footnotetext{*anthropic/claude-3.7-sonnet had n=13 in Cross-model; deepseek/deepseek-r1-distill-qwen-14b:free had n=11 in Cross-model.}
 \end{table*}
+\noindent\footnotesize{*anthropic/claude-3.7-sonnet had n=13 in Cross-model; deepseek/deepseek-r1-distill-qwen-14b:free had n=11 in Cross-model.}
+
+
+\textbf{TODO:FIX FOOTNOTES WHEN OVERLEAF IS FIXED}
 
 As shown in Table~\ref{tab:initial_confidence}, the overall average initial confidence reported by models in the Cross-model, Standard Self, and Public Bets configurations was consistently and significantly above the 50\% baseline. Specifically, the mean initial confidence was 72.92\% ($\pm$ 7.93 SD, n=120) for Cross-model debates, 64.08\% ($\pm$ 15.32 SD, n=120) for Standard Self debates (private bets without 50\% instruction), and 63.50\% ($\pm$ 16.38 SD, n=120) for Public Bets (public bets without 50\% instruction). One-sample t-tests confirmed that the mean initial confidence in each of these three conditions was statistically significantly greater than 50\% (Cross-model: t=31.67, p<0.001; Standard Self: t=10.07, p<0.001; Public Bets: t=9.03, p<0.001). Wilcoxon signed-rank tests yielded similar conclusions (all p<0.001), confirming the robustness of this finding to distributional assumptions. This pervasive overconfidence in the initial assessment, before any interaction with an opponent's case, suggests a fundamental miscalibration bias in LLMs' self-assessment of their standing in a competitive context.
 
@@ -348,7 +353,7 @@ We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06
 
 In stark contrast, the overall average initial confidence in the Informed Self configuration was precisely 50.00\% ($\pm$ 13.61 SD, n=120). A one-sample t-test confirmed that this mean was not statistically significantly different from 50\% (t=0.00, p=1.0). Furthermore, a paired t-test comparing the per-model means in the Standard Self and Informed Self configurations revealed a statistically significant reduction in initial confidence when models were explicitly informed of the 50\% win probability (mean difference = 14.08, t=7.07, p<0.001). This demonstrates that while the default state is overconfident, models can align their *initial* reported confidence much closer to the rational baseline when explicitly anchored with the correct probability.
 
-Analysis at the individual model level (see Appendix \ref{app:initial_tests} for full results) shows that this overconfidence was widespread, with 30 out of 40 individual model-configuration combinations showing initial confidence significantly greater than 50\% (one-sided t-tests, $\alpha=0.05$). However, we also observed considerable variability in initial confidence (large standard deviations), both across conditions and for specific models like Google Gemini 2.0 Flash ($\pm$ 27.03 SD in Standard Self). Notably, some models, such as OpenAI o3-Mini and Qwen QWQ-32b, reported perfectly calibrated initial confidence (50.00 $\pm$ 0.00 SD) in the Informed Self condition. The non-significant difference in overall mean initial confidence between Standard Self and Public Bets (mean difference = 0.58, t=0.39, p=0.708) suggests that simply making the initial bet public does not, on average, significantly alter the self-assessed confidence compared to the private default.
+Analysis at the individual model level (see Appendix \ref{appendix:initial_tests} for full results) shows that this overconfidence was widespread, with 30 out of 40 individual model-configuration combinations showing initial confidence significantly greater than 50\% (one-sided t-tests, $\alpha=0.05$). However, we also observed considerable variability in initial confidence (large standard deviations), both across conditions and for specific models like Google Gemini 2.0 Flash ($\pm$ 27.03 SD in Standard Self). Notably, some models, such as OpenAI o3-Mini and Qwen QWQ-32b, reported perfectly calibrated initial confidence (50.00 $\pm$ 0.00 SD) in the Informed Self condition. The non-significant difference in overall mean initial confidence between Standard Self and Public Bets (mean difference = 0.58, t=0.39, p=0.708) suggests that simply making the initial bet public does not, on average, significantly alter the self-assessed confidence compared to the private default.
 
 \subsection{Confidence Escalation among models (Finding 2)}
 Building upon the pervasive initial overconfidence (Section \ref{sec:pervasive_overconfidence}), a second critical pattern observed across \emph{all four} experimental configurations was a significant \textbf{confidence escalation}. This refers to the consistent tendency for models' self-assessed probability of winning to increase over the course of the debate, from the initial Opening round to the final Closing statements. As illustrated in Table \ref{tab:escalation_summary}, the overall mean confidence across models rose substantially in every configuration. For instance, mean confidence increased from 72.92\% to 83.26\% in Cross-model debates, from 64.08\% to 75.20\% in Standard Self-debates, from 63.50\% to 74.15\% in Public Bets, and notably, even from a calibrated 50.00\% to 57.08\% in Informed Self-debates. Paired statistical tests confirmed these overall increases from Opening to Closing were highly significant in all configurations (all p<0.001). While this pattern of escalation was statistically significant on average across each configuration, the magnitude and statistical significance of escalation varied at the individual model level (see Appendix \ref{app:escalation} for full per-model test results). This widespread and significant upward drift in self-confidence is highly irrational, particularly evident in the self-debate conditions where models know they face an equally capable opponent and the rational win probability is 50\% from the outset. Escalating confidence in this context, especially when starting near the correct 50\% as in the Informed Self condition, demonstrates a fundamental failure to dynamically process adversarial feedback and objectively assess relative standing, defaulting instead to an unjustified increase in self-assurance regardless of the opponent's performance or the debate's progression.
@@ -406,19 +411,19 @@ Crucially, this type of severe logical inconsistency was entirely absent (0.0\%,
 Beyond the most severe 'Both $>$75\%' inconsistency, a significant proportion of debates across all configurations saw both participants reporting confidence between 51-75\% (overall 29.2\%). Combined with the $>$75\% cases, this means that in over 60\% of debates (32.5\% + 29.2\% overall), \emph{both} models finished with confidence above 50\%, further illustrating a systemic failure to converge towards a state reflecting the actual debate outcome or the zero-sum nature of the task. The remaining categories in Table~\ref{tab:logical_impossibility} indicate scenarios where confidence levels were split across categories, including a small percentage where both models reported low confidence ($\le$50\%).
 
 This prevalence of debates ending with simultaneously high confidence directly results from models independently escalating their beliefs without adequately integrating or believing the strength of the opponent's counterarguments. It reveals a profound disconnect between their internal confidence reporting mechanisms and the objective reality of a competitive, zero-sum task.
-
 \subsection{Strategic Confidence in Public Settings (Finding 5)}
 
 \section{Discussion}
+\label{sec:discussion}
 
 \subsection{Metacognitive Limitations and Possible Explanations}
 \label{subsec:metacognitive_limitations}
 
-Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. Several explanations may account for these observed patterns, including both human-like biases and LLM-specific factors:
+Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. This inability to track one's own certainty in dynamic settings threatens both assistant applications, where users may accept incorrect but confidently-stated outputs, and agentic deployments, where autonomous systems must continually revise their reasoning as new information emerges in dynamic environments. Several explanations may account for these observed patterns, including both human-like biases and LLM-specific factors:
 
 \paragraph{Human-like biases}
 \begin{itemize}
-    \item \textbf{Baseline debate overconfidence:} Research on human debaters by \citet{RePEc:sip:dpaper:06-042} found that college debate participants estimated their odds of winning at approximately 65\% on average, suggesting that high baseline confidence is prevalent for humans in debate settings similar to our experimental design with LLMs. However, as we previously noted, humans seem to adjust their percentages much more variably, with a much higher standard deviation of 35.10\%, suggesting that LLM overconfidence is much more consistent.
+    \item \textbf{Baseline debate overconfidence:} Research on human debaters by \citet{RePEc:sip:dpaper:06-042} found that college debate participants estimated their odds of winning at approximately 65\% on average, suggesting that high baseline confidence is prevalent for humans in debate settings similar to our experimental design with LLMs. However, as we previously noted, humans seem to adjust their percentages much more variably, with a much higher standard deviation of 35.10\%, suggesting that LLM overconfidence is much more persistent and context-agnostic.
 
     \item \textbf{Persistent miscalibration:} Human psychology reveals systematic miscalibration patterns that parallel our findings. Like humans, LLMs exhibit limited accuracy improvement over repeated trials, mirroring our results \citep{Moore2008}.
 
@@ -444,38 +449,38 @@ These combined factors likely contribute to the confidence escalation phenomenon
 
 \textbf{[ADD REFERENCE TO 3.6, PUBLIC VS PRIVATE COT AND IMPLICATIONS ON COT FAITHFULNESS]}
 
-The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong or when additional evidence should cause belief revision.
-
-The persistence of overconfidence even in controlled experimental conditions suggests this is a fundamental limitation rather than a context-specific artifact. This has particular relevance for multi-agent systems, where models must negotiate, debate, and potentially admit error to achieve optimal outcomes. If models maintain high confidence despite opposition, they may persist in flawed reasoning paths or fail to incorporate crucial counterevidence.
+The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems multi-turn dynamic tasks —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
 
 \subsection{Potential Mitigations and Guardrails}
 
-Our ablation study testing explicit 50\% win probability instructions shows \textbf{[placeholder for results]}. This suggests that direct prompting approaches may help mitigate but not eliminate confidence biases.
+\textbf{[TODO: ADD MITIGATION ABLATION RESULTS]}.
 
-Other potential mitigation strategies include:
-\begin{itemize}
-    \item Developing dedicated calibration training objectives
-    \item Implementing confidence verification systems through external validation
-    \item Creating debate frameworks that explicitly penalize overconfidence or reward accurate calibration
-    \item Designing multi-step reasoning processes that force models to consider opposing viewpoints before finalizing confidence assessments
-\end{itemize}
+These safeguards are particularly vital when deploying LLMs in assistant roles where users lack expertise to verify outputs, or in autonomous agentic settings where the system's inability to recognize its own limitations could lead to compounding errors in multi-step reasoning processes.
 
 \subsection{Limitations and Future Research Directions}
 \label{subsec:limitations_future}
 
 While our debate-based methodology revealed significant patterns in LLM metacognition, several limitations of our study point to promising future research directions:
 
-\paragraph{Exploring Agentic Workflows.} Beyond static question-answer and adversarial debate, more testing is needed on multi-turn, long-horizon agentic task flow, which are increasingly common in code generation, web search, and many other domains. We have informally observed instances where agents overconfidently declare a complex task or problem solved when it is not, correcting themselves only when a user identifies an obvious flaw. Related research on real-world LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM hybrid teams could outperform calibration by humans or LLMs alone.
+\paragraph{Exploring Agentic Workflows.} Beyond static question-answer and adversarial debate, more testing is needed on multi-turn, long-horizon agentic task flow, which are increasingly common in code generation, web search, and many other domains. We have informally observed instances where agents overconfidently declare a complex task or problem solved when it is not, correcting themselves only when a user identifies an obvious flaw. Related research on real-world LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
 
 \paragraph{Debate Format Win-Rate Imbalance.} While the zero-sum debate format theoretically controls for task-related uncertainty by ensuring that well-calibrated win-rates for both sides should sum to approximately 100\%, in practice we observed that Opposition positions tended to win approximately 70\% of the time. This persistent imbalance made it difficult to achieve a balanced 50-50 win rate environment, which would have provided more direct evidence of calibration issues at an individual level. Future work could explore modifications to the debate format or topic selection that achieve more balanced win rates.
 
 \paragraph{Focus on Documentation Rather Than Intervention.} While this paper primarily seeks to document the issue of debate overconfidence by controlling for variables, we were more hesitant to prescribe specific interventions. It remains unclear how to design interventions that would robustly generalize across different problem-solving domains such as STEM, code generation, or planning tasks. Our controlled debate setting allowed for precise measurement but may not fully capture the diverse contexts in which overconfidence manifests. Although our experiments with anchoring (informing models of the 50\% baseline) showed some promise, developing specialized training approaches specifically targeting confidence calibration remains an important area for future research.
 
 \section{Conclusion}
-% Summarize your work and suggest future research directions.
-% This is where you would place the content from the "Conclusion" section of your draft.
 
---- YOUR CONCLUSION CONTENT HERE ---
+Our study reveals a fundamental metacognitive deficiency in LLMs through five key findings: (1) systematic initial overconfidence, (2) confidence escalation despite opposing evidence, (3) mutual incompatible high confidence, (4) persistent self-debate bias, and (5) misaligned private reasoning. Together, these patterns demonstrate that state-of-the-art LLMs cannot accurately assess their own performance or appropriately revise their confidence in dynamic multi-turn contexts.
+
+Our zero-sum debate framework provides a novel method for evaluating LLM metacognition that better reflects the dynamic, interactive contexts of real-world applications than static fact-verification. The framework's two key innovations— (1) a multi-turn format requiring belief updates as new information emerges and (2) a zero-sum structure where mutual high confidence claims are mathematically inconsistent—allow us to directly measure confidence calibration deficiencies without relying on external ground truth.
+
+This metacognitive limitation manifests as distinct failure modes in different deployment contexts:
+\begin{itemize}
+    \item \textbf{Assistant roles:} Users may accept incorrect but confidently-stated outputs without verification, especially in domains where they lack expertise. For example, a legal assistant might provide flawed analysis with increasing confidence precisely when they should become less so, causing users to overlook crucial counterarguments or alternative perspectives.
+    \item \textbf{Agentic systems:} Autonomous agents operating in extended reasoning processes cannot reliably recognize when their solution path is weakening or when they should revise their approach. As our results show, LLMs persistently increase confidence despite contradictory evidence, potentially leading to compounding errors in multi-step tasks without appropriate calibration.
+\end{itemize}
+
+Until models can reliably recognize their limitations and appropriately adjust confidence when challenged, their deployment in high-stakes domains requires careful safeguards—particularly external validation mechanisms for assistant applications and continuous confidence calibration checks for agentic systems.
 
 % --- Bibliography ---
 % Use the environment below to include your bibliography.
