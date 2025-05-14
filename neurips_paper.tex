@@ -340,12 +340,10 @@ A core finding across all four experimental configurations was significant LLM o
     \bottomrule
   \end{tabular}
   }
-  \footnotetext{*anthropic/claude-3.7-sonnet had n=13 in Cross-model; deepseek/deepseek-r1-distill-qwen-14b:free had n=11 in Cross-model.}
+  \label{app:tab:initial_confidence}
+  \vspace{0.2cm}
+  \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek/deepseek-r1-distill-qwen-14b:free had n=11}
 \end{table*}
-\noindent\footnotesize{*anthropic/claude-3.7-sonnet had n=13 in Cross-model; deepseek/deepseek-r1-distill-qwen-14b:free had n=11 in Cross-model.}
-
-
-\textbf{TODO:FIX FOOTNOTES WHEN OVERLEAF IS FIXED}
 
 As shown in Table~\ref{tab:initial_confidence}, the overall average initial confidence reported by models in the Cross-model, Standard Self, and Public Bets configurations was consistently and significantly above the 50\% baseline. Specifically, the mean initial confidence was 72.92\% ($\pm$ 7.93 SD, n=120) for Cross-model debates, 64.08\% ($\pm$ 15.32 SD, n=120) for Standard Self debates (private bets without 50\% instruction), and 63.50\% ($\pm$ 16.38 SD, n=120) for Public Bets (public bets without 50\% instruction). One-sample t-tests confirmed that the mean initial confidence in each of these three conditions was statistically significantly greater than 50\% (Cross-model: t=31.67, p<0.001; Standard Self: t=10.07, p<0.001; Public Bets: t=9.03, p<0.001). Wilcoxon signed-rank tests yielded similar conclusions (all p<0.001), confirming the robustness of this finding to distributional assumptions. This pervasive overconfidence in the initial assessment, before any interaction with an opponent's case, suggests a fundamental miscalibration bias in LLMs' self-assessment of their standing in a competitive context.
 
