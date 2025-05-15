@@ -101,17 +101,11 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 
 \section{Introduction}
 
-Large language models (LLMs) are increasingly deployed in complex domains requiring critical thinking and reasoning under uncertainty, such as coding and research \citep{handa2025economictasksperformedai, zheng2025deepresearcherscalingdeepresearch}. A foundational requirement is calibration—aligning confidence with correctness. Poorly calibrated LLMs create risks: In \textbf{assistant roles}, users may accept incorrect but confidently-stated legal analysis without verification, especially in domains where they lack expertise, while in \textbf{agentic settings}, autonomous coding and research agents may persist with flawed reasoning paths with increasing confidence despite encountering contradictory evidence. However, language models often struggle to express their confidence in a meaningful or reliable way
+Large language models (LLMs) are increasingly deployed in complex domains requiring critical thinking and reasoning under uncertainty, such as coding and research \citep{handa2025economictasksperformedai, zheng2025deepresearcherscalingdeepresearch}. A foundational requirement is calibration—aligning confidence with correctness. Poorly calibrated LLMs create risks: In \textbf{assistant roles}, users may accept incorrect but confidently-stated legal analysis without verification, especially in domains where they lack expertise, while in \textbf{agentic settings}, autonomous coding and research agents may persist with flawed reasoning paths with increasing confidence despite encountering contradictory evidence. However, language models often struggle to express their confidence in a meaningful or reliable way.
 
-<<<<<<< HEAD
 In this work, we study how well LLMs revise their confidence when facing opposition in adversarial settings. While recent work has explored calibration in static fact-based QA \citep{tian2023justask, xiong2024uncertainty, kadavath2022know,groot-valdenegro-toro-2024-overconfidence}, we introduce two critical innovations:
 (1) a \textbf{dynamic, multi-turn debate format} requiring models to update beliefs as new, conflicting information emerges, and
 (2) a \textbf{zero-sum evaluation structure} that controls for task-related uncertainty, since mutual high-confidence claims with combined probabilities summing over 100\% indicate systematic overconfidence.
-=======
-In this work, we study how well LLMs revise their confidence when facing opposition in adversarial settings. While recent work has explored LLM calibration in static fact-based question-answering tasks \citep{tian2023justask, xiong2024uncertainty, kadavath2022know,groot-valdenegro-toro-2024-overconfidence}, we advance this line of inquiry by introducing two critical innovations:
-(1) a \textbf{dynamic, multi-turn debate format} that requires models to update beliefs as new, potentially conflicting information emerges, and
-(2) a \textbf{zero-sum evaluation structure} that controls for task-related uncertainty, since mutual high-confidence claims with probabilities summing over 100\% indicate systematic overconfidence.
->>>>>>> 63f73be30111f582a01736d9ee40d4dfb5287554
 
 These innovations test metacognitive abilities crucial for high-stakes applications. Models must respond to opposition, revise beliefs according to new information, and recognize weakening positions—skills essential in complex, multi-turn deliberative settings.
 
