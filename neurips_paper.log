@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  15 MAY 2025 16:59
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.2.25)  15 MAY 2025 18:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -601,21 +601,23 @@ Package microtype Info: Loading generic protrusion settings for font family
  [1
 
 
-{C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2]
-Underfull \hbox (badness 3019) in paragraph at lines 153--154
-\T1/ptm/m/n/10 (+20) Our study in-ves-ti-gates the dy-namic metacog-ni-tive abil-i-ties of Large Lan-guage Mod-els
- []
-
-[3] [4] [5]
+{C:/Users/minh1/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}{C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}] [2] [3] [4] [5]
 LaTeX Font Info:    Trying to load font information for TS1+ptm on input line 320.
  (C:\Users\minh1\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ptm.fd
 File: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.
-) [6] [7] [8] [9] [10] (neurips_paper.bbl [11] [12])
+) [6] [7] [8] [9] (neurips_paper.bbl
+Underfull \vbox (badness 2961) has occurred while \output is active []
+
+ [10] [11] [12])
 Underfull \hbox (badness 10000) in paragraph at lines 526--543
 \T1/ptm/m/n/10 (+20) All ex-per-i-ments were per-formed be-tween Febru-ary and May 2025
  []
 
-[13] [14]
+[13]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[14]
 Overfull \hbox (59.1535pt too wide) in paragraph at lines 689--689
 []    \T1/cmtt/m/n/10 Connection: (Explicit explanation of how this evidence/principle proves your claim)[] 
  []
@@ -646,14 +648,14 @@ Overfull \hbox (6.66632pt too wide) in paragraph at lines 800--800
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [17]
 Overfull \hbox (53.90479pt too wide) in paragraph at lines 800--800
 []    \T1/cmtt/m/n/10 - Simply making new arguments without engaging opponents' points will be penalized[] 
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17]
 Overfull \hbox (74.89966pt too wide) in paragraph at lines 800--800
 []    \T1/cmtt/m/n/10 1. Strongest: Specific statistics, named examples, verifiable cases with dates/numbers[] 
  []
@@ -684,20 +686,17 @@ Overfull \hbox (22.41248pt too wide) in paragraph at lines 891--891
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [19]
 Overfull \hbox (872.70483pt too wide) in paragraph at lines 891--891
 []    \T1/cmtt/m/n/10 The judge will ignore speaking style, rhetoric, and presentation. Focus entirely on argument substance, evidence quality, and logical reasoning. Your case will be evaluated based on what you explicitly prove, not what you assume or imply.[] 
  []
 
-[20]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [21]
+ [19] [20]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [22] [23]
+ [21] [22] [23]
 Underfull \hbox (badness 10000) in paragraph at lines 1097--1098
 \T1/cmtt/m/n/10 debating against yourself. The other debater is without question another
  []
@@ -737,10 +736,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 1110--1111
 []\T1/cmtt/m/n/10 After your speech, you must include a public confidence bet (0-100)
  []
 
-[24]
-Underfull \vbox (badness 7631) has occurred while \output is active []
-
- [25] [26] [27] [28] [29] (neurips_paper.aux)
+[24] [25] [26] [27] [28] [29] (neurips_paper.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
@@ -749,11 +745,11 @@ Package rerunfilecheck Info: File `neurips_paper.out' has not changed.
 (rerunfilecheck)             Checksum: 0355C6F5A3C2B413194FFE839EEF6065;8554.
  ) 
 Here is how much of TeX's memory you used:
- 17560 strings out of 474486
- 275117 string characters out of 5743755
- 2805542 words of memory out of 5000000
+ 17557 strings out of 474486
+ 275093 string characters out of 5743755
+ 2808542 words of memory out of 5000000
  38904 multiletter control sequences out of 15000+600000
- 608408 words of font info for 293 fonts, out of 8000000 for 9000
+ 608281 words of font info for 291 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  72i,17n,79p,2463b,2039s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
@@ -766,7 +762,7 @@ pdfTeX warning (dest): name{Hfootnote.2} has been referenced but does not exist,
 pdfTeX warning (dest): name{Hfootnote.1} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt0900.pk> <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi525\ectt0800.pk> <C:\Users\minh1\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1000.pk><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmb8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmr8a.pfb><C:/Users/minh1/AppData/Local/Programs/MiKTeX/fonts/type1/urw/times/utmri8a.pfb>
-Output written on neurips_paper.pdf (29 pages, 405922 bytes).
+Output written on neurips_paper.pdf (29 pages, 404986 bytes).
 PDF statistics:
  1089 PDF objects out of 1200 (max. 8388607)
  342 named destinations out of 1000 (max. 500000)

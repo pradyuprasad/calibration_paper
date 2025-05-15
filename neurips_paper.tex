@@ -150,32 +150,32 @@ Our work bridges calibration, metacognition, adversarial reasoning, and debate e
 \section{Methodology}
 \label{sec:methodology}
 
-Our study investigates the dynamic metacognitive abilities of Large Language Models (LLMs)—specifically their confidence calibration and revision—through a novel experimental paradigm based on competitive policy debate. The primary data for assessing metacognition was gathered via \textbf{round-by-round private confidence elicitation}, where models provided a numerical confidence bet (0-100) on their victory and explained their reasoning in a \textbf{private scratchpad} after each speech. This allowed us to directly observe their internal self-assessments and their evolution during debate.
+We investigate LLMs' dynamic metacognitive abilities through competitive policy debates, focusing on confidence calibration and revision. Models provided \textbf{private confidence bets on their confidence in winning} (0-100) and explained their reasoning in a \textbf{private scratchpad} after each speech, allowing direct observation of their self-assessments throughout the debate process.
 
-To probe these metacognitive behaviors under various conditions, we conducted experiments in \textbf{four distinct configurations}:
+To test different factors influencing LLMs' confidence, we conduct \textbf{four main ablation experiments}:
 
-\begin{enumerate}
-    \item \textbf{Cross-Model Debates:} We conducted 60 debates between different pairs of ten state-of-the-art LLMs across six policy topics (details on models, topics, and pairings in Appendices~\ref{appendix:llms}, \ref{appendix:topics} \ref{appendix:pairings}). These debates provided a general competitive setting to observe how confidence behaves in heterogeneous matchups. For these debates, where the true outcome was unknown a priori, an AI jury was employed to provide an external adjudication of win/loss records, enabling analysis of external calibration (details on jury in Appendix~\ref{appendix:ai_jury}).
+\begin{enumerate}    
+    \item \textbf{Cross-Model Debates:} 60 debates between model pairs across 10 leading LLMs and 6 policy topics (see Appendices~\ref{appendix:llms}, \ref{appendix:topics}, \ref{appendix:pairings}). We assessed confidence in heterogeneous matchups, with an AI jury for external win/loss adjudication and calibration analysis (Appendix~\ref{appendix:ai_jury}).
 
-    \item \textbf{Standard Self-Debates (Jury-Independent Test):} In this configuration, designed for jury-independent analysis, each of our ten LLMs debated an identical copy of itself across the six topics. The prompt explicitly stated they were facing an equally capable opponent (details in Appendix \ref{appendix:self_debate}). This isolated the assessment of internal confidence under known perfect symmetry and a theoretically 50\% win probability, without external judgment.
+    \item \textbf{Standard Self-Debates (implied 50\% winrate):} Models debated identical LLMs across 6 topics, with prompts stating they faced equally capable opponents (Appendix \ref{appendix:self_debate}). This symmetrical setup with implicit 50\% winrate \textbf{removes model and jury-related confounders}.
 
-    \item \textbf{Informed Self-Debates (Anchoring Test):} Building on the standard self-debate, models were additionally and explicitly informed that they had exactly a fifty percent chance of winning (details in Appendix \ref{appendix:self_debate_informed}). This experiment investigated the influence of direct probabilistic anchoring on confidence calibration in a jury-independent setting.
+    \item \textbf{Informed Self-Debates (explicit 50\% winrate):} In addition to the Standard Self-Debate setup, models were now explicitly told they had exactly 50\% chance of winning (Appendix \ref{appendix:self_debate_informed}). This tested whether direct probability anchoring affects confidence calibration.
 
-    \item \textbf{Public Self-Debates (Strategic Signaling Test):} In this configuration, models faced an identical opponent, were told of the 50\% win probability, and crucially, their confidence bets were made \textbf{public} to their opponent (details in Appendix \ref{appendix:self_debate_public}). This explored the impact of strategic considerations on reported confidence, providing insight into the faithfulness of expressed beliefs in a public scenario, also in a jury-independent context for the internal belief vs. public report comparison.
+    \item \textbf{Public Self-Debates:} In addition to Self-Debate and Explicit 50\% Winrate, confidence bets were now \textbf{publicly shown} to both models (Appendix \ref{appendix:self_debate_public}). Initially designed to test whether models would better calibrate with this new information, it also revealed strategic divergence between private beliefs and public statements.
 \end{enumerate}
 Each configuration involved debates across the six policy topics, with models rotating roles and opponents as appropriate for the design. The following sections detail the common elements of the debate setup and the specific analysis conducted for each experimental configuration.
 
 \subsection{Debate Simulation Environment}
 \label{subsec:debate_env}
 
-\textbf{Debater Pool:} We utilized ten LLMs, selected to represent diverse architectures and leading providers (and depicted visually in Table~\ref{tab:escalation_summary}~\ref{appendix:llms} for the full list). In each debate, two models were randomly assigned to the Proposition and Opposition sides according to a balanced pairing schedule designed to ensure each model debated a variety of opponents across different topics (see Appendix~\ref{appendix:pairings} for details).
+\textbf{Debater Pool:} 10 LLMs representing diverse architectures and providers (Table~\ref{tab:escalation_summary}, Appendix~\ref{appendix:llms}) participated in 1-on-1 policy debates. Models were assigned to Proposition/Opposition roles using a balanced schedule ensuring diverse matchups across topics (Appendix~\ref{appendix:pairings}).
 
-\textbf{Debate Topics:} Debates were conducted on six complex global policy motions adapted from the World Schools Debating Championships corpus. To ensure fair ground and clear win conditions, motions were modified to include explicit burdens of proof for both sides (see Appendix~\ref{appendix:topics} for the full list).
+\textbf{Debate Topics:} 6 complex policy motions adapted from World Schools Debating Championships corpus. To ensure fair ground and clear win conditions, motions were modified to include explicit burdens of proof for both sides (Appendix~\ref{appendix:topics}).
 
 \subsection{Structured Debate Framework}
 \label{subsec:debate_framework}
 
-To focus LLMs on substantive reasoning and minimize stylistic variance, we implemented a highly structured three-round debate format (Opening, Rebuttal, Final).
+We implemented a structured three-round format (Opening, Rebuttal, Final) to focus on substantive reasoning rather than stylistic differences.
 
 \textbf{Concurrent Opening Round:} A key feature of our design was a non-standard opening round where both Proposition and Opposition models generated their opening speeches simultaneously, based only on the motion and their assigned side, \textit{before} seeing the opponent's case. This crucial step allowed us to capture each LLM's baseline confidence assessment prior to any interaction or exposure to opposing arguments.
 
@@ -1123,7 +1123,7 @@ This appendix provides the full results of the one-sample hypothesis tests condu
 
 \begin{table}[htbp]
   \centering
-  \caption{One-Sample Hypothesis Test Results for Mean Initial Confidence (vs. 50\%). Tests were conducted for each model in each configuration against the null hypothesis that the true mean initial confidence is $\le 50\%$. Significant results (p $\le 0.05$) indicate statistically significant overconfidence. Results from both t-tests and Wilcoxon signed-rank tests are provided.}
+  \caption{One-Sample Hypothesis Test Results for Mean Initial Confidence (vs. 50\%). Tests were conducted for each model in each configuration against the null hypothesis that the true mean initial confidence is $\geq 50\%$. Significant results (p $\le 0.05$) indicate statistically significant overconfidence. Results from both t-tests and Wilcoxon signed-rank tests are provided.}
   \label{tab:per_model_tests}
   \resizebox{\textwidth}{!}{ % Scale table to fit width if needed
   \begin{tabular}{llccccccc}
