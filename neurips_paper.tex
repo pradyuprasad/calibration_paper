@@ -300,16 +300,15 @@ After generating the content for \textit{each} of their three speeches (includin
 \label{subsec:data_collection}
 Our dataset includes 240 debate transcripts with round-by-round confidence bets (numerical values and reasoning) from all debaters, plus structured verdicts from each of the 6 separate AI judges for cross-model debates (winner, confidence, reasoning). This enables comprehensive analysis of LLMs' confidence patterns, calibration, and belief revision throughout debates.
 
-
 \section{Results}
 \label{sec:results}
 
-Our experimental setup, involving 60 simulated policy debates per configuration between ten state-of-the-art LLMs, with round-by-round confidence elicitation yielded several key findings regarding LLM metacognition and self-assessment in dynamic, multi-turn settings.
+Our experimental setup, involving 1) \textbf{60 simulated policy debates} per configuration between 10 frontier LLMs, and 2) \textbf{round-by-round confidence elicitation}, yielded several key findings regarding LLM metacognition and self-assessment in dynamic, multi-turn settings.
 
 \subsection{Pervasive Overconfidence Without Seeing Opponent Argument (Finding 1 and 4)}
 \label{sec:pervasive_overconfidence}
 
-A core finding across all four experimental configurations was significant LLM overconfidence, particularly evident in the initial concurrent opening round before models had seen any counterarguments. Given the inherent nature of a two-participant debate where one side wins and the other loses, a rational model should assess its baseline probability of winning at 50\% anticipating that the other debater too would make good arguments; however, observed initial confidence levels consistently and substantially exceeded this expectation.
+\textbf{Finding 1}: Across all four experimental configurations, LLMs exhibited \textbf{significant overconfidence in their initial assessment of debate performance before seeing any opposing arguments.} Given that a rational model should assess its baseline win probability at 50\% in a competitive debate, observed confidence levels consistently far exceeded this expectation.
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
@@ -338,19 +337,40 @@ A core finding across all four experimental configurations was significant LLM o
   }
   \label{app:tab:initial_confidence}
   \vspace{0.2cm}
-  \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek/deepseek-r1-distill-qwen-14b:free had n=11}
+  \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek-r1-distill-qwen-14b:free had n=11}
 \end{table*}
+\begin{itemize}
+    \item \textbf{Cross-model debates}: Highest overconfidence (72.92\% $\pm$ 7.93)
+    \item \textbf{Standard Self-debates}: Substantial overconfidence (64.08\% $\pm$ 15.32)
+    \item \textbf{Public Bets}: Similar to standard self-debates (63.50\% $\pm$ 16.38), with no significant difference (mean difference = 0.58, t=0.39, p=0.708)
+    \item \textbf{Informed Self (50\% explicit)}: Precise calibration (50.00\% $\pm$ 13.61), representing a significant reduction from Standard Self (mean difference = 14.08, t=7.07, p<0.001)
+\end{itemize}
 
-As shown in Table~\ref{tab:initial_confidence}, the overall average initial confidence reported by models in the Cross-model, Standard Self, and Public Bets configurations was consistently and significantly above the 50\% baseline. Specifically, the mean initial confidence was 72.92\% ($\pm$ 7.93 SD, n=120) for Cross-model debates, 64.08\% ($\pm$ 15.32 SD, n=120) for Standard Self debates (private bets without 50\% instruction), and 63.50\% ($\pm$ 16.38 SD, n=120) for Public Bets (public bets without 50\% instruction). One-sample t-tests confirmed that the mean initial confidence in each of these three conditions was statistically significantly greater than 50\% (Cross-model: t=31.67, p<0.001; Standard Self: t=10.07, p<0.001; Public Bets: t=9.03, p<0.001). Wilcoxon signed-rank tests yielded similar conclusions (all p<0.001), confirming the robustness of this finding to distributional assumptions. This pervasive overconfidence in the initial assessment, before any interaction with an opponent's case, suggests a fundamental miscalibration bias in LLMs' self-assessment of their standing in a competitive context.
+\textbf{Statistical evidence}: One-sample t-tests confirm initial confidence significantly exceeds the rational 50\% baseline in Cross-model (t=31.67, p<0.001), Standard Self (t=10.07, p<0.001), and Public Bets (t=9.03, p<0.001) configurations. Wilcoxon tests yielded identical conclusions (all p<0.001).
 
-We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06-042}, who report a comparable mean of 65.00\%, but a much higher standard deviation of 35.10\%. This suggests that \textbf{while humans and LLMs are comparably overconfident on average, LLMs are much more consistently overconfident, while humans seem to adjust their percentages much more variably.}
+\textbf{Individual model analysis}: Overconfidence was widespread but varied, with 30/40 model-configuration combinations showing significant overconfidence (one-sided t-tests, $\alpha=0.05$). Some models displayed high variability (e.g., Gemini 2.0 Flash: $\pm$ 27.03 SD in Standard Self), while others (e.g. o3-Mini, QWQ-32b) achieved perfect calibration (50.00\% $\pm$ 0.00) when explicitly informed.
 
-In stark contrast, the overall average initial confidence in the Informed Self configuration was precisely 50.00\% ($\pm$ 13.61 SD, n=120). A one-sample t-test confirmed that this mean was not statistically significantly different from 50\% (t=0.00, p=1.0). Furthermore, a paired t-test comparing the per-model means in the Standard Self and Informed Self configurations revealed a statistically significant reduction in initial confidence when models were explicitly informed of the 50\% win probability (mean difference = 14.08, t=7.07, p<0.001). This demonstrates that while the default state is overconfident, models can align their *initial* reported confidence much closer to the rational baseline when explicitly anchored with the correct probability.
+\textbf{Human comparison}: We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06-042}, who report a comparable mean of 65.00\%, but much higher variability (SD=35.10\%). This suggests that \textbf{while humans and LLMs are comparably overconfident on average, LLMs are much more consistently overconfident, while humans seem to adjust their percentages much more variably.}
 
-Analysis at the individual model level (see Appendix \ref{appendix:initial_tests} for full results) shows that this overconfidence was widespread, with 30 out of 40 individual model-configuration combinations showing initial confidence significantly greater than 50\% (one-sided t-tests, $\alpha=0.05$). However, we also observed considerable variability in initial confidence (large standard deviations), both across conditions and for specific models like Google Gemini 2.0 Flash ($\pm$ 27.03 SD in Standard Self). Notably, some models, such as OpenAI o3-Mini and Qwen QWQ-32b, reported perfectly calibrated initial confidence (50.00 $\pm$ 0.00 SD) in the Informed Self condition. The non-significant difference in overall mean initial confidence between Standard Self and Public Bets (mean difference = 0.58, t=0.39, p=0.708) suggests that simply making the initial bet public does not, on average, significantly alter the self-assessed confidence compared to the private default.
+\textbf{Implications}: LLMs exhibit systematic miscalibration in competitive contexts but can be corrected through explicit probability anchoring. Their overconfidence is more consistent than humans', suggesting less context-sensitivity in self-assessment.
 
-\subsection{Confidence Escalation among models (Finding 2)}
-Building upon the pervasive initial overconfidence (Section \ref{sec:pervasive_overconfidence}), a second critical pattern observed across \emph{all four} experimental configurations was a significant \textbf{confidence escalation}. This refers to the consistent tendency for models' self-assessed probability of winning to increase over the course of the debate, from the initial Opening round to the final Closing statements. As illustrated in Table \ref{tab:escalation_summary}, the overall mean confidence across models rose substantially in every configuration. For instance, mean confidence increased from 72.92\% to 83.26\% in Cross-model debates, from 64.08\% to 75.20\% in Standard Self-debates, from 63.50\% to 74.15\% in Public Bets, and notably, even from a calibrated 50.00\% to 57.08\% in Informed Self-debates. Paired statistical tests confirmed these overall increases from Opening to Closing were highly significant in all configurations (all p<0.001). While this pattern of escalation was statistically significant on average across each configuration, the magnitude and statistical significance of escalation varied at the individual model level (see Appendix \ref{app:escalation} for full per-model test results). This widespread and significant upward drift in self-confidence is highly irrational, particularly evident in the self-debate conditions where models know they face an equally capable opponent and the rational win probability is 50\% from the outset. Escalating confidence in this context, especially when starting near the correct 50\% as in the Informed Self condition, demonstrates a fundamental failure to dynamically process adversarial feedback and objectively assess relative standing, defaulting instead to an unjustified increase in self-assurance regardless of the opponent's performance or the debate's progression.
+\subsection{Confidence Escalation Among Models (Finding 2)}
+\label{subsec:confidence_escalation}
+
+\textbf{Finding 2}: Across all 4 experiments, LLMs display significant \textbf{confidence escalation}—consistently increasing their self-assessed win probability as debates progress, in spite of opposing arguments.
+
+\begin{itemize}
+    \item \textbf{Cross-model}: Significant increase from 72.92\% to 83.26\% ($\Delta$=10.34, p<0.001)
+    \item \textbf{Standard Self-debates}: Significant increase from 64.08\% to 75.20\% ($\Delta$=11.12, p<0.001)  
+    \item \textbf{Public Bets}: Significant increase from 63.50\% to 74.15\% ($\Delta$=10.65, p<0.001)
+    \item \textbf{Informed Self}: Smallest, still significant increase from 50\% to 57.08\% ($\Delta$=7.08, p<0.001)
+\end{itemize}
+
+\textbf{Statistical evidence}: Paired t-tests confirmed significant increases across all configurations from Opening to Closing (all p<0.001). This escalation occurred in both debate transitions, with only Rebuttal→Closing in the Informed Self condition showing non-significance (p=0.0945).
+
+\textbf{Individual model analysis}: While this pattern was consistent across experiments, the magnitude varied among individual models (see Appendix~\ref{app:escalation} for full per-model test results).
+
+\textbf{Implications}: This widespread upward drift in self-confidence is highly irrational, especially in the Informed Self experiment, where models are told they face equally capable opponents with a rational win probability of 50\%. Escalating confidence from the 50\% baseline demonstrates that this tendency is persistent even when models are explicitly asked to consider a more moderate baseline.
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
@@ -373,8 +393,20 @@ Building upon the pervasive initial overconfidence (Section \ref{sec:pervasive_o
 \end{table*}
 
 \subsection{Logical Impossibility: Simultaneous High Confidence (Finding 3)}
+\label{subsec:logical_impossibility}
 
-Stemming directly from the observed confidence escalation, we found that LLMs frequently ended debates holding mutually exclusive high confidence in their victory, a mathematically impossible outcome in a zero-sum competition. Specifically, we analyzed the distribution of confidence levels for \emph{both} debate participants in the closing round across all experimental configurations. As summarized in Table~\ref{tab:logical_impossibility}, a substantial percentage of debates concluded with both models reporting confidence levels of 75\% or higher.
+\textbf{Finding 3}: Across all 4 experiments, LLMs concluded most debates with \textbf{mutually exclusive high confidence (both >50\%) in victory}—a mathematically impossible outcome in zero-sum competition.
+
+\begin{itemize}
+    \item \textbf{Cross-model}: By far the most logical inconsistency (61.7\% w/ both sides >75\% confidence)
+    \item \textbf{Standard Self-debates}: Significant logical inconsistency (35.0\% with both sides >75\%)
+    \item \textbf{Public Bets}: Significant logical inconsistency (33.3\% with both sides >75\%)
+    \item \textbf{Informed Self}: Complete absence of severe logical inconsistency (0\% w/ both sides >75\%)
+\end{itemize}
+
+\textbf{Statistical analysis}: As shown in Table~\ref{tab:logical_impossibility}, the pattern of simultaneous high confidence was prevalent in non-anchored experiments but entirely absent when models were explicitly informed of the 50\% baseline probability. Across all 240 debates, 32.5\% ended with both sides claiming >75\% confidence, and 61.7\% ended with both sides claiming >50\% confidence.
+
+\textbf{Implications}: In 61.7\% of debates, \emph{both} models finished with confidence above 50\%, indicating that models independently escalate their beliefs without adequately processing the strength of opposing arguments, leading to a systemic failure to converge towards a state reflecting the actual debate outcome, or the zero-sum nature of the task. This effect is much lower in the Informed Self condition, suggesting that explicit probability anchoring significantly mitigates, but does not completely eliminate, the tendency toward inconsistent overconfidence.
 
 \begin{table}[htbp]
   \centering
@@ -396,15 +428,6 @@ Stemming directly from the observed confidence escalation, we found that LLMs fr
   }
 \end{table}
 
-In Cross-model debates, a striking \textbf{61.7\%} ($n=37/60$) concluded with both the Proposition and Opposition models reporting a confidence of 75\% or greater (Table~\ref{tab:logical_impossibility}, 'Both $>$75\%' column). This is a direct manifestation of logical inconsistency at the system level, where the combined self-assessed probabilities of winning drastically exceed the theoretical maximum of 100\% for two agents in a zero-sum game.
-
-While less frequent than in the standard Cross-model setting, this logical impossibility was still common in other non-informed configurations. In Standard Self-debates, where models faced an identical twin, 35.0\% ($n=21/60$) showed both participants claiming $>$75\% confidence in the final round. Public Bets debates exhibited a similar rate of simultaneous $>$75\% confidence at 33.3\% ($n=20/60$). The overall rate of this specific logical inconsistency across all 240 non-informed self- and cross-model debates was 32.5\% ($n=78/240$).
-
-Crucially, this type of severe logical inconsistency was entirely absent (0.0\%, $n=0/60$) in the Informed Self configuration. This aligns with our finding that explicit anchoring mitigated initial overconfidence and somewhat reduced the magnitude of subsequent escalation, thereby preventing models from reaching the high, mutually exclusive confidence levels seen in other conditions.
-
-Beyond the most severe 'Both $>$75\%' inconsistency, a significant proportion of debates across all configurations saw both participants reporting confidence between 51-75\% (overall 29.2\%). Combined with the $>$75\% cases, this means that in over 60\% of debates (32.5\% + 29.2\% overall), \emph{both} models finished with confidence above 50\%, further illustrating a systemic failure to converge towards a state reflecting the actual debate outcome or the zero-sum nature of the task. The remaining categories in Table~\ref{tab:logical_impossibility} indicate scenarios where confidence levels were split across categories, including a small percentage where both models reported low confidence ($\le$50\%).
-
-This prevalence of debates ending with simultaneously high confidence directly results from models independently escalating their beliefs without adequately integrating or believing the strength of the opponent's counterarguments. It reveals a profound disconnect between their internal confidence reporting mechanisms and the objective reality of a competitive, zero-sum task.
 \subsection{Strategic Confidence in Public Settings (Finding 5)}
 
 \section{Discussion}
@@ -413,28 +436,26 @@ This prevalence of debates ending with simultaneously high confidence directly r
 \subsection{Metacognitive Limitations and Possible Explanations}
 \label{subsec:metacognitive_limitations}
 
-Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. This inability to track one's own certainty in dynamic settings threatens both assistant applications, where users may accept incorrect but confidently-stated outputs, and agentic deployments, where autonomous systems must continually revise their reasoning as new information emerges in dynamic environments. Several explanations may account for these observed patterns, including both human-like biases and LLM-specific factors:
+Our findings reveal significant limitations in LLMs' metacognitive abilities to assess argumentative positions and revise confidence in an adversarial debate context. This threatens assistant applications (where users may accept confidently-stated but incorrect outputs without verification) and agentic deployments (where systems must revise their reasoning and solutions based on new information in dynamically changing environments). Existing literature provides several explanations for LLM overconfidence, including human-like biases and LLM-specific factors:
 
 \paragraph{Human-like biases}
 \begin{itemize}
-    \item \textbf{Baseline debate overconfidence:} Research on human debaters by \citet{RePEc:sip:dpaper:06-042} found that college debate participants estimated their odds of winning at approximately 65\% on average, suggesting that high baseline confidence is prevalent for humans in debate settings similar to our experimental design with LLMs. However, as we previously noted, humans seem to adjust their percentages much more variably, with a much higher standard deviation of 35.10\%, suggesting that LLM overconfidence is much more persistent and context-agnostic.
+    \item \textbf{Baseline debate overconfidence:} Research on human debaters by \citet{RePEc:sip:dpaper:06-042} found college debate participants estimated their odds of winning at approximately 65\% on average, similar to our LLM findings. However, humans showed much higher variability (SD=35.10\%), suggesting LLM overconfidence is more persistent and context-agnostic.
 
-    \item \textbf{Persistent miscalibration:} Human psychology reveals systematic miscalibration patterns that parallel our findings. Like humans, LLMs exhibit limited accuracy improvement over repeated trials, mirroring our results \citep{Moore2008}.
+    \item \textbf{Evidence weighting bias:} \citet{GriffinTversky1992} found humans overweight evidence favoring their beliefs while underweighting its credibility, leading to overconfidence when strength is high but weight is low. \citet{Moore2008} and \citet{RePEc:sip:dpaper:06-042} found limited accuracy improvement over repeated human trials, mirroring our LLM results.
 
-    \item \textbf{Evidence weighting bias:} Crucially, seminal work by \citet{GriffinTversky1992} found that humans overweight the strength of evidence favoring their beliefs while underweighting its credibility or weight, leading to overconfidence when strength is high but weight is low.
-
-    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) recalls the human $\sim$70\% "attractor state" often used for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, potentially a learned artifact of alignment processes that steer LLMs towards human-like patterns \citep{west2025basemodelsbeataligned}.
+    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) resembles the human $\sim$70\% "attractor state" for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, although \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport} note that base models are not significantly biased this way.
 \end{itemize}
 
 \paragraph{LLM-specific factors}
 \begin{itemize}
-    \item \textbf{General overconfidence across models:} Research has shown that LLMs demonstrate systematic overconfidence across various tasks \citep{chhikara2025mindconfidencegapoverconfidence,xiong2024uncertainty}, with larger LLMs exhibiting greater overconfidence on difficult tasks while smaller LLMs show more consistent overconfidence across task types \citep{wen2024from}.
+    \item \textbf{General overconfidence:} Research shows systematic overconfidence across models and tasks \citep{chhikara2025mindconfidencegapoverconfidence,xiong2024uncertainty}, with larger LLMs more overconfident on difficult tasks and smaller ones consistently overconfident across task types \citep{wen2024from}.
 
-    \item \textbf{RLHF amplification effects:} Post-training for human preferences appears to significantly exacerbate overconfidence. Models trained via RLHF are more likely to indicate high certainty even when incorrect \citep{leng2025tamingoverconfidencellmsreward} and disproportionately output 7/10 for ratings \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport}, suggesting alignment processes inadvertently reinforce confidence biases.
+    \item \textbf{RLHF amplification:} Post-training for human preferences exacerbates overconfidence, biasing models to indicate high certainty even when incorrect \citep{leng2025tamingoverconfidencellmsreward} and provide more 7/10 ratings \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport} relative to base models.
 
-    \item \textbf{Failure to appropriately integrate new evidence:} \citet{wilie2024beliefrevisionadaptabilitylarge} introduced the Belief-R benchmark and showed that most models fail to appropriately revise their initial conclusions after receiving additional, contradicting information. Rather than reducing confidence when they should, models tend to stick to their initial stance. \citet{agarwal2025persuasionoverridestruthmultiagent} found that LLMs can be swayed to believe falsehoods with persuasive, verbose reasoning. Even smaller models can craft arguments that override truthful answers with high confidence, suggesting that LLMs may be susceptible to confident but flawed counterarguments.
+    \item \textbf{Poor evidence integration:} \citet{wilie2024beliefrevisionadaptabilitylarge} found that most models fail to revise initial conclusions after receiving contradicting information. \citet{agarwal2025persuasionoverridestruthmultiagent} found LLMs can be persuaded to accept falsehoods with high-confidence, verbose reasoning.
 
-    \item \textbf{Training data imbalance:} Training datasets predominantly feature successful task completion rather than explicit failures or uncertainty. This imbalance may limit models' ability to recognize and represent losing positions accurately \citep{zhou2023navigatinggreyareaexpressions}.
+    \item \textbf{Training data imbalance:} Datasets predominantly feature successful task completion over failures or uncertainty, hindering models' ability to recognize losing positions \citep{zhou2023navigatinggreyareaexpressions}. \citet{chung2025learningfailuresmultiattemptreinforcement} suggests failure samples in training data improves performance.
 \end{itemize}
 
 These combined factors likely contribute to the confidence escalation phenomenon we observe, where models fail to properly update their beliefs in the face of opposing arguments.
