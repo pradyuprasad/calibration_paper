@@ -103,9 +103,15 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 
 Large language models (LLMs) are increasingly deployed in complex domains requiring critical thinking and reasoning under uncertainty, such as coding and research \citep{handa2025economictasksperformedai, zheng2025deepresearcherscalingdeepresearch}. A foundational requirement is calibration—aligning confidence with correctness. Poorly calibrated LLMs create risks: In \textbf{assistant roles}, users may accept incorrect but confidently-stated legal analysis without verification, especially in domains where they lack expertise, while in \textbf{agentic settings}, autonomous coding and research agents may persist with flawed reasoning paths with increasing confidence despite encountering contradictory evidence. However, language models often struggle to express their confidence in a meaningful or reliable way
 
+<<<<<<< HEAD
 In this work, we study how well LLMs revise their confidence when facing opposition in adversarial settings. While recent work has explored calibration in static fact-based QA \citep{tian2023justask, xiong2024uncertainty, kadavath2022know,groot-valdenegro-toro-2024-overconfidence}, we introduce two critical innovations:
 (1) a \textbf{dynamic, multi-turn debate format} requiring models to update beliefs as new, conflicting information emerges, and
 (2) a \textbf{zero-sum evaluation structure} that controls for task-related uncertainty, since mutual high-confidence claims with combined probabilities summing over 100\% indicate systematic overconfidence.
+=======
+In this work, we study how well LLMs revise their confidence when facing opposition in adversarial settings. While recent work has explored LLM calibration in static fact-based question-answering tasks \citep{tian2023justask, xiong2024uncertainty, kadavath2022know,groot-valdenegro-toro-2024-overconfidence}, we advance this line of inquiry by introducing two critical innovations:
+(1) a \textbf{dynamic, multi-turn debate format} that requires models to update beliefs as new, potentially conflicting information emerges, and
+(2) a \textbf{zero-sum evaluation structure} that controls for task-related uncertainty, since mutual high-confidence claims with probabilities summing over 100\% indicate systematic overconfidence.
+>>>>>>> 63f73be30111f582a01736d9ee40d4dfb5287554
 
 These innovations test metacognitive abilities crucial for high-stakes applications. Models must respond to opposition, revise beliefs according to new information, and recognize weakening positions—skills essential in complex, multi-turn deliberative settings.
 
@@ -306,7 +312,7 @@ Our dataset includes 240 debate transcripts with round-by-round confidence bets 
 
 Our experimental setup, involving 60 simulated policy debates per configuration between ten state-of-the-art LLMs, with round-by-round confidence elicitation yielded several key findings regarding LLM metacognition and self-assessment in dynamic, multi-turn settings.
 
-\subsection{Pervasive Overconfidence Without Seeing Opponent Argument (Finding 1)}
+\subsection{Pervasive Overconfidence Without Seeing Opponent Argument (Finding 1 and 4)}
 \label{sec:pervasive_overconfidence}
 
 A core finding across all four experimental configurations was significant LLM overconfidence, particularly evident in the initial concurrent opening round before models had seen any counterarguments. Given the inherent nature of a two-participant debate where one side wins and the other loses, a rational model should assess its baseline probability of winning at 50\% anticipating that the other debater too would make good arguments; however, observed initial confidence levels consistently and substantially exceeded this expectation.
@@ -448,6 +454,35 @@ The confidence escalation phenomenon identified in this study has significant im
 \subsection{Potential Mitigations and Guardrails}
 
 \textbf{[TODO: ADD MITIGATION ABLATION RESULTS]}.
+
+One mitigation we found that was useful was to specifically instruct the model to think why it was going to win, and also consider explicitly the case why its opponent was going to win
+
+\begin{table*}[htbp]
+  \centering
+  \caption{Self Redteam Debate Ablation: Confidence Escalation Across Rounds}
+  \label{tab:self_redteam_ablation}
+  \resizebox{\textwidth}{!}{
+  \begin{tabular}{lrrrrrr}
+    \toprule
+    Model & Opening Bet & Rebuttal Bet & Closing Bet & Open$\rightarrow$Rebuttal & Rebuttal$\rightarrow$Closing & Open$\rightarrow$Closing \\
+    \midrule
+    claude-3.5-haiku                  & 69.58 ± 8.53  & 68.75 ± 8.93   & 75.83 ± 6.40   & $\Delta$ = –0.83, p = 0.6139   & $\Delta$ = 7.08, p = 0.0058** & $\Delta$ = 6.25, p = 0.0202*   \\
+    claude-3.7-sonnet                 & 58.33 ± 2.36  & 60.00 ± 2.89   & 60.00 ± 2.89   & $\Delta$ = 1.67, p = 0.1099    & $\Delta$ = 0.00, p = 0.5000   & $\Delta$ = 1.67, p = 0.1099    \\
+    deepseek-chat                     & 62.08 ± 4.31  & 70.00 ± 2.89   & 69.58 ± 1.38   & $\Delta$ = 7.92, p = 0.0001*** & $\Delta$ = –0.42, p = 0.6629  & $\Delta$ = 7.50, p = 0.0001*** \\
+    deepseek-r1-distill-qwen-14b:free & 81.25 ± 8.93  & 64.17 ± 25.97  & 77.50 ± 10.31  & $\Delta$ = –17.08, p = 0.9743 & $\Delta$ = 13.33, p = 0.0453* & $\Delta$ = –3.75, p = 0.8585   \\
+    gemini-2.0-flash-001              & 59.92 ± 5.17  & 61.25 ± 6.17   & 53.33 ± 11.06  & $\Delta$ = 1.33, p = 0.2483    & $\Delta$ = –7.92, p = 0.9760  & $\Delta$ = –6.58, p = 0.9409   \\
+    gemma-3-27b-it                    & 69.58 ± 6.28  & 75.00 ± 5.77   & 72.50 ± 7.22   & $\Delta$ = 5.42, p = 0.0388*   & $\Delta$ = –2.50, p = 0.7578  & $\Delta$ = 2.92, p = 0.1468    \\
+    gpt-4o-mini                       & 71.25 ± 2.17  & 67.92 ± 4.77   & 72.50 ± 4.79   & $\Delta$ = –3.33, p = 0.9806   & $\Delta$ = 4.58, p = 0.0170*  & $\Delta$ = 1.25, p = 0.2146    \\
+    o3-mini                           & 70.00 ± 9.13  & 78.75 ± 4.62   & 77.92 ± 4.31   & $\Delta$ = 8.75, p = 0.0098**  & $\Delta$ = –0.83, p = 0.6493  & $\Delta$ = 7.92, p = 0.0090**  \\
+    qwen-max                          & 63.33 ± 5.89  & 65.83 ± 5.71   & 68.33 ± 7.17   & $\Delta$ = 2.50, p = 0.1694    & $\Delta$ = 2.50, p = 0.1944  & $\Delta$ = 5.00, p = 0.0228*   \\
+    qwq-32b:free                      & 65.00 ± 4.56  & 70.17 ± 6.15   & 73.33 ± 7.17   & $\Delta$ = 5.17, p = 0.0183*   & $\Delta$ = 3.17, p = 0.1330  & $\Delta$ = 8.33, p = 0.0027**  \\
+    \midrule
+    \textbf{Overall}                  & 67.03 ± 8.93  & 68.18 ± 11.22  & 70.08 ± 10.16  & $\Delta$ = 1.15, p = 0.1674    & $\Delta$ = 1.90, p = 0.0450* & $\Delta$ = 3.05, p = 0.0004*** \\
+    \bottomrule
+  \end{tabular}
+  }
+\end{table*}
+
 
 These safeguards are particularly vital when deploying LLMs in assistant roles where users lack expertise to verify outputs, or in autonomous agentic settings where the system's inability to recognize its own limitations could lead to compounding errors in multi-step reasoning processes.
 
