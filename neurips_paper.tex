@@ -481,10 +481,9 @@ These combined factors likely contribute to the confidence escalation phenomenon
 The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems multi-turn dynamic tasks —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
 
 \subsection{Potential Mitigations and Guardrails}
+One effective mitigation we discovered was explicitly instructing models to engage in self red-teaming by considering both winning and losing scenarios. When models were prompted to "think through why you will win, but also explicitly consider why your opponent could win," we observed significantly reduced confidence escalation compared to our main experiments. As shown in Table~\ref{tab:self_redteam_ablation}, the overall confidence increase from opening to closing rounds was only 3.05 percentage points (from 67.03\% to 70.08\%), compared to 10.34 percentage points in the standard cross-model debates and 11.12 percentage points in standard self-debates. This suggests that explicitly structuring models'reasoning to consider counterarguments helps constrain overconfidence.
 
-\textbf{[TODO: ADD MITIGATION ABLATION RESULTS]}.
-
-One mitigation we found that was useful was to specifically instruct the model to think why it was going to win, and also consider explicitly the case why its opponent was going to win
+These safeguards are particularly vital when deploying LLMs in assistant roles where users lack expertise to verify outputs, or in autonomous agentic settings where the system's inability to recognize its own limitations could lead to compounding errors in multi-step reasoning processes.
 
 \begin{table*}[htbp]
   \centering
@@ -613,7 +612,6 @@ Our pairing methodology addressed several key requirements:
 \item \textbf{Role balance}: Models were assigned to proposition and opposition roles with approximately equal frequency
 \item \textbf{Opponent diversity}: Models faced a variety of opponents rather than repeatedly debating the same models
 \item \textbf{Topic variety}: Each model-pair debated different topics to avoid topic-specific advantages
-\item \textbf{Performance-based matching}: After initial rounds, models with similar win-loss records were paired to ensure competitive matches
 \end{itemize}
 \subsection{Initial Round Planning}
 The first set of debates used predetermined pairings designed to establish baseline performance metrics. These initial matchups ensured each model:
