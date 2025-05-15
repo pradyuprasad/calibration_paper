@@ -360,8 +360,8 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 \textbf{Finding 2}: Across all 4 experiments, LLMs display significant \textbf{confidence escalation}—consistently increasing their self-assessed win probability as debates progress, in spite of opposing arguments.
 
 \begin{itemize}
-    \item \textbf{Cross-model debates}: Significant increase from 72.92\% to 83.26\% ($\Delta$=10.34, p<0.001)
-    \item \textbf{Standard Self-debates}: Largest increase from 64.08\% to 75.20\% ($\Delta$=11.12, p<0.001)  
+    \item \textbf{Cross-model}: Significant increase from 72.92\% to 83.26\% ($\Delta$=10.34, p<0.001)
+    \item \textbf{Standard Self-debates}: Significant increase from 64.08\% to 75.20\% ($\Delta$=11.12, p<0.001)  
     \item \textbf{Public Bets}: Significant increase from 63.50\% to 74.15\% ($\Delta$=10.65, p<0.001)
     \item \textbf{Informed Self}: Smallest, still significant increase from 50\% to 57.08\% ($\Delta$=7.08, p<0.001)
 \end{itemize}
@@ -393,8 +393,20 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 \end{table*}
 
 \subsection{Logical Impossibility: Simultaneous High Confidence (Finding 3)}
+\label{subsec:logical_impossibility}
 
-Stemming directly from the observed confidence escalation, we found that LLMs frequently ended debates holding mutually exclusive high confidence in their victory, a mathematically impossible outcome in a zero-sum competition. Specifically, we analyzed the distribution of confidence levels for \emph{both} debate participants in the closing round across all experimental configurations. As summarized in Table~\ref{tab:logical_impossibility}, a substantial percentage of debates concluded with both models reporting confidence levels of 75\% or higher.
+\textbf{Finding 3}: Across all 4 experiments, LLMs concluded most debates with \textbf{mutually exclusive high confidence (both >50\%) in victory}—a mathematically impossible outcome in zero-sum competition.
+
+\begin{itemize}
+    \item \textbf{Cross-model}: By far the most logical inconsistency (61.7\% w/ both sides >75\% confidence)
+    \item \textbf{Standard Self-debates}: Significant logical inconsistency (35.0\% with both sides >75\%)
+    \item \textbf{Public Bets}: Significant logical inconsistency (33.3\% with both sides >75\%)
+    \item \textbf{Informed Self}: Complete absence of severe logical inconsistency (0\% w/ both sides >75\%)
+\end{itemize}
+
+\textbf{Statistical analysis}: As shown in Table~\ref{tab:logical_impossibility}, the pattern of simultaneous high confidence was prevalent in non-anchored experiments but entirely absent when models were explicitly informed of the 50\% baseline probability. Across all 240 debates, 32.5\% ended with both sides claiming >75\% confidence, and 61.7\% ended with both sides claiming >50\% confidence.
+
+\textbf{Implications}: In 61.7\% of debates, \emph{both} models finished with confidence above 50\%, indicating that models independently escalate their beliefs without adequately processing the strength of opposing arguments, leading to a systemic failure to converge towards a state reflecting the actual debate outcome, or the zero-sum nature of the task. This effect is much lower in the Informed Self condition, suggesting that explicit probability anchoring significantly mitigates, but does not completely eliminate, the tendency toward inconsistent overconfidence.
 
 \begin{table}[htbp]
   \centering
@@ -416,15 +428,6 @@ Stemming directly from the observed confidence escalation, we found that LLMs fr
   }
 \end{table}
 
-In Cross-model debates, a striking \textbf{61.7\%} ($n=37/60$) concluded with both the Proposition and Opposition models reporting a confidence of 75\% or greater (Table~\ref{tab:logical_impossibility}, 'Both $>$75\%' column). This is a direct manifestation of logical inconsistency at the system level, where the combined self-assessed probabilities of winning drastically exceed the theoretical maximum of 100\% for two agents in a zero-sum game.
-
-While less frequent than in the standard Cross-model setting, this logical impossibility was still common in other non-informed configurations. In Standard Self-debates, where models faced an identical twin, 35.0\% ($n=21/60$) showed both participants claiming $>$75\% confidence in the final round. Public Bets debates exhibited a similar rate of simultaneous $>$75\% confidence at 33.3\% ($n=20/60$). The overall rate of this specific logical inconsistency across all 240 non-informed self- and cross-model debates was 32.5\% ($n=78/240$).
-
-Crucially, this type of severe logical inconsistency was entirely absent (0.0\%, $n=0/60$) in the Informed Self configuration. This aligns with our finding that explicit anchoring mitigated initial overconfidence and somewhat reduced the magnitude of subsequent escalation, thereby preventing models from reaching the high, mutually exclusive confidence levels seen in other conditions.
-
-Beyond the most severe 'Both $>$75\%' inconsistency, a significant proportion of debates across all configurations saw both participants reporting confidence between 51-75\% (overall 29.2\%). Combined with the $>$75\% cases, this means that in over 60\% of debates (32.5\% + 29.2\% overall), \emph{both} models finished with confidence above 50\%, further illustrating a systemic failure to converge towards a state reflecting the actual debate outcome or the zero-sum nature of the task. The remaining categories in Table~\ref{tab:logical_impossibility} indicate scenarios where confidence levels were split across categories, including a small percentage where both models reported low confidence ($\le$50\%).
-
-This prevalence of debates ending with simultaneously high confidence directly results from models independently escalating their beliefs without adequately integrating or believing the strength of the opponent's counterarguments. It reveals a profound disconnect between their internal confidence reporting mechanisms and the objective reality of a competitive, zero-sum task.
 \subsection{Strategic Confidence in Public Settings (Finding 5)}
 
 \section{Discussion}
