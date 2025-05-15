@@ -1543,6 +1543,33 @@ While our analysis provides valuable insights into the relationship between priv
 
 These considerations highlight the inherent challenges in accessing and measuring internal calibration states through language, and suggest that comparative analyses between numerically expressed and qualitatively implied confidence should be interpreted with appropriate caution.
 
+\section{Four-Round Debate Ablation}
+\label{appendix:four_round}
+
+We conducted an additional ablation study testing debates with four rounds instead of three (adding a second rebuttal round). Due to technical limitations - specifically, poor instruction-following and XML formatting issues that caused systematic parsing failures - we were only able to successfully run this experiment with 5 of the 10 models from our main study. The models that could reliably follow the structured format requirements were: claude-3.7-sonnet, deepseek-chat, gemini-2.0-flash-001, o3-mini, and qwq-32b:free.
+
+\subsection{Methodology}
+The experimental setup was identical to our main three-round debates, except for the addition of a second rebuttal round between the first rebuttal and closing speeches. We conducted 28 debates, collecting 223 non-zero confidence bets across all rounds.
+
+\subsection{Results}
+The mean initial confidence across all models was 49.73% ± 12.04 (n=56), with subsequent rounds showing escalation to 52.10% ± 16.56 after first rebuttal, and ultimately reaching 58.64% ± 16.64 in closing statements. This escalation pattern was statistically significant (Opening→Closing Δ=9.00, p=0.0006).
+
+Individual model performance varied considerably:
+
+\begin{itemize}
+    \item \textbf{o3-mini} showed the most dramatic escalation (53.75% → 72.92%, p=0.0024)
+    \item \textbf{deepseek-chat} displayed significant but more moderate escalation (55.83% → 64.58%, p=0.0081)
+    \item \textbf{qwq-32b:free} exhibited an unusual V-shaped pattern, dropping to 32.19% in middle rounds before rising to 58.12% (net Δ=13.12, p=0.0031)
+    \item \textbf{claude-3.7-sonnet} and \textbf{gemini-2.0-flash-001} maintained relatively stable confidence levels throughout
+\end{itemize}
+
+The lower initial confidence compared to our main experiments (49.73% vs 72.92%) likely reflects the specific subset of models rather than any effect of the additional round, as models were not informed of the total number of rounds when making their opening statements.
+
+\subsection{Limitations}
+The primary limitation of this ablation was our inability to include all models from the main study. Models excluded from this analysis (including claude-3.5-haiku, gpt-4o-mini, and gemma-3-27b-it) consistently failed to maintain proper XML formatting across the increased number of rounds, making confidence extraction unreliable. This selective inclusion of only the most instruction-following models may have introduced sampling bias, particularly given that some excluded models showed high confidence tendencies in the main experiments.
+
+While these results provide additional evidence for confidence escalation in multi-turn debates, the reduced model pool and potential sampling bias suggest these findings should be interpreted as supplementary rather than directly comparable to our main results.
+
 
 % Example: Detailed Proof
 % \section{Proof of Theorem 1}
