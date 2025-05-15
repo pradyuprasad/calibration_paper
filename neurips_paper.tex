@@ -337,7 +337,7 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
   }
   \label{app:tab:initial_confidence}
   \vspace{0.2cm}
-  \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek/deepseek-r1-distill-qwen-14b:free had n=11}
+  \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek-r1-distill-qwen-14b:free had n=11}
 \end{table*}
 \begin{itemize}
     \item \textbf{Cross-model debates}: Highest overconfidence (72.92\% $\pm$ 7.93)
@@ -436,28 +436,26 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 \subsection{Metacognitive Limitations and Possible Explanations}
 \label{subsec:metacognitive_limitations}
 
-Our findings reveal significant limitations in LLMs' metacognitive abilities, specifically their capacity to accurately assess their argumentative position and revise confidence in adversarial contexts. This inability to track one's own certainty in dynamic settings threatens both assistant applications, where users may accept incorrect but confidently-stated outputs, and agentic deployments, where autonomous systems must continually revise their reasoning as new information emerges in dynamic environments. Several explanations may account for these observed patterns, including both human-like biases and LLM-specific factors:
+Our findings reveal significant limitations in LLMs' metacognitive abilities to assess argumentative positions and revise confidence in an adversarial debate context. This threatens assistant applications (where users may accept confidently-stated but incorrect outputs without verification) and agentic deployments (where systems must revise their reasoning and solutions based on new information in dynamically changing environments). Existing literature provides several explanations for LLM overconfidence, including human-like biases and LLM-specific factors:
 
 \paragraph{Human-like biases}
 \begin{itemize}
-    \item \textbf{Baseline debate overconfidence:} Research on human debaters by \citet{RePEc:sip:dpaper:06-042} found that college debate participants estimated their odds of winning at approximately 65\% on average, suggesting that high baseline confidence is prevalent for humans in debate settings similar to our experimental design with LLMs. However, as we previously noted, humans seem to adjust their percentages much more variably, with a much higher standard deviation of 35.10\%, suggesting that LLM overconfidence is much more persistent and context-agnostic.
+    \item \textbf{Baseline debate overconfidence:} Research on human debaters by \citet{RePEc:sip:dpaper:06-042} found college debate participants estimated their odds of winning at approximately 65\% on average, similar to our LLM findings. However, humans showed much higher variability (SD=35.10\%), suggesting LLM overconfidence is more persistent and context-agnostic.
 
-    \item \textbf{Persistent miscalibration:} Human psychology reveals systematic miscalibration patterns that parallel our findings. Like humans, LLMs exhibit limited accuracy improvement over repeated trials, mirroring our results \citep{Moore2008}.
+    \item \textbf{Evidence weighting bias:} \citet{GriffinTversky1992} found humans overweight evidence favoring their beliefs while underweighting its credibility, leading to overconfidence when strength is high but weight is low. \citet{Moore2008} and \citet{RePEc:sip:dpaper:06-042} found limited accuracy improvement over repeated human trials, mirroring our LLM results.
 
-    \item \textbf{Evidence weighting bias:} Crucially, seminal work by \citet{GriffinTversky1992} found that humans overweight the strength of evidence favoring their beliefs while underweighting its credibility or weight, leading to overconfidence when strength is high but weight is low.
-
-    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) recalls the human $\sim$70\% "attractor state" often used for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, potentially a learned artifact of alignment processes that steer LLMs towards human-like patterns \citep{west2025basemodelsbeataligned}.
+    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) resembles the human $\sim$70\% "attractor state" for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, although \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport} note that base models are not significantly biased this way.
 \end{itemize}
 
 \paragraph{LLM-specific factors}
 \begin{itemize}
-    \item \textbf{General overconfidence across models:} Research has shown that LLMs demonstrate systematic overconfidence across various tasks \citep{chhikara2025mindconfidencegapoverconfidence,xiong2024uncertainty}, with larger LLMs exhibiting greater overconfidence on difficult tasks while smaller LLMs show more consistent overconfidence across task types \citep{wen2024from}.
+    \item \textbf{General overconfidence:} Research shows systematic overconfidence across models and tasks \citep{chhikara2025mindconfidencegapoverconfidence,xiong2024uncertainty}, with larger LLMs more overconfident on difficult tasks and smaller ones consistently overconfident across task types \citep{wen2024from}.
 
-    \item \textbf{RLHF amplification effects:} Post-training for human preferences appears to significantly exacerbate overconfidence. Models trained via RLHF are more likely to indicate high certainty even when incorrect \citep{leng2025tamingoverconfidencellmsreward} and disproportionately output 7/10 for ratings \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport}, suggesting alignment processes inadvertently reinforce confidence biases.
+    \item \textbf{RLHF amplification:} Post-training for human preferences exacerbates overconfidence, biasing models to indicate high certainty even when incorrect \citep{leng2025tamingoverconfidencellmsreward} and provide more 7/10 ratings \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport} relative to base models.
 
-    \item \textbf{Failure to appropriately integrate new evidence:} \citet{wilie2024beliefrevisionadaptabilitylarge} introduced the Belief-R benchmark and showed that most models fail to appropriately revise their initial conclusions after receiving additional, contradicting information. Rather than reducing confidence when they should, models tend to stick to their initial stance. \citet{agarwal2025persuasionoverridestruthmultiagent} found that LLMs can be swayed to believe falsehoods with persuasive, verbose reasoning. Even smaller models can craft arguments that override truthful answers with high confidence, suggesting that LLMs may be susceptible to confident but flawed counterarguments.
+    \item \textbf{Poor evidence integration:} \citet{wilie2024beliefrevisionadaptabilitylarge} found that most models fail to revise initial conclusions after receiving contradicting information. \citet{agarwal2025persuasionoverridestruthmultiagent} found LLMs can be persuaded to accept falsehoods with high-confidence, verbose reasoning.
 
-    \item \textbf{Training data imbalance:} Training datasets predominantly feature successful task completion rather than explicit failures or uncertainty. This imbalance may limit models' ability to recognize and represent losing positions accurately \citep{zhou2023navigatinggreyareaexpressions}.
+    \item \textbf{Training data imbalance:} Datasets predominantly feature successful task completion over failures or uncertainty, hindering models' ability to recognize losing positions \citep{zhou2023navigatinggreyareaexpressions}. \citet{chung2025learningfailuresmultiattemptreinforcement} suggests failure samples in training data improves performance.
 \end{itemize}
 
 These combined factors likely contribute to the confidence escalation phenomenon we observe, where models fail to properly update their beliefs in the face of opposing arguments.
