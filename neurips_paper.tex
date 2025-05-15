@@ -177,10 +177,11 @@ Each configuration involved debates across the six policy topics, with models ro
 
 We implemented a structured three-round format (Opening, Rebuttal, Final) to focus on substantive reasoning rather than stylistic differences.
 
-\textbf{Concurrent Opening Round:} A key feature of our design was a non-standard opening round where both Proposition and Opposition models generated their opening speeches simultaneously, based only on the motion and their assigned side, \textit{before} seeing the opponent's case. This crucial step allowed us to capture each LLM's baseline confidence assessment prior to any interaction or exposure to opposing arguments.
+\textbf{Concurrent Opening Round:} Both models generated opening speeches simultaneously \textit{before} seeing their opponent's case, allowing us to capture initial baseline confidence before exposure to opposing arguments.
 
-\textbf{Subsequent Rounds:} Following the opening, speeches were exchanged, and the debate proceeded through a Rebuttal and Final round. When generating its speech in these subsequent rounds, each model had access to the full debate history from all preceding rounds (e.g., for the Rebuttal, both Opening speeches were available; for the Final, both Opening and both Rebuttal speeches were available). However, to maintain the symmetrical information state established in the simultaneous opening and avoid giving either side an immediate preview advantage within a round, neither the Proposition nor the Opposition model saw the opponent's speech for that specific round (e.g., the opponent's Rebuttal) before generating their own. Both models formulated their arguments based on the cumulative case presented in the history up to the start of that round, rather than as direct, real-time responses to the opponent's points in that turn. This design allowed us to evaluate how models integrated and responded to the opponent's case as it built over time, while ensuring fairness.
+\textbf{Subsequent Rounds:} For Rebuttal and Final rounds, each model accessed all prior debate history, excluding their opponent's current-round speech (e.g. for the Rebuttal, both previous Opening speeches and their own current Rebuttal speech were available). This design emphasised (1) fairness and information symmetry, preventing either side from having a first-mover advantage, (2) self-assessment as models only consider their own stance for that round, letting us evaluate how models revise their confidence in response to previous rounds' opposing arguments over time.
 
+We do not allow models to see both responses for the current round, as this would be less representative of common LLM/RL setups and real-life debates, where any confidence calibration must occur in real-time alongside the action, \textit{before} receiving informative feedback from the environment/opponent.
 
 \subsection{Core Prompt Structures \& Constraints}
 \label{subsec:prompts}
@@ -197,7 +198,9 @@ We implemented a structured three-round format (Opening, Rebuttal, Final) to foc
   belowcaptionskip=0pt
 }
 % -----------------------------------------------------
-Highly structured prompts were used for \textit{each} speech type to ensure consistency and enforce specific argumentative tasks, thereby isolating reasoning and self-assessment capabilities. The core structure and key required components for the Opening, Rebuttal, and Final speech prompts are illustrated in Figure~\ref{fig:prompts}.
+For Debaters, we used \textbf{Structured Prompts} for all Opening, Rebuttal, and Final speeches to ensure consistency and isolate reasoning from presentation style.
+
+For Judges, we included explicit \textbf{Judging Guidance} on direct clash, evidence quality, logical validity, response obligations, and impact analysis, while specifying that rhetoric would be ignored. For a summary of key components, see Figure~\ref{fig:prompts}; full verbatim prompt text is available under Appendix~\ref{appendix:debater_prompts}.
 
 \begin{figure*}[htbp]
   \centering
@@ -284,25 +287,18 @@ JUDGING GUIDANCE (same five criteria as above)
   \label{fig:prompts}
 \end{figure*}
 
-Highly structured prompts were used for \textit{each} speech type to ensure consistency and enforce specific argumentative tasks, thereby isolating reasoning and self-assessment capabilities.
-
-\textbf{Embedded Judging Guidance:} Crucially, all debater prompts included explicit \textbf{Judging Guidance} , instructing debaters on the importance of direct clash, evidence quality hierarchy, logical validity, response obligations, and impact analysis, while explicitly stating that rhetoric and presentation style would be ignored.
-
-Full verbatim prompt text for debaters is provided in Appendix~\ref{appendix:debater_prompts}.
-
 \subsection{Dynamic Confidence Elicitation}
 \label{subsec:confidence_elicitation}
 
 After generating the content for \textit{each} of their three speeches (including the concurrent opening), models were required to provide a private ``confidence bet''.
 
-\textbf{Mechanism:} This involved outputting a numerical value from 0 to 100, representing their perceived probability of winning the debate, using a specific XML tag (\texttt{\textless bet\_amount\textgreater}).
-Models were also prompted to provide private textual justification for their bet amount within separate XML tags (\texttt{\textless bet\_logic\_private\textgreater}), allowing for qualitative insight into their reasoning.
+\textbf{Mechanism:} Models output a numerical bet (0-100) representing their perceived win probability using \texttt{\textless bet\_amount\textgreater} tags, along with longform qualitative explanations of their reasoning in separate \texttt{\textless bet\_logic\_private\textgreater} tags.
 
-\textbf{Purpose:} This round-by-round elicitation allowed us to quantitatively track self-assessed performance dynamically throughout the debate, enabling analysis of confidence levels, calibration, and revision (or lack thereof) in response to the evolving argumentative context.
+\textbf{Purpose:} By tracking LLMs'self-assessed performance after each round, we can analyse their confidence calibration and responsiveness (or lack thereof) to opposing points over time.
 
 \subsection{Data Collection}
 \label{subsec:data_collection}
-The final dataset comprises the full transcripts of 240 debates, the round-by-round confidence bets (amount and private thoughts) from both debaters in each debate, and the detailed structured verdicts (winner, confidence, reasoning) from each of the six AI judges for the cross-model debates. This data enables the quantitative analysis of LLM overconfidence, confidence revision and calibration for the cross-model debates presented in our findings.
+Our dataset includes 240 debate transcripts with round-by-round confidence bets (numerical values and reasoning) from all debaters, plus structured verdicts from each of the 6 separate AI judges for cross-model debates (winner, confidence, reasoning). This enables comprehensive analysis of LLMs' confidence patterns, calibration, and belief revision throughout debates.
 
 
 \section{Results}
