@@ -300,16 +300,15 @@ After generating the content for \textit{each} of their three speeches (includin
 \label{subsec:data_collection}
 Our dataset includes 240 debate transcripts with round-by-round confidence bets (numerical values and reasoning) from all debaters, plus structured verdicts from each of the 6 separate AI judges for cross-model debates (winner, confidence, reasoning). This enables comprehensive analysis of LLMs' confidence patterns, calibration, and belief revision throughout debates.
 
-
 \section{Results}
 \label{sec:results}
 
-Our experimental setup, involving 60 simulated policy debates per configuration between ten state-of-the-art LLMs, with round-by-round confidence elicitation yielded several key findings regarding LLM metacognition and self-assessment in dynamic, multi-turn settings.
+Our experimental setup, involving 1) \textbf{60 simulated policy debates} per configuration between 10 frontier LLMs, and 2) \textbf{round-by-round confidence elicitation}, yielded several key findings regarding LLM metacognition and self-assessment in dynamic, multi-turn settings.
 
 \subsection{Pervasive Overconfidence Without Seeing Opponent Argument (Finding 1 and 4)}
 \label{sec:pervasive_overconfidence}
 
-A core finding across all four experimental configurations was significant LLM overconfidence, particularly evident in the initial concurrent opening round before models had seen any counterarguments. Given the inherent nature of a two-participant debate where one side wins and the other loses, a rational model should assess its baseline probability of winning at 50\% anticipating that the other debater too would make good arguments; however, observed initial confidence levels consistently and substantially exceeded this expectation.
+\textbf{Finding 1}: Across all four experimental configurations, LLMs exhibited \textbf{significant overconfidence in their initial assessment of debate performance before seeing any opposing arguments.} Given that a rational model should assess its baseline win probability at 50\% in a competitive debate, observed confidence levels consistently far exceeded this expectation.
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
@@ -340,17 +339,38 @@ A core finding across all four experimental configurations was significant LLM o
   \vspace{0.2cm}
   \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek/deepseek-r1-distill-qwen-14b:free had n=11}
 \end{table*}
+\begin{itemize}
+    \item \textbf{Cross-model debates}: Highest overconfidence (72.92\% $\pm$ 7.93)
+    \item \textbf{Standard Self-debates}: Substantial overconfidence (64.08\% $\pm$ 15.32)
+    \item \textbf{Public Bets}: Similar to standard self-debates (63.50\% $\pm$ 16.38), with no significant difference (mean difference = 0.58, t=0.39, p=0.708)
+    \item \textbf{Informed Self (50\% explicit)}: Precise calibration (50.00\% $\pm$ 13.61), representing a significant reduction from Standard Self (mean difference = 14.08, t=7.07, p<0.001)
+\end{itemize}
 
-As shown in Table~\ref{tab:initial_confidence}, the overall average initial confidence reported by models in the Cross-model, Standard Self, and Public Bets configurations was consistently and significantly above the 50\% baseline. Specifically, the mean initial confidence was 72.92\% ($\pm$ 7.93 SD, n=120) for Cross-model debates, 64.08\% ($\pm$ 15.32 SD, n=120) for Standard Self debates (private bets without 50\% instruction), and 63.50\% ($\pm$ 16.38 SD, n=120) for Public Bets (public bets without 50\% instruction). One-sample t-tests confirmed that the mean initial confidence in each of these three conditions was statistically significantly greater than 50\% (Cross-model: t=31.67, p<0.001; Standard Self: t=10.07, p<0.001; Public Bets: t=9.03, p<0.001). Wilcoxon signed-rank tests yielded similar conclusions (all p<0.001), confirming the robustness of this finding to distributional assumptions. This pervasive overconfidence in the initial assessment, before any interaction with an opponent's case, suggests a fundamental miscalibration bias in LLMs' self-assessment of their standing in a competitive context.
+\textbf{Statistical evidence}: One-sample t-tests confirm initial confidence significantly exceeds the rational 50\% baseline in Cross-model (t=31.67, p<0.001), Standard Self (t=10.07, p<0.001), and Public Bets (t=9.03, p<0.001) configurations. Wilcoxon tests yielded identical conclusions (all p<0.001).
 
-We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06-042}, who report a comparable mean of 65.00\%, but a much higher standard deviation of 35.10\%. This suggests that \textbf{while humans and LLMs are comparably overconfident on average, LLMs are much more consistently overconfident, while humans seem to adjust their percentages much more variably.}
+\textbf{Individual model analysis}: Overconfidence was widespread but varied, with 30/40 model-configuration combinations showing significant overconfidence (one-sided t-tests, $\alpha=0.05$). Some models displayed high variability (e.g., Gemini 2.0 Flash: $\pm$ 27.03 SD in Standard Self), while others (e.g. o3-Mini, QWQ-32b) achieved perfect calibration (50.00\% $\pm$ 0.00) when explicitly informed.
 
-In stark contrast, the overall average initial confidence in the Informed Self configuration was precisely 50.00\% ($\pm$ 13.61 SD, n=120). A one-sample t-test confirmed that this mean was not statistically significantly different from 50\% (t=0.00, p=1.0). Furthermore, a paired t-test comparing the per-model means in the Standard Self and Informed Self configurations revealed a statistically significant reduction in initial confidence when models were explicitly informed of the 50\% win probability (mean difference = 14.08, t=7.07, p<0.001). This demonstrates that while the default state is overconfident, models can align their *initial* reported confidence much closer to the rational baseline when explicitly anchored with the correct probability.
+\textbf{Human comparison}: We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06-042}, who report a comparable mean of 65.00\%, but much higher variability (SD=35.10\%). This suggests that \textbf{while humans and LLMs are comparably overconfident on average, LLMs are much more consistently overconfident, while humans seem to adjust their percentages much more variably.}
 
-Analysis at the individual model level (see Appendix \ref{appendix:initial_tests} for full results) shows that this overconfidence was widespread, with 30 out of 40 individual model-configuration combinations showing initial confidence significantly greater than 50\% (one-sided t-tests, $\alpha=0.05$). However, we also observed considerable variability in initial confidence (large standard deviations), both across conditions and for specific models like Google Gemini 2.0 Flash ($\pm$ 27.03 SD in Standard Self). Notably, some models, such as OpenAI o3-Mini and Qwen QWQ-32b, reported perfectly calibrated initial confidence (50.00 $\pm$ 0.00 SD) in the Informed Self condition. The non-significant difference in overall mean initial confidence between Standard Self and Public Bets (mean difference = 0.58, t=0.39, p=0.708) suggests that simply making the initial bet public does not, on average, significantly alter the self-assessed confidence compared to the private default.
+\textbf{Implications}: LLMs exhibit systematic miscalibration in competitive contexts but can be corrected through explicit probability anchoring. Their overconfidence is more consistent than humans', suggesting less context-sensitivity in self-assessment.
 
-\subsection{Confidence Escalation among models (Finding 2)}
-Building upon the pervasive initial overconfidence (Section \ref{sec:pervasive_overconfidence}), a second critical pattern observed across \emph{all four} experimental configurations was a significant \textbf{confidence escalation}. This refers to the consistent tendency for models' self-assessed probability of winning to increase over the course of the debate, from the initial Opening round to the final Closing statements. As illustrated in Table \ref{tab:escalation_summary}, the overall mean confidence across models rose substantially in every configuration. For instance, mean confidence increased from 72.92\% to 83.26\% in Cross-model debates, from 64.08\% to 75.20\% in Standard Self-debates, from 63.50\% to 74.15\% in Public Bets, and notably, even from a calibrated 50.00\% to 57.08\% in Informed Self-debates. Paired statistical tests confirmed these overall increases from Opening to Closing were highly significant in all configurations (all p<0.001). While this pattern of escalation was statistically significant on average across each configuration, the magnitude and statistical significance of escalation varied at the individual model level (see Appendix \ref{app:escalation} for full per-model test results). This widespread and significant upward drift in self-confidence is highly irrational, particularly evident in the self-debate conditions where models know they face an equally capable opponent and the rational win probability is 50\% from the outset. Escalating confidence in this context, especially when starting near the correct 50\% as in the Informed Self condition, demonstrates a fundamental failure to dynamically process adversarial feedback and objectively assess relative standing, defaulting instead to an unjustified increase in self-assurance regardless of the opponent's performance or the debate's progression.
+\subsection{Confidence Escalation Among Models (Finding 2)}
+\label{subsec:confidence_escalation}
+
+\textbf{Finding 2}: Across all 4 experiments, LLMs display significant \textbf{confidence escalation}—consistently increasing their self-assessed win probability as debates progress, in spite of opposing arguments.
+
+\begin{itemize}
+    \item \textbf{Cross-model debates}: Significant increase from 72.92\% to 83.26\% ($\Delta$=10.34, p<0.001)
+    \item \textbf{Standard Self-debates}: Largest increase from 64.08\% to 75.20\% ($\Delta$=11.12, p<0.001)  
+    \item \textbf{Public Bets}: Significant increase from 63.50\% to 74.15\% ($\Delta$=10.65, p<0.001)
+    \item \textbf{Informed Self}: Smallest, still significant increase from 50\% to 57.08\% ($\Delta$=7.08, p<0.001)
+\end{itemize}
+
+\textbf{Statistical evidence}: Paired t-tests confirmed significant increases across all configurations from Opening to Closing (all p<0.001). This escalation occurred in both debate transitions, with only Rebuttal→Closing in the Informed Self condition showing non-significance (p=0.0945).
+
+\textbf{Individual model analysis}: While this pattern was consistent across experiments, the magnitude varied among individual models (see Appendix~\ref{app:escalation} for full per-model test results).
+
+\textbf{Implications}: This widespread upward drift in self-confidence is highly irrational, especially in the Informed Self experiment, where models are told they face equally capable opponents with a rational win probability of 50\%. Escalating confidence from the 50\% baseline demonstrates that this tendency is persistent even when models are explicitly asked to consider a more moderate baseline.
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
