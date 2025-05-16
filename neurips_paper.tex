@@ -148,7 +148,7 @@ Our work extends calibration and debate literature by using structured, zero-sum
 \section{Methodology}
 \label{sec:methodology}
 
-We investigate LLMs' dynamic metacognitive abilities through competitive policy debates, focusing on confidence calibration and revision. Models provided \textbf{private confidence bets on their confidence in winning} (0-100) and explained their reasoning in a \textbf{private scratchpad} after each speech, allowing direct observation of their self-assessments throughout the debate process.
+We assess LLMs' metacognitive abilities through competitive policy debates, focusing on confidence calibration and revision. Models accessed via OpenRouter API (total cost \$13, see Appendix~\ref{appendix:compute_cost}) provided \textbf{private confidence bets on their confidence in winning} (0-100) and explained their reasoning in a \textbf{private scratchpad} after each speech, allowing direct observation of their self-assessments throughout the debate process.
 
 To test different factors influencing LLMs' confidence, we conduct \textbf{four main ablation experiments}:
 
@@ -272,7 +272,7 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
-  \caption{Mean (± Standard Deviation) Initial Confidence (0-100\%) Reported by LLMs Across Experimental Configurations. All experiments used a sample size of n=12 per model per configuration unless otherwise marked with an asterisk (*). The 'Standard Self' condition represents private bets in self-debates without explicit probability instruction, while 'Informed Self' includes explicit instruction about the 50\% win probability.}
+  \caption{Mean (± Standard Deviation) Initial Confidence (0-100\%) Reported by LLMs Across Experimental Configurations. All experiments used a sample size of n=12 per model per configuration unless otherwise marked with an asterisk (*). Total sample size per configuration is n=120, as in each of the 60 debates, there are 2 participants. 'Standard Self' refers to private bets in self-debates without explicit instruction about 50\% win probability, while 'Informed Self' includes explicit instruction.}
   \label{tab:initial_confidence}
   \resizebox{\textwidth}{!}{ % This will scale the table to fit within the text width
   \begin{tabular}{lcccc}
@@ -437,7 +437,7 @@ Our findings reveal significant limitations in LLMs' metacognitive abilities to 
     \item \textbf{Training data imbalance:} Datasets predominantly feature successful task completion over failures or uncertainty, hindering models' ability to recognize losing positions \citep{zhou2023navigatinggreyareaexpressions}. \citet{chung2025learningfailuresmultiattemptreinforcement} suggests failure samples in training data improves performance.
 \end{itemize}
 
-\subsection{Implications for AI Safety and Deployment}
+\subsection{Broader Impacts for AI Safety and Deployment}
 
 The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems multi-turn dynamic tasks —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
 
@@ -1094,6 +1094,37 @@ We appended this text to the prompt given to the LLM:{\ttfamily "NOTE: In this d
 
 After your speech, you must include a public confidence bet (0-100) indicating how likely you think you are to win this debate"}
 
+\section{Computational Resources and Cost}
+\label{appendix:compute_cost}
+All experiments were conducted using publicly available Large Language Model APIs accessed via OpenRouter.
+The overall computational cost for generating the debate data across all models and experiments was approximately \$13.
+Table~\ref{tab:model_token_cost} provides a detailed breakdown of token usage and estimated cost per model for the primary cross-model debate experiments. These figures cover the generation of 60 debates per model, with minor variations for some models due to API availability or slight differences in total debate participation as detailed in Appendix~\ref{appendix:pairings}.
+
+
+\begin{table}[h]
+\centering
+\caption{Model Token Usage and Estimated Cost for Cross-Model Debates.}
+\label{tab:model_token_cost}
+\begin{tabular}{lrrc}
+\toprule
+\textbf{Model} & \textbf{Total Tokens} & \textbf{Cost (\$)} & \textbf{Debates} \\
+\midrule
+qwen/qwq-32b:free                        & 1,150,579 & 0.00  & 60 \\
+anthropic/claude-3.7-sonnet              & 969,842   & 6.55  & 61 \\
+google/gemma-3-27b-it                    & 882,665   & 0.11  & 60 \\
+openai/o3-mini                           & 878,680   & 2.17  & 60 \\
+google/gemini-2.0-flash-001              & 871,164   & 0.17  & 60 \\
+qwen/qwen-max                            & 786,313   & 2.41  & 60 \\
+openai/gpt-4o-mini                       & 648,944   & 0.18  & 60 \\
+deepseek/deepseek-r1-distill-qwen-14b:free & 615,607 & 0.00  & 59 \\
+deepseek/deepseek-chat                   & 611,677   & 0.73  & 60 \\
+anthropic/claude-3.5-haiku               & 539,492   & 0.84  & 60 \\
+\midrule
+\multicolumn{2}{l}{\textbf{Total Estimated Cost}} & \textbf{13.16} & \\
+\bottomrule
+\end{tabular}
+\end{table}
+
 \section{Hypothesis Tests}
 \paragraph{Test for General Overconfidence in Opening Statements}
 \label{appendix:test_overconfidence_opening}
@@ -1543,18 +1574,18 @@ We conducted an additional ablation study testing debates with four rounds inste
 The experimental setup was identical to our main three-round debates, except for the addition of a second rebuttal round between the first rebuttal and closing speeches. We conducted 28 debates, collecting 223 non-zero confidence bets across all rounds.
 
 \subsection{Results}
-The mean initial confidence across all models was 49.73% ± 12.04 (n=56), with subsequent rounds showing escalation to 52.10% ± 16.56 after first rebuttal, and ultimately reaching 58.64% ± 16.64 in closing statements. This escalation pattern was statistically significant (Opening→Closing Δ=9.00, p=0.0006).
+The mean initial confidence across all models was 49.73\% ± 12.04 (n=56), with subsequent rounds showing escalation to 52.10\% ± 16.56 after first rebuttal, and ultimately reaching 58.64\% ± 16.64 in closing statements. This escalation pattern was statistically significant (Opening→Closing $\Delta$=9.00, p=0.0006).
 
 Individual model performance varied considerably:
 
 \begin{itemize}
-    \item \textbf{o3-mini} showed the most dramatic escalation (53.75% → 72.92%, p=0.0024)
-    \item \textbf{deepseek-chat} displayed significant but more moderate escalation (55.83% → 64.58%, p=0.0081)
-    \item \textbf{qwq-32b:free} exhibited an unusual V-shaped pattern, dropping to 32.19% in middle rounds before rising to 58.12% (net Δ=13.12, p=0.0031)
+    \item \textbf{o3-mini} showed the most dramatic escalation (53.75\% → 72.92\%, p=0.0024)
+    \item \textbf{deepseek-chat} displayed significant but more moderate escalation (55.83\% → 64.58%, p=0.0081)
+    \item \textbf{qwq-32b:free} exhibited an unusual V-shaped pattern, dropping to 32.19\% in middle rounds before rising to 58.12\% (net $\Delta$=13.12, p=0.0031)
     \item \textbf{claude-3.7-sonnet} and \textbf{gemini-2.0-flash-001} maintained relatively stable confidence levels throughout
 \end{itemize}
 
-The lower initial confidence compared to our main experiments (49.73% vs 72.92%) likely reflects the specific subset of models rather than any effect of the additional round, as models were not informed of the total number of rounds when making their opening statements.
+The lower initial confidence compared to our main experiments (49.73\% vs 72.92\%) likely reflects the specific subset of models rather than any effect of the additional round, as models were not informed of the total number of rounds when making their opening statements.
 
 \subsection{Limitations}
 The primary limitation of this ablation was our inability to include all models from the main study. Models excluded from this analysis (including claude-3.5-haiku, gpt-4o-mini, and gemma-3-27b-it) consistently failed to maintain proper XML formatting across the increased number of rounds, making confidence extraction unreliable. This selective inclusion of only the most instruction-following models may have introduced sampling bias, particularly given that some excluded models showed high confidence tendencies in the main experiments.
@@ -1582,11 +1613,6 @@ While these results provide additional evidence for confidence escalation in mul
 
 \section*{NeurIPS Paper Checklist}
 
-%%% BEGIN INSTRUCTIONS %%%
-% The checklist is designed to encourage best practices for responsible machine learning research...
-% DELETE THIS INSTRUCTION BLOCK BEFORE SUBMISSION
-%%% END INSTRUCTIONS %%%
-
 \begin{enumerate}
 
 \item {\bf Claims}
@@ -1607,17 +1633,17 @@ While these results provide additional evidence for confidence escalation in mul
     \item {\bf Experimental result reproducibility}
     \item[] Question: Does the paper fully disclose all the information needed to reproduce the main experimental results of the paper to the extent that it affects the main claims and/or conclusions of the paper (regardless of whether the code and data are provided or not)?
     \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
-    \item[] Justification: The paper and appedix list every model version, prompt template, pairing schedule, and statistical test. Together these details are sufficient for an independent group to recreate the 240 debates and rerun our analyses even before the code release planned upon acceptance
+    \item[] Justification: The paper and appendix list every model version, prompt template, pairing schedule, and statistical test. All prompts and model setups are detailed in Appendix A.2; raw transcripts and code for replication are in the supplemental material zip. Together these details should be sufficient for an independent group to recreate the 240 debates and rerun our analyses with the same OpenRouter API-based setup.
 
 \item {\bf Open access to data and code}
     \item[] Question: Does the paper provide open access to the data and code, with sufficient instructions to faithfully reproduce the main experimental results, as described in supplemental material?
     \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
-    \item[] Justification: We provide all code in the supplemntary material along with transcripts.
+    \item[] Justification: We provide all code in the supplementary material along with transcripts.
 
 \item {\bf Experimental setting/details}
     \item[] Question: Does the paper specify all the training and test details (e.g., data splits, hyperparameters, how they were chosen, type of optimizer, etc.) necessary to understand the results?
     \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
-    \item[] Justification: The appendix provides all models, topics and prompts used
+    \item[] Justification: The appendix provides all models, topics and prompts used.
 
 \item {\bf Experiment statistical significance}
     \item[] Question: Does the paper report error bars suitably and correctly defined or other appropriate information about the statistical significance of the experiments?
@@ -1627,7 +1653,7 @@ While these results provide additional evidence for confidence escalation in mul
 \item {\bf Experiments compute resources}
     \item[] Question: For each experiment, does the paper provide sufficient information on the computer resources (type of compute workers, memory, time of execution) needed to reproduce the experiments?
     \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
-    \item[] Justification: We only use publicly available APIs from OpenRouter
+    \item[] Justification: All experiments utilized publicly available model APIs accessed via OpenRouter. The total computational cost for generating all debate data was approximately \$13, indicating overall negligible resource use. A detailed breakdown of token usage and per-model costs is provided in Appendix~\ref{appendix:compute_cost}.
 
 \item {\bf Code of ethics}
     \item[] Question: Does the research conducted in the paper conform, in every respect, with the NeurIPS Code of Ethics \url{https://neurips.cc/public/EthicsGuidelines}?
@@ -1647,7 +1673,7 @@ While these results provide additional evidence for confidence escalation in mul
 \item {\bf Licenses for existing assets}
     \item[] Question: Are the creators or original owners of assets (e.g., code, data, models), used in the paper, properly credited and are the license and terms of use explicitly mentioned and properly respected?
     \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
-    \item[] Justification: All commercial LLMs used in the study are properly credited to their respective companies (OpenAI, Anthropic, Google, DeepSeek, Qwen) in Table 1 and throughout the paper. No proprietary code or datasets were used beyond these API-accessed models.
+    \item[] Justification: All commercial LLMs used in the study are properly credited to their respective companies (OpenAI, Anthropic, Google, DeepSeek, Qwen) in Table 1 and throughout the paper. All API access was subject to the models' respective terms of service. No proprietary code or datasets were used beyond these API-accessed models.
 
 
 \item {\bf New assets}
