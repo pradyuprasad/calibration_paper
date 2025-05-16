@@ -94,6 +94,8 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 
 \begin{abstract}
   Can LLMs accurately adjust their confidence when facing opposition? Building on previous studies measuring calibration on static fact-based question-answering tasks, we evaluate Large Language Models (LLMs) in a dynamic, adversarial debate setting, uniquely combining two realistic factors: (a) a \textbf{multi-turn format} requiring models to update beliefs as new information emerges, and (b) a \textbf{zero-sum structure} to control for task-related uncertainty, since mutual high-confidence claims imply systematic overconfidence. We organized 60 three-round policy debates among ten state-of-the-art LLMs, with models privately rating their confidence (0-100) in winning after each round. We observed five concerning patterns: \textit{(1)} \textbf{Systematic overconfidence}: models began debates with average initial confidence of 72.9\% vs. a rational 50\% baseline. \textit{(2) Confidence escalation}: rather than reducing confidence as debates progressed, debaters increased their win probabilities, averaging 83\% by the final round. \textit{(3) Mutual overestimation}: in 61.7\% of debates, both sides simultaneously claimed $\geq$75\% probability of victory, a logical impossibility. \textit{(4) Persistent self-debate bias}: models debating identical copies increased confidence from 64.1\% to 75.2\%; even when explicitly informed their chance of winning was exactly 50\%, confidence still rose (from 50.0\% to 57.1\%). \textit{(5) Misaligned private reasoning}: models' private scratchpad thoughts sometimes differed from their public confidence ratings, raising concerns about faithfulness of chain-of-thought reasoning. These results suggest LLMs lack the ability to accurately self-assess or update their beliefs in dynamic, multi-turn tasks; a major concern as LLM outputs are deployed without careful review in assistant roles or agentic settings.
+  %Industry attention to this calibration gap is growing: just hours before our submission, Cognition Labs released Devin~2.1, a production coding agent that surfaces a per-task \emph{Confidence Score} and varies its behavior accordingly \citep{cognitionlabs_devin21_2025}. 
+  %However, language models often struggle to express their confidence in a meaningful or reliable way.
   \end{abstract}
 
 % --- Main Body of the Paper ---
@@ -101,7 +103,7 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 
 \section{Introduction}
 
-Large language models (LLMs) are increasingly deployed in complex domains requiring critical thinking and reasoning under uncertainty, such as coding and research \citep{handa2025economictasksperformedai, zheng2025deepresearcherscalingdeepresearch}. A foundational requirement is calibration—aligning confidence with correctness. Poorly calibrated LLMs create risks: In \textbf{assistant roles}, users may accept incorrect but confidently-stated legal analysis without verification, especially in domains where they lack expertise, while in \textbf{agentic settings}, autonomous coding and research agents may persist with flawed reasoning paths with increasing confidence despite encountering contradictory evidence. However, language models often struggle to express their confidence in a meaningful or reliable way.
+Large language models (LLMs) are increasingly deployed in complex domains requiring critical thinking and reasoning under uncertainty, such as coding and research \citep{handa2025economictasksperformedai, zheng2025deepresearcherscalingdeepresearch}. A foundational requirement is calibration—aligning confidence with correctness. Poorly calibrated LLMs create risks: In \textbf{assistant roles}, users may accept incorrect but confidently-stated legal analysis without verification, especially in domains where they lack expertise, while in \textbf{agentic settings}, autonomous coding and research agents may persist with flawed reasoning paths with increasing confidence despite contradictory evidence. Indeed, hours before our submission, Cognition Labs released Devin~2.1, a coding agent that relies on a 0-100 \emph{Confidence Score} \citep{cognitionlabs_devin21_2025}
 
 In this work, we study how well LLMs revise their confidence when facing opposition in adversarial settings. While recent work has explored calibration in static fact-based QA \citep{tian2023justask, xiong2024uncertainty, kadavath2022know,groot-valdenegro-toro-2024-overconfidence}, we introduce two critical innovations:
 (1) a \textbf{dynamic, multi-turn debate format} requiring models to update beliefs as new, conflicting information emerges, and
@@ -126,6 +128,15 @@ Our results reveal a fundamental metacognitive deficit in current LLMs, with fiv
 \end{enumerate}
 
 Our findings reveal a critical limitation for both assistive and agentic applications.Confidence escalation represents an anti-Bayesian drift where LLMs become more overconfident after encountering counter-arguments. This undermines reliability in two contexts: (1) assistant roles, where overconfident outputs may be accepted without verification, and (2) agentic settings, where systems require accurate self-assessment during extended multi-urn interactions. In both cases, LLMs' inability to recognize when they're wrong or integrate opposing evidence creates significant risks—from providing misleading advice to pursuing flawed reasoning paths in autonomous tasks.
+
+%Industry attention to this calibration gap is growing: just hours before our submission, Cognition Labs released Devin~2.1, a production coding agent that surfaces a per-task \emph{Confidence Score} and varies its behavior accordingly \citep{cognitionlabs_devin21_2025}. 
+However, language models often struggle to express their confidence in a meaningful or reliable way.
+
+%Indeed, commercial developers are already attempting to mitigate this risk—Devin~2.1 now pauses on low\-confidence tickets and exposes its task\-level certainty to users, explicitly targeting the same failure mode we document \citep{cognitionlabs_devin21_2025}. Rigorous third\-party evaluation of its calibration performance is still pending.
+
+%The urgency of addressing these issues is reflected in recent industry developments: Devin~2.1, released on the day of this submission, attaches quantitative confidence scores to every coding task and blocks autonomous progress when its estimate is low \citep{cognitionlabs_devin21_2025}. While we have not yet had the opportunity to benchmark Devin within our debate framework, its design decision provides real\-world evidence that the calibration challenges we study are already impacting deployed agentic systems.
+
+%Until models can better recognize their limitations and revise confidence when challenged, deployment in high\-stakes domains requires careful safeguards—particularly external validation mechanisms for assistant applications and continuous confidence calibration checks for agentic systems.
 
 \section{Related Work}
 
@@ -298,7 +309,7 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
   }
   \label{app:tab:initial_confidence}
   \vspace{0.2cm}
-  \footnotesize{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek-r1-distill-qwen-14b:free had n=11}
+  \footnotesize{\textit{*For Cross-model, anthropic/claude-3.7-sonnet had n=13, deepseek-r1-distill-qwen-14b:free had n=11}}
 \end{table*}
 \begin{itemize}
     \item \textbf{Cross-model debates}: Highest overconfidence (72.92\% $\pm$ 7.93)
@@ -352,7 +363,7 @@ This irrational upward drift, even when explicitly anchored to 50\%, shows persi
   \end{tabular}
   }
   \vspace{0.2cm}
-  \footnotesize{* p$\leq$0.05, ** p$\leq$0.01, *** p$\leq$0.001. All sample sizes are N=120 per debate setup, total N=480 for all 4 debates.}
+  \footnotesize{\textit{* p$\leq$0.05, ** p$\leq$0.01, *** p$\leq$0.001. All sample sizes are N=120 per debate setup, total N=480 for all 4 debates.}}
 \end{table*}
 
 \subsection{Logical Impossibility: Simultaneous High Confidence (Finding 3)}
@@ -441,7 +452,7 @@ Our findings reveal significant limitations in LLMs' metacognitive abilities to 
 
 \subsection{Broader Impacts for AI Safety and Deployment}
 
-The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems multi-turn dynamic tasks —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
+The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or coding, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems such as \citet{cognitionlabs_devin21_2025}'s new coding agent that uses 0-100 confidence scores —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
 
 Our analysis of private reasoning versus public betting behavior (Finding 5) raises additional concerns about chain-of-thought (CoT) faithfulness. The discrepancies observed between models' internal reasoning and expressed confidence suggest that verbalized reasoning processes may not accurately reflect models' actual decision-making. This undermines a key assumption underlying CoT-based interpretability methods—that models' explicitly articulated reasoning reflects their internal computation. If LLMs generate post-hoc justifications rather than transparent reasoning trails, this limits our ability to detect flawed reasoning through reasoning traces alone, creating blind spots in monitoring and oversight systems that rely on CoT transparency.
 
@@ -479,7 +490,7 @@ These safeguards are particularly vital when deploying LLMs in assistant roles w
 \subsection{Limitations and Future Research Directions}
 \label{subsec:limitations_future}
 
-\paragraph{Exploring Agentic Workflows.} We document overconfidence and propose some mitigations geared towards debate. Further testing is needed for generalising beyond debate to multi-turn, long-horizon agentic tasks common in code generation and web search. We've observed instances where agents overconfidently declare complex tasks solved when they're not. Related research on LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
+\paragraph{Exploring Agentic Workflows.} We document overconfidence and propose some mitigations geared towards debate. Further testing is needed for generalising beyond debate to multi-turn, long-horizon agentic tasks common in code generation and web search. \citet{cognitionlabs_devin21_2025} which directly uses 0-100 confidence scores for their new coding agent, is highly relevant. Although we have not had time to test it, it is a promising and timely validation of the relevance of our work. Related research on LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
 
 \paragraph{Judging Limitations and Win-Rate Imbalance.} Two related challenges affected our debate evaluation: (1) Opposition positions consistently won approximately 70\% of the time despite balanced topic design, and (2) establishing reliable ground truth for debate outcomes proved difficult. Our AI jury system faced both inter-judge reliability issues (different LLMs reaching different conclusions) and intra-judge consistency problems (identical debates receiving different verdicts). Without extensive human expert judging, we cannot definitively determine which model "won" any given debate. However, our core findings about systematic overconfidence remain valid because (a) the zero-sum nature of debates makes simultaneous high confidence logically impossible, and (b) we observed persistently high overconfidence patterns in self-debates where models faced exact copies of themselves—scenarios where win probability must mathematically be exactly 50\%. These judging challenges underscore the need for improved debate evaluation methods in future work. Details about our AI jury implementation can be found in Appendix \ref{appendix:ai_jury}
 
@@ -487,12 +498,10 @@ These safeguards are particularly vital when deploying LLMs in assistant roles w
 
 Our experiments reveal five consistent metacognitive failures: initial overconfidence, escalating certainty, mutually impossible high confidence, self-debate bias, and misaligned private reasoning, demonstrating current LLMs' inability to accurately self-assess in dynamic, multi-turn contexts.
 
-Our zero-sum debate framework provides a novel method for evaluating LLM metacognition that better reflects the dynamic, interactive contexts of real-world applications than static fact-verification. The framework's two key innovations— (1) a multi-turn format requiring belief updates as new information emerges and (2) a zero-sum structure where mutual high confidence claims are mathematically inconsistent—allow us to isolate and measure confidence miscalibration.
-
-This metacognitive limitation manifests as distinct failure modes in different deployment contexts:
+Our zero-sum debate framework provides a novel method for evaluating LLM metacognition that better reflects the dynamic, interactive contexts of real-world applications than static fact-verification. The framework's two key innovations— (1) a multi-turn format requiring belief updates as new information emerges and (2) a zero-sum structure where mutual high confidence claims are mathematically inconsistent—allow us to isolate and measure confidence miscalibration that can cause issues in:
 \begin{itemize}
     \item \textbf{Assistant roles:} Users may accept incorrect but confidently-stated outputs without verification, especially in domains where they lack expertise. For example, a legal assistant might provide flawed analysis with increasing confidence precisely when they should become less so, causing users to overlook crucial counterarguments or alternative perspectives.
-    \item \textbf{Agentic systems:} Autonomous agents operating in extended reasoning processes cannot reliably recognize when their solution path is weakening or when they should revise their approach. As our results show, LLMs persistently increase confidence despite contradictory evidence, risking compounding errors in multi-step tasks without appropriate calibration.
+    \item \textbf{Agentic systems:} Coding agents such as \citet{cognitionlabs_devin21_2025}'s confidence-calibrated agent may struggle to recognize when their solution path is weakening or when they should revise their approach. As our results show, current LLMs persistently increase confidence despite contradictory evidence, risking compounding errors in multi-step tasks even with calibration.
 \end{itemize}
 
 Until models can better recognize their limitations and revise confidence when challenged, deployment in high-stakes domains requires careful safeguards—particularly external validation mechanisms for assistant applications and continuous confidence calibration checks for agentic systems.

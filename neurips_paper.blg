@@ -5,44 +5,47 @@ Reallocating 'name_of_file' (item size: 1) to 9 items.
 The style file: plainnat.bst
 Reallocating 'name_of_file' (item size: 1) to 11 items.
 Database file #1: references.bib
-You've used 31 entries,
+Warning--entry type for "cognitionlabs_devin21_2025" isn't style-file defined
+--line 707 of file references.bib
+You've used 32 entries,
             2773 wiz_defined-function locations,
-            764 strings with 17662 characters,
-and the built_in function-call counts, 30362 in all, are:
-= -- 2174
-> -- 3916
-< -- 12
-+ -- 1308
-- -- 1276
-* -- 3111
-:= -- 5145
-add.period$ -- 114
-call.type$ -- 31
-change.case$ -- 513
-chr.to.int$ -- 30
-cite$ -- 62
-duplicate$ -- 598
-empty$ -- 1088
-format.name$ -- 1319
-if$ -- 5859
+            769 strings with 17908 characters,
+and the built_in function-call counts, 30670 in all, are:
+= -- 2202
+> -- 3926
+< -- 13
++ -- 1312
+- -- 1279
+* -- 3128
+:= -- 5192
+add.period$ -- 118
+call.type$ -- 32
+change.case$ -- 517
+chr.to.int$ -- 31
+cite$ -- 64
+duplicate$ -- 613
+empty$ -- 1120
+format.name$ -- 1323
+if$ -- 5925
 int.to.chr$ -- 2
 int.to.str$ -- 1
 missing$ -- 16
-newline$ -- 182
-num.names$ -- 128
-pop$ -- 1066
+newline$ -- 188
+num.names$ -- 132
+pop$ -- 1078
 preamble$ -- 1
-purify$ -- 482
+purify$ -- 485
 quote$ -- 0
-skip$ -- 828
+skip$ -- 840
 stack$ -- 0
-substring$ -- 167
-swap$ -- 56
+substring$ -- 169
+swap$ -- 58
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 341
+type$ -- 352
 warning$ -- 0
-while$ -- 105
+while$ -- 108
 width$ -- 0
-write$ -- 428
+write$ -- 442
+(There was 1 warning)
