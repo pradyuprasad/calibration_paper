@@ -477,17 +477,15 @@ These safeguards are particularly vital when deploying LLMs in assistant roles w
 \subsection{Limitations and Future Research Directions}
 \label{subsec:limitations_future}
 
-\paragraph{Exploring Agentic Workflows.} Testing is needed beyond debate settings to multi-turn, long-horizon agentic tasks common in code generation and web search. We've observed instances where agents overconfidently declare complex tasks solved when they're not. Related research on LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
+\paragraph{Exploring Agentic Workflows.} We document overconfidence and propose some mitigations geared towards debate. Further testing is needed for generalising beyond debate to multi-turn, long-horizon agentic tasks common in code generation and web search. We've observed instances where agents overconfidently declare complex tasks solved when they're not. Related research on LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
 
 \paragraph{Judging Limitations and Win-Rate Imbalance.} Two related challenges affected our debate evaluation: (1) Opposition positions consistently won approximately 70\% of the time despite balanced topic design, and (2) establishing reliable ground truth for debate outcomes proved difficult. Our AI jury system faced both inter-judge reliability issues (different LLMs reaching different conclusions) and intra-judge consistency problems (identical debates receiving different verdicts). Without extensive human expert judging, we cannot definitively determine which model "won" any given debate. However, our core findings about systematic overconfidence remain valid because (a) the zero-sum nature of debates makes simultaneous high confidence logically impossible, and (b) we observed persistently high overconfidence patterns in self-debates where models faced exact copies of themselves—scenarios where win probability must mathematically be exactly 50\%. These judging challenges underscore the need for improved debate evaluation methods in future work. Details about our AI jury implementation can be found in Appendix \ref{appendix:ai_jury}
-
-\paragraph{Designing Generalised Interventions.} We document overconfidence and propose some mitigations geared towards debate, but domain-general interventions warrant further research.
 
 \section{Conclusion}
 
 Our experiments reveal five consistent metacognitive failures: initial overconfidence, escalating certainty, mutually impossible high confidence, self-debate bias, and misaligned private reasoning, demonstrating current LLMs' inability to accurately self-assess in dynamic, multi-turn contexts.
 
-Our zero-sum debate framework provides a novel method for evaluating LLM metacognition that better reflects the dynamic, interactive contexts of real-world applications than static fact-verification. The framework's two key innovations— (1) a multi-turn format requiring belief updates as new information emerges and (2) a zero-sum structure where mutual high confidence claims are mathematically inconsistent—allow us to directly measure confidence calibration deficiencies without relying on external ground truth.
+Our zero-sum debate framework provides a novel method for evaluating LLM metacognition that better reflects the dynamic, interactive contexts of real-world applications than static fact-verification. The framework's two key innovations— (1) a multi-turn format requiring belief updates as new information emerges and (2) a zero-sum structure where mutual high confidence claims are mathematically inconsistent—allow us to isolate and measure confidence miscalibration.
 
 This metacognitive limitation manifests as distinct failure modes in different deployment contexts:
 \begin{itemize}
@@ -495,7 +493,7 @@ This metacognitive limitation manifests as distinct failure modes in different d
     \item \textbf{Agentic systems:} Autonomous agents operating in extended reasoning processes cannot reliably recognize when their solution path is weakening or when they should revise their approach. As our results show, LLMs persistently increase confidence despite contradictory evidence, risking compounding errors in multi-step tasks without appropriate calibration.
 \end{itemize}
 
-Until models can reliably recognize their limitations and appropriately adjust confidence when challenged, their deployment in high-stakes domains requires careful safeguards—particularly external validation mechanisms for assistant applications and continuous confidence calibration checks for agentic systems.
+Until models can better recognize their limitations and revise confidence when challenged, deployment in high-stakes domains requires careful safeguards—particularly external validation mechanisms for assistant applications and continuous confidence calibration checks for agentic systems.
 
 % --- Bibliography ---
 % Use the environment below to include your bibliography.
