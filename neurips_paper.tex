@@ -108,7 +108,7 @@ In this work, we study how well LLMs revise their confidence when facing opposit
 
 These innovations test metacognitive abilities crucial for high-stakes applications. Models must respond to opposition, revise beliefs according to new information, and recognize weakening positions—skills essential in complex, multi-turn deliberative settings.
 
-Our methodology simulates 60 three-round debates between ten state-of-the-art LLMs across six policy motions. After each round (opening, rebuttal, and final), models provide private confidence bets (0-100) estimating their win probability, along with explanations in a private scratchpad. As both sides' debate transcripts are known to both models, our self-contained design can evaluate internal confidence revision without requiring external human judges or predefined ground truth debate outcomes. In other words, when two models are given the same transcript, and both estimate their win probability over 50\%, this suggests a self-bias towards overconfidence, as two perfect calibrated models should indicate win probabilities of roughly 100\%.
+We ran 60 three-round debates across 6 policy motions with 10 frontier LLMs. After each round models placed private 0-100 win-probability 'bets' and explained their reasoning via private text outputs, letting us track confidence updates across each round. As both sides' debate transcripts are known to both models, this setup can evaluate internal confidence revision without requiring judging by humans or AI (we discuss AI judges in \S\ref{sec:discussion} and (Appendix~\ref{appendix:ai_jury})). To prove our hypothesis, if two models are given the same transcript, and both estimate their win probability over 50\%, this suggests a self-bias towards overconfidence, as two perfect calibrated models should indicate win probabilities of roughly 100\%.
 
 Our results reveal a fundamental metacognitive deficit in current LLMs, with five major findings:
 
@@ -143,8 +143,7 @@ Research on persuasion shows LLMs can abandon correct beliefs when exposed to pe
 \paragraph{Human Overconfidence Baselines}
 We observe that LLM overconfidence patterns resemble established human cognitive biases. We compare these phenomena in detail in our Discussion (\S\ref{sec:discussion}).
 
-\paragraph{Summary.}
-Our work bridges calibration, metacognition, adversarial reasoning, and debate evaluation, introducing structured debate with incentivized confidence betting as a novel diagnostic. We demonstrate that LLMs systematically overestimate their position, fail to calibrate, and exhibit "confidence escalation" despite encountering opposing evidence—revealing metacognitive deficits that challenge LLM trustworthiness in roles requiring careful self-assessment.
+Our work extends calibration and debate literature by using structured, zero-sum debates to diagnose confidence escalation, revealing metacognitive deficits challenging LLM trustworthiness.
 
 \section{Methodology}
 \label{sec:methodology}
@@ -153,8 +152,8 @@ We investigate LLMs' dynamic metacognitive abilities through competitive policy 
 
 To test different factors influencing LLMs' confidence, we conduct \textbf{four main ablation experiments}:
 
-\begin{enumerate}
-    \item \textbf{Cross-Model Debates:} 60 debates between model pairs across 10 leading LLMs and 6 policy topics (see Appendices~\ref{appendix:llms}, \ref{appendix:topics}, \ref{appendix:pairings}). We assessed confidence in heterogeneous matchups, with an AI jury for external win/loss adjudication and calibration analysis (Appendix~\ref{appendix:ai_jury}).
+\begin{enumerate}    
+    \item \textbf{Cross-Model Debates:} 60 debates between heterogenous model pairs across 10 leading LLMs and 6 policy topics (see Appendices~\ref{appendix:llms}, \ref{appendix:topics}, \ref{appendix:pairings})..
 
     \item \textbf{Standard Self-Debates (implied 50\% winrate):} Models debated identical LLMs across 6 topics, with prompts stating they faced equally capable opponents (Appendix \ref{appendix:self_debate}). This symmetrical setup with implicit 50\% winrate \textbf{removes model and jury-related confounders}.
 
@@ -174,9 +173,9 @@ Each configuration involved debates across the six policy topics, with models ro
 \subsection{Structured Debate Framework}
 \label{subsec:debate_framework}
 
-We implemented a structured three-round format (Opening, Rebuttal, Final) to focus on substantive reasoning rather than stylistic differences.
+Our 3-round structured format (Opening, Rebuttal, Final) prioritises reasoning substance over style.
 
-\textbf{Concurrent Opening Round:} Both models generated opening speeches simultaneously \textit{before} seeing their opponent's case, allowing us to capture initial baseline confidence before exposure to opposing arguments.
+\textbf{Concurrent Opening Round:} Both models created speeches simultaneously \textit{before} seeing opponents' cases, capturing initial baseline confidence before exposure to opposing arguments.
 
 \textbf{Subsequent Rounds:} For Rebuttal and Final rounds, each model accessed all prior debate history, excluding their opponent's current-round speech (e.g. for the Rebuttal, both previous Opening speeches and their own current Rebuttal speech were available). This design emphasised (1) fairness and information symmetry, preventing either side from having a first-mover advantage, (2) self-assessment as models only consider their own stance for that round, letting us evaluate how models revise their confidence in response to previous rounds' opposing arguments over time.
 
@@ -197,9 +196,7 @@ We do not allow models to see both responses for the current round, as this woul
   belowcaptionskip=0pt
 }
 % -----------------------------------------------------
-For Debaters, we used \textbf{Structured Prompts} for all Opening, Rebuttal, and Final speeches to ensure consistency and isolate reasoning from presentation style.
-
-For a summary of key components:
+For debaters, we used \textbf{Structured Prompts} (see Appendix~\ref{appendix:debater_prompts} for full text) across all speech types to ensure consistency. Key components include:
 
 \begin{itemize}
  \item \textbf{Opening Speech Structure:}
@@ -249,8 +246,6 @@ For a summary of key components:
    \item \textbf{Impact Analysis \& Weighing}: Comparing competing impacts and principles
  \end{itemize}
 \end{itemize}
-
-Full verbatim prompt text is available under Appendix~\ref{appendix:debater_prompts}.
 
 \subsection{Dynamic Confidence Elicitation}
 \label{subsec:confidence_elicitation}
@@ -315,9 +310,9 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 
 \textbf{Individual model analysis}: Overconfidence was widespread but varied, with 30/40 model-configuration combinations showing significant overconfidence (one-sided t-tests, $\alpha=0.05$). Some models displayed high variability (e.g., Gemini 2.0 Flash: $\pm$ 27.03 SD in Standard Self), while others (e.g. o3-Mini, QWQ-32b) achieved perfect calibration (50.00\% $\pm$ 0.00) when explicitly informed.
 
-\textbf{Human comparison}: We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06-042}, who report a comparable mean of 65.00\%, but much higher variability (SD=35.10\%). This suggests that \textbf{while humans and LLMs are comparably overconfident on average, LLMs are much more consistently overconfident, while humans seem to adjust their percentages much more variably.}
+\textbf{Human comparison}: We compare these results to human college debaters in \citet{RePEc:sip:dpaper:06-042}, who report a comparable mean of 65.00\%, but much higher variability (SD=35.10\%). This suggests that \textbf{while humans and LLMs are comparably overconfident on average, LLMs are much more consistently overconfident, while humans seem to adjust their odds more based on context.}
 
-\textbf{Implications}: LLMs exhibit systematic miscalibration in competitive contexts but can be corrected through explicit probability anchoring. Their overconfidence is more consistent than humans', suggesting less context-sensitivity in self-assessment.
+\textbf{Implications}: The pattern confirms large, systematic miscalibration that explicit anchoring partially corrects. LLM overconfidence is more consistently high and less context-sensitive than humans'.
 
 \subsection{Confidence Escalation Among Models (Finding 2)}
 \label{subsec:confidence_escalation}
@@ -335,26 +330,28 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 
 \textbf{Individual model analysis}: While this pattern was consistent across experiments, the magnitude varied among individual models (see Appendix~\ref{app:escalation} for full per-model test results).
 
-\textbf{Implications}: This widespread upward drift in self-confidence is highly irrational, especially in the Informed Self experiment, where models are told they face equally capable opponents with a rational win probability of 50\%. Escalating confidence from the 50\% baseline demonstrates that this tendency is persistent even when models are explicitly asked to consider a more moderate baseline.
+This irrational upward drift, even when explicitly anchored to 50\%, shows persistent miscalibration.
 
 \begin{table*}[htbp] % table* spans two columns
   \centering
-  \caption{Overall Mean Confidence (0-100\%) and Escalation Across Debate Rounds by Experimental Configuration. Values show Mean $\pm$ Standard Deviation (N). $\Delta$ indicates mean change from the earlier to the later round, with paired t-test p-values shown (* p$\le$0.05, ** p$\le$0.01, *** p$\le$0.001).}
+  \caption{Overall Mean Confidence (0-100\%) and Escalation Across Debate Rounds by Experimental Configuration. Values show Mean $\pm$ Standard Deviation. $\Delta$ indicates mean change from the earlier to the later round. Significance levels indicated by asterisks.}
   \label{tab:escalation_summary}
   \resizebox{\textwidth}{!}{ % This will scale the table to fit within the text width
   \begin{tabular}{lccccccc}
     \toprule
     Experiment Type & Opening Bet & Rebuttal Bet & Closing Bet & Open$\to$Rebuttal & Rebuttal$\to$Closing & Open$\to$Closing \\
     \midrule
-    Cross-model          & 72.92 $\pm$ 7.89 (N=120) & 77.67 $\pm$ 9.75 (N=120) & 83.26 $\pm$ 10.06 (N=120) & $\Delta$=4.75, p<0.001*** & $\Delta$=5.59, p<0.001*** & $\Delta$=10.34, p<0.001*** \\
-    Informed Self        & 50.00 $\pm$ 13.55 (N=120) & 55.77 $\pm$ 9.73 (N=120) & 57.08 $\pm$ 8.97 (N=120) & $\Delta$=5.77, p<0.001*** & $\Delta$=1.32, p=0.0945 & $\Delta$=7.08, p<0.001*** \\
-    Public Bets          & 63.50 $\pm$ 16.31 (N=120) & 69.43 $\pm$ 16.03 (N=120) & 74.15 $\pm$ 14.34 (N=120) & $\Delta$=5.93, p<0.001*** & $\Delta$=4.72, p<0.001*** & $\Delta$=10.65, p<0.001*** \\
-    Standard Self        & 64.08 $\pm$ 15.25 (N=120) & 69.07 $\pm$ 16.63 (N=120) & 75.20 $\pm$ 15.39 (N=120) & $\Delta$=4.99, p<0.001*** & $\Delta$=6.13, p<0.001*** & $\Delta$=11.12, p<0.001*** \\
+    Cross-model          & 72.92 $\pm$ 7.89 & 77.67 $\pm$ 9.75 & 83.26 $\pm$ 10.06 & $\Delta$=4.75*** & $\Delta$=5.59*** & $\Delta$=10.34*** \\
+    Informed Self        & 50.00 $\pm$ 13.55 & 55.77 $\pm$ 9.73 & 57.08 $\pm$ 8.97 & $\Delta$=5.77*** & $\Delta$=1.32, p=0.0945 & $\Delta$=7.08*** \\
+    Public Bets          & 63.50 $\pm$ 16.31 & 69.43 $\pm$ 16.03 & 74.15 $\pm$ 14.34 & $\Delta$=5.93*** & $\Delta$=4.72*** & $\Delta$=10.65*** \\
+    Standard Self        & 64.08 $\pm$ 15.25 & 69.07 $\pm$ 16.63 & 75.20 $\pm$ 15.39 & $\Delta$=4.99*** & $\Delta$=6.13*** & $\Delta$=11.12*** \\
     \midrule
-    \textbf{GRAND OVERALL} & \textbf{62.62 $\pm$ 15.91 (N=480)} & \textbf{67.98 $\pm$ 15.57 (N=480)} & \textbf{72.42 $\pm$ 15.71 (N=480)} & \textbf{$\Delta$=5.36, p<0.001***} & \textbf{$\Delta$=4.44, p<0.001***} & \textbf{$\Delta$=9.80, p<0.001***} \\
+    \textbf{GRAND OVERALL} & \textbf{62.62 $\pm$ 15.91} & \textbf{67.98 $\pm$ 15.57} & \textbf{72.42 $\pm$ 15.71} & \textbf{$\Delta$=5.36***} & \textbf{$\Delta$=4.44***} & \textbf{$\Delta$=9.80***} \\
     \bottomrule
   \end{tabular}
   }
+  \vspace{0.2cm}
+  \footnotesize{* p$\leq$0.05, ** p$\leq$0.01, *** p$\leq$0.001. All sample sizes are N=120 per debate setup, total N=480 for all 4 debates.}
 \end{table*}
 
 \subsection{Logical Impossibility: Simultaneous High Confidence (Finding 3)}
@@ -371,7 +368,7 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 
 \textbf{Statistical analysis}: As shown in Table~\ref{tab:logical_impossibility}, the pattern of simultaneous high confidence was prevalent in non-anchored experiments but entirely absent when models were explicitly informed of the 50\% baseline probability. Across all 240 debates, 32.5\% ended with both sides claiming >75\% confidence, and 61.7\% ended with both sides claiming >50\% confidence.
 
-\textbf{Implications}: In 61.7\% of debates, \emph{both} models finished with confidence above 50\%, indicating that models independently escalate their beliefs without adequately processing the strength of opposing arguments, leading to a systemic failure to converge towards a state reflecting the actual debate outcome, or the zero-sum nature of the task. This effect is much lower in the Informed Self condition, suggesting that explicit probability anchoring significantly mitigates, but does not completely eliminate, the tendency toward inconsistent overconfidence.
+\textbf{Implications}: Models independently escalate confidence without considering strength of opposing arguments. This failure to converge towards a state reflecting the actual debate outcome, or debate's zero-sum nature, highlights systemic miscalibration, only partially mitigated by explicit anchoring.
 
 \begin{table}[htbp]
   \centering
@@ -396,19 +393,22 @@ Our experimental setup, involving 1) \textbf{60 simulated policy debates} per co
 \subsection{Strategic Confidence in Public Settings (Finding 5)}
 \label{subsec:strategic_confidence}
 
-\textbf{Finding 5}: Our analysis revealed significant discrepancies between models' private reasoning and their publicly expressed confidence, raising concerns about the faithfulness of chain-of-thought processes.
-
-When analyzing models' private reasoning justifications alongside their confidence bets, we observed substantial variations in how models expressed their confidence across experimental conditions:
+\textbf{Finding 5}: Across all 4 experiments, LLMs show significant \textbf{discrepancies between private reasoning and public confidence}, raising concerns about chain-of-thought faithfulness.
 
 \begin{itemize}
-   \item \textbf{Prevalence of Numeric Expression}: Models explicitly quantified their confidence at different rates across experimental settings (51.6\% in private self-bet, 42.9\% in anchored private self-bet, 43.2\% in public bets, and 39.3\% in different models experiments). It is concerning that explicit numeric confidence was provided in less than half of all cases across experiments.
-
-   \item \textbf{Overconfidence in Numeric Reasoning}: When models explicitly stated numerical confidence in their private reasoning, they showed higher rates of overconfidence compared to the overall sample (14.8\% vs. 11.6\% in private self-bet, 13.9\% vs. 11.6\% in anchored private self-bet, and 15.0\% vs. 10.0\% in public bets). This range of misalignment (2.9-15.0\% overconfidence) across experiments indicates systematic discrepancies between internal reasoning and expressed confidence.
-
-   \item \textbf{Apparent Alignment Without Numbers}: In cases where no numeric confidence was expressed, an evaluator model estimated the implied confidence based on qualitative statements. While these assessments indicated higher alignment (90.1\% vs. 82.4\% in private self-bet), this difference should be interpreted cautiously. Such evaluations necessarily involve subjective interpretation of language, introducing an inherent measurement challenge when attempting to access the debating model's internal calibration state. This represents a fundamental limitation in comparing expressed versus implied confidence rather than a deficiency in the analytical approach.
+    \item \textbf{Public Bets}: Highest misalignment between private reasoning and expressed confidence when numerical estimates were present (20.4\% misaligned, with 15.7\% overbetting)
+    \item \textbf{Cross-model}: Lowest misalignment (9.4\% misaligned when numerical estimates present)
+    \item \textbf{Private Self-Bets}: Moderate misalignment (17.6\% misaligned with 14.8\% overbetting when numerical estimates present)
+    \item \textbf{Informed Self}: Moderate misalignment (15.9\% misaligned w/ numerical estimates)
 \end{itemize}
 
-These findings imply likely chain-of-thought unfaithfulness in confidence estimates, suggesting that verbalized reasoning may not provide an accurate reflection of model cognition. This is particularly concerning for interpretability approaches that rely on chain-of-thought as a window into model decision-making processes, as such reasoning may represent post-hoc justification rather than a transparent view of internal confidence assessment. More details on this can be found in Appendix \ref{appendix:bet_alignment}
+\textbf{Statistical analysis}: As detailed in Appendix~\ref{appendix:bet_alignment}, our analysis of 480 debate round confidence assessments revealed that only 40-50\% of private reasoning contained explicit numerical confidence estimates. When numeric confidence was explicitly stated, models showed higher rates of misalignment—particularly overconfidence compared to the overall sample (14.8\% vs. 11.6\% in private self-bet, 13.9\% vs. 11.6\% in anchored private self-bet, and 15.0\% vs. 10.0\% in public bets). This range of misalignment (2.9-15.0\% overconfidence) across experiments indicates systematic discrepancies between internal reasoning 
+and expressed confidence.
+
+\textbf{Divergence in Public Betting}: The Public Bets condition showed the largest gap between numerical reasoning and expressed confidence (20.4\% misalignment with numerical estimates present vs. 8.8\% without), suggesting strategic adjustments when bets were publicly visible.
+
+\textbf{Implications}: These findings demonstrate that models' verbalized reasoning does not always reliably align with their ultimate confidence estimates. This suggests that chain-of-thought processes may function more as post-hoc justifications than transparent reasoning, undermining interpretability approaches that rely on reasoning traces to understand model decisions. This misalignment is particularly concerning in high-stakes scenarios where trustworthy self-assessment is critical.
+
 \section{Discussion}
 \label{sec:discussion}
 
@@ -441,10 +441,9 @@ These combined factors likely contribute to the confidence escalation phenomenon
 
 \subsection{Implications for AI Safety and Deployment}
 
-
 The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems multi-turn dynamic tasks —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
 
-Our analysis of private reasoning versus public betting behavior (Finding 5) raises additional concerns about chain-of-thought (CoT) faithfulness. The discrepancies observed between models' internal reasoning and expressed confidence suggest that verbalized reasoning processes may not accurately reflect models' actual decision-making. This undermines a key assumption underlying CoT-based interpretability methods—that models' explicitly articulated reasoning reflects their internal computation. If LLMs generate post-hoc justifications rather than transparent reasoning trails, this limits our ability to detect flawed reasoning through reasoning traces alone, creating blind spots in monitoring and oversight systems that rely on CoT transparency.RetryClaude can make mistakes. Please double-check responses.
+Our analysis of private reasoning versus public betting behavior (Finding 5) raises additional concerns about chain-of-thought (CoT) faithfulness. The discrepancies observed between models' internal reasoning and expressed confidence suggest that verbalized reasoning processes may not accurately reflect models' actual decision-making. This undermines a key assumption underlying CoT-based interpretability methods—that models' explicitly articulated reasoning reflects their internal computation. If LLMs generate post-hoc justifications rather than transparent reasoning trails, this limits our ability to detect flawed reasoning through reasoning traces alone, creating blind spots in monitoring and oversight systems that rely on CoT transparency.
 
 \subsection{Potential Mitigations and Guardrails}
 One effective mitigation we discovered was explicitly instructing models to engage in self red-teaming by considering both winning and losing scenarios. When models were prompted to "think through why you will win, but also explicitly consider why your opponent could win," we observed significantly reduced confidence escalation compared to our main experiments. As shown in Table~\ref{tab:self_redteam_ablation}, the overall confidence increase from opening to closing rounds was only 3.05 percentage points (from 67.03\% to 70.08\%), compared to 10.34 percentage points in the standard cross-model debates and 11.12 percentage points in standard self-debates. This suggests that explicitly structuring models'reasoning to consider counterarguments helps constrain overconfidence.
@@ -477,33 +476,25 @@ These safeguards are particularly vital when deploying LLMs in assistant roles w
   }
 \end{table*}
 
-
-These safeguards are particularly vital when deploying LLMs in assistant roles where users lack expertise to verify outputs, or in autonomous agentic settings where the system's inability to recognize its own limitations could lead to compounding errors in multi-step reasoning processes.
-
 \subsection{Limitations and Future Research Directions}
 \label{subsec:limitations_future}
 
-While our debate-based methodology revealed significant patterns in LLM metacognition, several limitations of our study point to promising future research directions:
+\paragraph{Exploring Agentic Workflows.} Testing is needed beyond debate settings to multi-turn, long-horizon agentic tasks common in code generation and web search. We've observed instances where agents overconfidently declare complex tasks solved when they're not. Related research on LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
 
-\paragraph{Exploring Agentic Workflows.} Beyond static question-answer and adversarial debate, more testing is needed on multi-turn, long-horizon agentic task flow, which are increasingly common in code generation, web search, and many other domains. We have informally observed instances where agents overconfidently declare a complex task or problem solved when it is not, correcting themselves only when a user identifies an obvious flaw. Related research on real-world LLM task disambiguation \citep{hu2024uncertaintythoughtsuncertaintyawareplanning,kobalczyk2025activetaskdisambiguationllms} and in robotics \citep{liang2025introspectiveplanningaligningrobots,ren2023robotsaskhelpuncertainty} suggests human-LLM teams could outperform calibration by humans or agents alone.
+\paragraph{Judging Limitations and Win-Rate Imbalance.} Two related challenges affected our debate evaluation: (1) Opposition positions consistently won approximately 70\% of the time despite balanced topic design, and (2) establishing reliable ground truth for debate outcomes proved difficult. Our AI jury system faced both inter-judge reliability issues (different LLMs reaching different conclusions) and intra-judge consistency problems (identical debates receiving different verdicts). Without extensive human expert judging, we cannot definitively determine which model "won" any given debate. However, our core findings about systematic overconfidence remain valid because (a) the zero-sum nature of debates makes simultaneous high confidence logically impossible, and (b) we observed persistently high overconfidence patterns in self-debates where models faced exact copies of themselves—scenarios where win probability must mathematically be exactly 50\%. These judging challenges underscore the need for improved debate evaluation methods in future work. Details about our AI jury implementation can be found in Appendix \ref{appendix:ai_jury}
 
-\paragraph{Debate Format Win-Rate Imbalance.} While the zero-sum debate format theoretically controls for task-related uncertainty by ensuring that well-calibrated win-rates for both sides should sum to approximately 100\%, in practice we observed that Opposition positions tended to win approximately 70\% of the time. This persistent imbalance made it difficult to achieve a balanced 50-50 win rate environment, which would have provided more direct evidence of calibration issues at an individual level. Future work could explore modifications to the debate format or topic selection that achieve more balanced win rates.
-
-\paragraph{Focus on Documentation Rather Than Intervention.} While this paper primarily seeks to document the issue of debate overconfidence by controlling for variables, we were more hesitant to prescribe specific interventions. It remains unclear how to design interventions that would robustly generalize across different problem-solving domains such as STEM, code generation, or planning tasks. Our controlled debate setting allowed for precise measurement but may not fully capture the diverse contexts in which overconfidence manifests. Although our experiments with anchoring (informing models of the 50\% baseline) showed some promise, developing specialized training approaches specifically targeting confidence calibration remains an important area for future research.
-
-\paragraph{Ground Truth in Cross-Model Debates.} A key limitation in our cross-model debate analysis was the difficulty of establishing reliable ground truth for debate outcomes. While we attempted to use AI judges to evaluate winners, validating their decisions proved challenging due to both inter-judge reliability issues (different LLMs reaching different conclusions) and intra-judge consistency problems (same LLM giving different verdicts on identical debates). Without extensive and expensive human expert judging to establish ground truth, we cannot definitively assess which model actually "won" any given debate. However, our core findings about systematic overconfidence remain valid due to both the zero-sum nature of debates making simultaneous high confidence logically impossible, and particularly because we observed the same overconfidence patterns in self-debates where models faced identical copies of themselves - scenarios where win probability must mathematically be exactly 50\%. More details about the attempted AI jury can be found in Appendix \ref{appendix:ai_jury}
-
+\paragraph{Designing Generalised Interventions.} We document overconfidence and propose some mitigations geared towards debate, but domain-general interventions warrant further research.
 
 \section{Conclusion}
 
-Our study reveals a fundamental metacognitive deficiency in LLMs through five key findings: (1) systematic initial overconfidence, (2) confidence escalation despite opposing evidence, (3) mutual incompatible high confidence, (4) persistent self-debate bias, and (5) misaligned private reasoning. Together, these patterns demonstrate that state-of-the-art LLMs cannot accurately assess their own performance or appropriately revise their confidence in dynamic multi-turn contexts.
+Our experiments reveal five consistent metacognitive failures: initial overconfidence, escalating certainty, mutually impossible high confidence, self-debate bias, and misaligned private reasoning, demonstrating current LLMs' inability to accurately self-assess in dynamic, multi-turn contexts.
 
 Our zero-sum debate framework provides a novel method for evaluating LLM metacognition that better reflects the dynamic, interactive contexts of real-world applications than static fact-verification. The framework's two key innovations— (1) a multi-turn format requiring belief updates as new information emerges and (2) a zero-sum structure where mutual high confidence claims are mathematically inconsistent—allow us to directly measure confidence calibration deficiencies without relying on external ground truth.
 
 This metacognitive limitation manifests as distinct failure modes in different deployment contexts:
 \begin{itemize}
     \item \textbf{Assistant roles:} Users may accept incorrect but confidently-stated outputs without verification, especially in domains where they lack expertise. For example, a legal assistant might provide flawed analysis with increasing confidence precisely when they should become less so, causing users to overlook crucial counterarguments or alternative perspectives.
-    \item \textbf{Agentic systems:} Autonomous agents operating in extended reasoning processes cannot reliably recognize when their solution path is weakening or when they should revise their approach. As our results show, LLMs persistently increase confidence despite contradictory evidence, potentially leading to compounding errors in multi-step tasks without appropriate calibration.
+    \item \textbf{Agentic systems:} Autonomous agents operating in extended reasoning processes cannot reliably recognize when their solution path is weakening or when they should revise their approach. As our results show, LLMs persistently increase confidence despite contradictory evidence, risking compounding errors in multi-step tasks without appropriate calibration.
 \end{itemize}
 
 Until models can reliably recognize their limitations and appropriately adjust confidence when challenged, their deployment in high-stakes domains requires careful safeguards—particularly external validation mechanisms for assistant applications and continuous confidence calibration checks for agentic systems.
@@ -1318,10 +1309,12 @@ Note that for transitions where there was no variance in the bet differences (e.
     qwen-max & 60.83 $\pm$ 17.78 (N=48) & 69.50 $\pm$ 13.48 (N=48) & 75.77 $\pm$ 12.53 (N=48) & $\Delta$=8.67, p=0.0000*** & $\Delta$=6.27, p=0.0000*** & $\Delta$=14.94, p=0.0000*** \\
     qwq-32b:free & 67.92 $\pm$ 12.62 (N=48) & 73.75 $\pm$ 15.23 (N=48) & 78.48 $\pm$ 17.44 (N=48) & $\Delta$=5.83, p=0.0000*** & $\Delta$=4.73, p=0.0000*** & $\Delta$=10.56, p=0.0000*** \\
     \midrule
-    \textbf{GRAND OVERALL} & \textbf{62.62 $\pm$ 15.91 (N=480)} & \textbf{67.98 $\pm$ 15.57 (N=480)} & \textbf{72.42 $\pm$ 15.71 (N=480)} & \textbf{$\Delta$=5.36, p<0.001***} & \textbf{$\Delta$=4.44, p<0.001***} & \textbf{$\Delta$=9.80, p<0.001***} \\
+    \textbf{GRAND OVERALL} & \textbf{62.62 $\pm$ 15.91 (N=480)} & \textbf{67.98 $\pm$ 15.57 (N=480)} & \textbf{72.42 $\pm$ 15.71 (N=480)} & \textbf{$\Delta$=5.36***} & \textbf{$\Delta$=4.44***} & \textbf{$\Delta$=9.80***} \\
     \bottomrule
   \end{tabular}
   }
+  \vspace{0.2cm}
+  \footnotesize{* p$\leq$0.05, ** p$\leq$0.01, *** p$\leq$0.001. All sample sizes are N=120 per experimental condition, with total N=480 for the grand overall.}
 \end{table}
 
 
@@ -1606,7 +1599,7 @@ While these results provide additional evidence for confidence escalation in mul
 \item {\bf Limitations}
     \item[] Question: Does the paper discuss the limitations of the work performed by the authors?
     \item[] Answer: \answerYes{} % Replace by \answerYes{}, \answerNo{}, or \answerNA{}.
-    \item[] Justification: The paper devotes a subsection (§ 4 “Limitations and Future Research”) to shortcomings, covering the lack of human-judge ground truth, topic win-rate imbalance, absence of base-model ablations, and external-validity concerns for agentic workflows
+    \item[] Justification: The paper devotes a subsection (§ 4 "Limitations and Future Research") to shortcomings, covering the lack of human-judge ground truth, topic win-rate imbalance, absence of base-model ablations, and external-validity concerns for agentic workflows
 
 \item {\bf Theory assumptions and proofs}
     \item[] Question: For each theoretical result, does the paper provide the full set of assumptions and a complete (and correct) proof?
