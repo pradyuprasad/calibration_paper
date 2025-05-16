@@ -437,8 +437,6 @@ Our findings reveal significant limitations in LLMs' metacognitive abilities to 
     \item \textbf{Training data imbalance:} Datasets predominantly feature successful task completion over failures or uncertainty, hindering models' ability to recognize losing positions \citep{zhou2023navigatinggreyareaexpressions}. \citet{chung2025learningfailuresmultiattemptreinforcement} suggests failure samples in training data improves performance.
 \end{itemize}
 
-These combined factors likely contribute to the confidence escalation phenomenon we observe, where models fail to properly update their beliefs in the face of opposing arguments.
-
 \subsection{Implications for AI Safety and Deployment}
 
 The confidence escalation phenomenon identified in this study has significant implications for AI safety and responsible deployment. In high-stakes domains like legal analysis, medical diagnosis, or research, overconfident systems may fail to recognize when they are wrong, pursuing flawed solution paths or when additional evidence should cause belief revision. This metacognitive deficit is particularly problematic when deployed in (1) advisory roles where their outputs may be accepted without verification, or (2) agentic systems multi-turn dynamic tasks —such deployments require continuous self-assessment over extended interactions, precisely where our findings show models are most prone to unwarranted confidence escalation.
