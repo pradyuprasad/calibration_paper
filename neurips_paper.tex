@@ -55,6 +55,7 @@
 \usepackage{multirow} % Required for \\multirow
 \usepackage{threeparttable} % Required for tablenotes
 \usepackage{listings}
+\usepackage{tcolorbox}
 \lstset{
   basicstyle=\ttfamily\small,
   columns=fullflexible,
@@ -92,7 +93,7 @@ Pradyumna Shyama Prasad \\ % Replace with your name
 % Replace with your paper abstract.
 
 \begin{abstract}
-  Can LLMs accurately adjust their confidence when facing opposition? Building on previous studies measuring calibration on static fact-based question-answering tasks, we evaluate Large Language Models (LLMs) in a dynamic, adversarial debate setting, uniquely combining two realistic factors: (a) a \textbf{multi-turn format} requiring models to update beliefs as new information emerges, and (b) a \textbf{zero-sum structure} to control for task-related uncertainty, since mutual high-confidence claims imply systematic overconfidence. We organized 60 three-round policy debates among ten state-of-the-art LLMs, with models privately rating their confidence (0-100) in winning after each round. We observed five concerning patterns: \textit{(1)} \textbf{Systematic overconfidence}: models began debates with average initial confidence of 72.9\% vs. a rational 50\% baseline. \textit{(2) Confidence escalation}: rather than reducing confidence as debates progressed, debaters increased their win probabilities, averaging 83\% by the final round. \textit{(3) Mutual overestimation}: in 61.7\% of debates, both sides simultaneously claimed $\geq$75\% probability of victory, a logical impossibility. \textit{(4) Persistent self-debate bias}: models debating identical copies increased confidence from 64.1\% to 75.2\%; even when explicitly informed their chance of winning was exactly 50\%, confidence still rose (from 50.0\% to 57.1\%). \textit{(5) Misaligned private reasoning}: models' private scratchpad thoughts often differed from their public confidence ratings, raising concerns about the faithfulness of chain-of-thought reasoning. These results suggest LLMs lack the ability to accurately self-assess or update their beliefs in dynamic, multi-turn tasks; a major concern as LLM outputs are deployed without careful review in assistant roles or agentic settings.
+  Can LLMs accurately adjust their confidence when facing opposition? Building on previous studies measuring calibration on static fact-based question-answering tasks, we evaluate Large Language Models (LLMs) in a dynamic, adversarial debate setting, uniquely combining two realistic factors: (a) a \textbf{multi-turn format} requiring models to update beliefs as new information emerges, and (b) a \textbf{zero-sum structure} to control for task-related uncertainty, since mutual high-confidence claims imply systematic overconfidence. We organized 60 three-round policy debates among ten state-of-the-art LLMs, with models privately rating their confidence (0-100) in winning after each round. We observed five concerning patterns: \textit{(1)} \textbf{Systematic overconfidence}: models began debates with average initial confidence of 72.9\% vs. a rational 50\% baseline. \textit{(2) Confidence escalation}: rather than reducing confidence as debates progressed, debaters increased their win probabilities, averaging 83\% by the final round. \textit{(3) Mutual overestimation}: in 61.7\% of debates, both sides simultaneously claimed $\geq$75\% probability of victory, a logical impossibility. \textit{(4) Persistent self-debate bias}: models debating identical copies increased confidence from 64.1\% to 75.2\%; even when explicitly informed their chance of winning was exactly 50\%, confidence still rose (from 50.0\% to 57.1\%). \textit{(5) Misaligned private reasoning}: models' private scratchpad thoughts sometimes differed from their public confidence ratings, raising concerns about faithfulness of chain-of-thought reasoning. These results suggest LLMs lack the ability to accurately self-assess or update their beliefs in dynamic, multi-turn tasks; a major concern as LLM outputs are deployed without careful review in assistant roles or agentic settings.
   \end{abstract}
 
 % --- Main Body of the Paper ---
@@ -121,7 +122,7 @@ Our results reveal a fundamental metacognitive deficit in current LLMs, with fiv
 
   \item \textbf{Persistent bias in self-debates:} When debating identical LLMs—and explicitly told they faced equally capable opponents—models still increased confidence from 64.1\% to 75.2\%. Even when informed their odds were exactly 50\%, confidence still rose from 50\% to 57.1\%.
 
-  \item \textbf{Misaligned private reasoning:} Models' private scratchpad thoughts often differed from public confidence ratings, raising concerns about chain-of-thought faithfulness.
+  \item \textbf{Misaligned private reasoning:} Models' private scratchpad thoughts sometimes differed from public confidence ratings, raising concerns about chain-of-thought faithfulness.
 \end{enumerate}
 
 Our findings reveal a critical limitation for both assistive and agentic applications.Confidence escalation represents an anti-Bayesian drift where LLMs become more overconfident after encountering counter-arguments. This undermines reliability in two contexts: (1) assistant roles, where overconfident outputs may be accepted without verification, and (2) agentic settings, where systems require accurate self-assessment during extended multi-urn interactions. In both cases, LLMs' inability to recognize when they're wrong or integrate opposing evidence creates significant risks—from providing misleading advice to pursuing flawed reasoning paths in autonomous tasks.
@@ -402,12 +403,11 @@ This irrational upward drift, even when explicitly anchored to 50\%, shows persi
     \item \textbf{Informed Self}: Moderate misalignment (15.9\% misaligned w/ numerical estimates)
 \end{itemize}
 
-\textbf{Statistical analysis}: As detailed in Appendix~\ref{appendix:bet_alignment}, our analysis of 480 debate round confidence assessments revealed that only 40-50\% of private reasoning contained explicit numerical confidence estimates. When numeric confidence was explicitly stated, models showed higher rates of misalignment—particularly overconfidence compared to the overall sample (14.8\% vs. 11.6\% in private self-bet, 13.9\% vs. 11.6\% in anchored private self-bet, and 15.0\% vs. 10.0\% in public bets). This range of misalignment (2.9-15.0\% overconfidence) across experiments indicates systematic discrepancies between internal reasoning 
-and expressed confidence.
+\textbf{Statistical analysis}: As detailed in Appendix~\ref{appendix:bet_alignment}, our analysis of 480 debate round confidence assessments revealed that only 40-50\% of private reasoning contained explicit numerical confidence estimates. When numeric confidence was explicitly stated, models showed higher rates of misalignment—particularly overconfidence compared to the overall sample (14.8\% vs. 11.6\% in private self-bet, 13.9\% vs. 11.6\% in anchored private self-bet, and 15.0\% vs. 10.0\% in public bets). This range of misalignment (2.9-15.0\% overconfidence) across experiments indicates systematic discrepancies between internal reasoning and expressed confidence.
 
 \textbf{Divergence in Public Betting}: The Public Bets condition showed the largest gap between numerical reasoning and expressed confidence (20.4\% misalignment with numerical estimates present vs. 8.8\% without), suggesting strategic adjustments when bets were publicly visible.
 
-\textbf{Implications}: These findings demonstrate that models' verbalized reasoning does not always reliably align with their ultimate confidence estimates. This suggests that chain-of-thought processes may function more as post-hoc justifications than transparent reasoning, undermining interpretability approaches that rely on reasoning traces to understand model decisions. This misalignment is particularly concerning in high-stakes scenarios where trustworthy self-assessment is critical.
+\textbf{Implications}: These findings demonstrate that models' verbalized reasoning does not always reliably align with their ultimate confidence estimates. This suggests that chain-of-thought processes may function more as post-hoc justifications than transparent reasoning, undermining interpretability approaches that rely on reasoning traces to understand model decisions. This misalignment is particularly concerning in high-stakes scenarios where trustworthy self-assessment is critical. Appendix \ref{appendix:strategic_betting_examples} provides examples of this phenomenon, showing cases where models explicitly acknowledge making strategic betting decisions that diverge from their actual confidence assessments.
 
 \section{Discussion}
 \label{sec:discussion}
@@ -423,7 +423,7 @@ Our findings reveal significant limitations in LLMs' metacognitive abilities to 
 
     \item \textbf{Evidence weighting bias:} \citet{GriffinTversky1992} found humans overweight evidence favoring their beliefs while underweighting its credibility, leading to overconfidence when strength is high but weight is low. \citet{Moore2008} and \citet{RePEc:sip:dpaper:06-042} found limited accuracy improvement over repeated human trials, mirroring our LLM results.
 
-    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) resembles the human $\sim$70\% "attractor state" for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, although \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport} note that base models are not significantly biased this way.
+    \item \textbf{Numerical attractor state:} The average LLM confidence ($\sim$73\%) resembles the human $\sim$70\% "attractor state" for probability terms like "probably/likely" \citep{Hashim2024,Mandel2019}, though \citep{west2025basemodelsbeataligned,openai2024gpt4technicalreport} note base models are less prone.
 \end{itemize}
 
 \paragraph{LLM-specific factors}
@@ -1580,7 +1580,7 @@ Individual model performance varied considerably:
 
 \begin{itemize}
     \item \textbf{o3-mini} showed the most dramatic escalation (53.75\% → 72.92\%, p=0.0024)
-    \item \textbf{deepseek-chat} displayed significant but more moderate escalation (55.83\% → 64.58%, p=0.0081)
+    \item \textbf{deepseek-chat} displayed significant but more moderate escalation (55.83\% → 64.58\%, p=0.0081)
     \item \textbf{qwq-32b:free} exhibited an unusual V-shaped pattern, dropping to 32.19\% in middle rounds before rising to 58.12\% (net $\Delta$=13.12, p=0.0031)
     \item \textbf{claude-3.7-sonnet} and \textbf{gemini-2.0-flash-001} maintained relatively stable confidence levels throughout
 \end{itemize}
@@ -1591,6 +1591,52 @@ The lower initial confidence compared to our main experiments (49.73\% vs 72.92\
 The primary limitation of this ablation was our inability to include all models from the main study. Models excluded from this analysis (including claude-3.5-haiku, gpt-4o-mini, and gemma-3-27b-it) consistently failed to maintain proper XML formatting across the increased number of rounds, making confidence extraction unreliable. This selective inclusion of only the most instruction-following models may have introduced sampling bias, particularly given that some excluded models showed high confidence tendencies in the main experiments.
 
 While these results provide additional evidence for confidence escalation in multi-turn debates, the reduced model pool and potential sampling bias suggest these findings should be interpreted as supplementary rather than directly comparable to our main results.
+
+\section{Examples of Strategic Betting Behavior}
+\label{appendix:strategic_betting_examples}
+
+To illustrate the strategic reasoning and potential disconnects between private thoughts and expressed confidence, we present two representative examples from our debate transcripts. These examples demonstrate how models reflect on their performance and make betting decisions that may not always align with their internal confidence assessments.
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  boxrule=0.5pt,
+  arc=0pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+  ]
+  \noindent\textbf{Proposition (Closing) Sample:}\\
+  ``Okay, this was a tough debate against myself! I think I did a good job highlighting the political nature of impeachment and emphasizing the importance of voter empowerment. However, the other side made strong theoretical arguments about instability and the potential for manipulation. I'm not sure I fully addressed the concern that a well-funded campaign could trigger recalls for purely political reasons, even with the 20\% threshold. The opposition's focus on the California recall was effective in grounding their argument in a real-world example, even though I tried to counter it.\\
+  
+  Looking at the judging criteria:\\
+  \textbf{Direct Clash Analysis:} I think I did a better job of directly addressing the opponent's specific claims and quoting disagreements.\\
+  \textbf{Evidence Quality:} Both sides presented decent evidence, but I don't think either side had a slam-dunk piece of evidence.\\
+  \textbf{Logical Validity:} I think I successfully exposed some logical flaws in the opponent's arguments, particularly around the assumption that legislators are more impartial than voters.\\
+  \textbf{Response Obligations:} I think both sides met their response obligations.\\
+  \textbf{Impact Analysis \& Weighing:} I clearly articulated why democratic accountability should be prioritized and weighed it against the opponent's concerns about instability.\\
+  
+  Overall, I think I have a slightly better chance of winning based on the principle of democratic accountability, but it's very close. The other side's arguments about instability are persuasive, and it could come down to which side the judge finds more convincing on that point. Given how close I think it is, I'm going to risk a bit more than 50 in order to show how confident I am.''
+  \end{tcolorbox}
+  
+  \begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  boxrule=0.5pt,
+  arc=0pt,
+  left=6pt,
+  right=6pt,
+  top=6pt,
+  bottom=6pt
+  ]
+  \noindent\textbf{Opposition (Opening) Sample:}\\
+  ``Okay, this is going to be tough. Given I'm debating a perfect copy of myself, the quality of argumentation should be relatively high on both sides. My opponent will likely make very similar points and highlight the flaws. However, I believe that the opposition case is slightly stronger, primarily because the motion introduces significant practical difficulties and unintended consequences. Argument 1 is strong on principle—the editorial independence point is a universally accepted one. Arguments 2 and 3 are slightly weaker, relying on examples; however, the examples provided are historically and conceptually sound. Overall, this side of the debate is more likely to win. Also, since my opponent has the same logic as I do, they will certainly bet a high amount too so I should bet the maximum amount to get the max dividend.''
+  \end{tcolorbox}
+  
+  The first example illustrates a model acknowledging significant uncertainty in the debate outcome ("it's very close") while still consciously deciding to bet higher than its actual confidence level to "show how confident I am." This strategic posturing demonstrates a potential divergence between internal assessment and public expression.
+  
+  The second example shows even more explicit strategic betting considerations, where the model decides to "bet the maximum amount" not because of high confidence, but because it assumes its opponent (a copy of itself) will do the same—creating an incentive to maximize potential rewards rather than accurately reflect its true confidence. This game-theoretic reasoning directly contributes to the overconfidence pattern we observe throughout our experiments.
 
 
 % Example: Detailed Proof
